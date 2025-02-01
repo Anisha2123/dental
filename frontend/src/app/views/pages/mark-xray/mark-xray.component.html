@@ -1,0 +1,256 @@
+<section class="content">
+  <div class="container">
+    <h5 class="mb-3 fw-bold position-relative">
+      ARTI Evaluation Result
+    </h5>
+
+    <div class="row">
+      <div class="col-12 d-flex">
+        <div class="col-6 d-flex ps-0">
+          <!-- <button
+            type="button"
+            class="btn btn-primary save-btn pd-1 fw-bold other-btn evaluate-btn"
+            [class]="evaluationResult ? 'hide-btn' : ''"
+            (click)="handleSwitch('show')"
+          >
+            Evaluation Result
+          </button>
+          <button
+            type="button"
+            class="btn btn-primary pd-1 fw-bold other-btn original-xray"
+            [class]="!evaluationResult ? 'hide-btn' : ''"
+            (click)="handleSwitch('hide')"
+          >
+            Original X-Ray
+          </button> -->
+        </div>
+        <div class="col-6 mb-0 d-flex justify-content-end align-items-center">
+          <button *ngIf="!evaluationResult" type="button" class="btn fw-bold cancel-btn-dlt pd-1 me-2" (click)="delete()"><svg stroke="currentColor" fill="currentColor" stroke-width="0" viewBox="0 0 24 24" height="1em" width="1em" xmlns="http://www.w3.org/2000/svg"><g><path fill="none" d="M0 0h24v24H0z"></path><path d="M4 8h16v13a1 1 0 0 1-1 1H5a1 1 0 0 1-1-1V8zm2 2v10h12V10H6zm3 2h2v6H9v-6zm4 0h2v6h-2v-6zM7 5V3a1 1 0 0 1 1-1h8a1 1 0 0 1 1 1v2h5v2H2V5h5zm2-1v1h6V4H9z"></path></g></svg></button>
+          <!-- <button
+            type="button"
+            class="btn fw-bold other-btn pd-1 me-2"
+            (click)="delete()"
+          >
+            Delete Correction
+          </button> -->
+          <button
+            type="button"
+            class="btn btn-primary save-btn pd-1 fw-bold other-btn"
+            data-bs-toggle="modal"
+            data-bs-target="#exampleModalCenter"
+            (click)="save()"
+            *ngIf="!evaluationResult"
+          >
+            Approve For Data Learning&nbsp;<i
+              class="fa-sharp fa-regular fa-floppy-disk ms-1"
+            ></i>
+          </button>
+          <button
+            class="btn cancel-btn-back text-light fw-bold pd-1 ms-2"
+            (click)="handleClick()"
+          >
+            Back
+          </button>
+        </div>
+      </div>
+      <div class="col-12 mt-2 d-flex justify-content-between ps-0">
+        <div class="col-6 original-xray-margin">
+          <!--<div class="ms-2 markDiv">
+            <div *ngFor="let marker of this.userMark" class="user-marker" [style.left.px]=""
+              [style.top.px]="marker.value.y">
+            </div>-->
+
+          <!--<div *ngFor="let marker of this.userMark" >-->
+
+          <!-- </div>
+
+          </div>
+          <img [src]="renderImage(this.xRayData[0]?.xray_image.path)" alt="" class="w-100">-->
+          <!-- <div id="label-studio1" ></div> -->
+          <lib-ngx-image-zoom
+            [thumbImage]="myThumbnail"
+            [fullImage]="myFullresImage"
+            [magnification]="1"
+            [enableScrollZoom]="true"
+            [enableLens]="true"
+            [lensWidth]="250"
+            [lensHeight]="250"
+            [circularLens]="true"
+          >
+          </lib-ngx-image-zoom>
+          <!-- <label class="text-center w-100 mt-2 fw-bold dentist-mark-label"
+            >Original X-ray</label
+          > -->
+        </div>
+        <div class="col-6 ms-1">
+          <!--<div class="ms-2 markDiv">
+            <div *ngFor="let marker of this.userMark" class="user-marker ms-1" [style.left.px]="marker.x"
+              [style.top.px]="marker.y">
+            </div>
+          </div>
+          <img [src]="renderImage(this.xRayData[0]?.xray_image.path)" alt="" class="w-100 ms-2"
+            (click)="addMarker($event)">
+          <div class="ms-2 markDiv">
+            <div *ngFor="let marker of marker" class="marker" [style.left.px]="marker.x" [style.top.px]="marker.y">
+            </div>
+          </div>-->
+          <div id="label-studio"></div>
+
+          <!-- <label class="text-center w-100 mt-2 fw-bold mark-label"
+            >Evaluated X-Ray</label
+          > -->
+        </div>
+      </div>
+      <div class="col-12 d-flex justify-content-between ps-0">
+        <div class="text-center col-6 fw-bold">
+          Original X-Ray
+        </div>
+        <div class="text-center col-6 fw-bold">
+          Evaluated X-Ray
+        </div>
+      </div>
+    </div>
+    <div class="row mt-4 d-flex align-items-end">
+      <div class="col mt-2 fw-semibold">
+        <span
+          ><i class="fa-solid fa-circle admin-i me-1"></i> Admin Marking</span
+        ><br />
+        <span
+          ><i class="fa-solid fa-circle dentist-i me-1"></i> Dentist
+          Marking</span
+        ><br />
+        <span
+          ><i class="fa-solid fa-circle ai-i me-1"></i> AI (Confirmed)
+          Marking</span
+        ><br />
+        <span
+          ><i class="fa-solid fa-circle aiprob-i me-1"></i> AI (Probable)
+          Marking</span
+        ><br />
+      </div>
+      <!-- <button type="button" class="btn btn-primary pd-1 fw-bold other-btn me-2"(click)="flag()">Flag</button> -->
+
+      <!-- <button type="button" class="btn btn-primary save-btn me-2 cancel-btn fw-bold other-btn pd-1">Reevaluate</button> -->
+    </div>
+  </div>
+</section>
+<div
+  class="modal fade"
+  id="exampleModalCenter"
+  tabindex="-1"
+  role="dialog"
+  aria-labelledby="exampleModalCenterTitle"
+  aria-hidden="true"
+>
+  <div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-content">
+      <div class="modal-header"></div>
+      <div class="modal-body modalB">
+        <div class="row">
+          <div class="row mb-2 mt-4">
+            <div class="row">
+              <div class="col-10">
+                <span class="label1 fw-semibold"
+                  >Total Cavities detected by Dentist :
+                </span>
+              </div>
+              <div class="col-2">
+                <input
+                  type="text"
+                  [(ngModel)]="this.totUserCavity"
+                  class="w-100 form-control"
+                  (input)="change($event)"
+                  readonly
+                />
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-10">
+                <span class="label1 fw-semibold"
+                  >Total Cavities inaccurately marked by Dentist :</span
+                >
+              </div>
+              <div class="col-2">
+                <input
+                  type="text"
+                  [(ngModel)]="this.delCavity"
+                  class="w-100 form-control mt-2"
+                  (input)="change($event)"
+                  readonly
+                />
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-10">
+                <span class="label1 fw-semibold"
+                  >Total Cavities missed by Dentist :</span
+                >
+              </div>
+              <div class="col-2">
+                <input
+                  type="text"
+                  [(ngModel)]="this.adminMark"
+                  class="w-100 form-control"
+                  (input)="change($event)"
+                  readonly
+                />
+              </div>
+            </div>
+          </div>
+
+          <div class="row mb-2 mt-5">
+            <div class="col-md-12 form-group d-flex align-items-center">
+              <label class="label1 me-4">Accuracy</label>
+              <div class="w-100 position-relative">
+                <input
+                  #myinput
+                  type="range"
+                  min="0"
+                  [(ngModel)]="this.avgPer"
+                  max="100"
+                  (input)="onRangeChange($event)"
+                />
+                <span
+                  class="inputValue fw-semibold p-1 fs-6 text-center"
+                  [ngStyle]="{ left: leftPos }"
+                >
+                  {{ this.valInput }}%
+                  <!-- <span class="smallTrianlge"></span> -->
+                </span>
+              </div>
+            </div>
+          </div>
+          <div class="row my-3">
+            <div
+              class="col-md-12 form-group d-flex align-items-center justify-content-between"
+            >
+              <label class="label2 mb-3">Tag</label>
+              <input type="text" class="form-control tag-input" />
+            </div>
+          </div>
+
+          <!--  <span> Accuracy    &nbsp;<input type="range" min="0" max="100" value="50" style="width:50%;margin-left:0.5rem"></span>
+        <br><span class="mt-2">Tag  &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;<input type="text" class="form-control" style="width:40%;margin-left:0.5rem"></span>
+              -->
+        </div>
+        <div class="modal-footer">
+          <button
+            type="button"
+            id="close"
+            class="btn btn-secondary cancel-btn other-btn pd-1 fw-bold me-2"
+            data-bs-dismiss="modal"
+          >
+            Close
+          </button>
+          <button
+            type="button"
+            class="btn btn-primary other-btn pd-1 fw-bold"
+            (click)="saveMarks()"
+          >
+            Save&nbsp;<i class="fa-sharp fa-regular fa-floppy-disk"></i>
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

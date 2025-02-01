@@ -1,0 +1,327 @@
+<section class="content ps-2">
+  <div class="row">
+    <div class="col-12">
+      <div class="col head-div position-relative"></div>
+      <!-- <h5 class="mb-n5 fw-bold">Uploaded X-Rays</h5> -->
+      <div class="table-responsive resposive-table" style="position: relative">
+        <div class="col-12">
+          <div class="row mx-0 my-4">
+            <h2 class="mb-0 col fw-bold position-relative pt-2">
+              Uploaded X-Rays
+            </h2> 
+          </div>
+        </div>
+        <div class="card pt-0 table-card">
+          <div class="card-body" style="overflow-x: auto">
+            <table
+              datatable
+              *ngIf="showContent"
+              datatable="ng"
+              class="row-border hover"
+              [dtOptions]="dtOptions"
+              dt-column-defs="dtColumnDefs"
+            >
+              <thead>
+                <tr>
+                  <th>Dentist Name</th>
+                  <th>Accuracy</th>
+                  <!-- <th>City</th>
+                  <th>Contact Number</th> -->
+                  <th>X-Ray Uploaded Date</th>
+                  <!-- <th>Uploaded X-ray</th> -->
+                  <th class="text-center">Submitted to AI</th>
+                  <th class="text-center">View Details</th>
+                </tr>
+              </thead>
+
+              <tbody *ngIf="allData?.length != 0 && this.n == 0">
+                <tr *ngFor="let data of this.allData; let i = index">
+                  <td>
+                    {{ data.user_id.first_name | titlecase }}
+                    {{ data.user_id.last_name | titlecase }}
+                  </td>
+                  <!-- <td>{{data.user_id.city}}</td>
+                  <td>{{data.user_id.contact_number}}</td> -->
+                  <td>{{ data.user_id.accuracy || 0 }}%</td>
+                  <td>{{ data.created_at | date : "MM/dd/yyyy hh:mm a" }}</td>
+                  <!-- <td>{{data.user_id.noOfXrayUploaded}}</td> -->
+
+                  <td class="text-center">
+                    <div *ngIf="data.admin_marked_status == true">
+                      <input
+                        class="form-check-input checkbox1"
+                        type="checkbox"
+                        value=""
+                        id="checkbox-1"
+                        checked
+                      />
+                    </div>
+
+                    <div *ngIf="data.admin_marked_status == false">
+                      <input
+                        class="form-check-input checkbox1"
+                        type="checkbox"
+                        value=""
+                        id="checkbox-1"
+                      />
+                    </div>
+                  </td>
+
+                  <td class="text-center">
+                    <!-- <button title="View" type="button" class="btn btn-primary pd-1 view-btn fw-bolder"
+                      [routerLink]="'/mark-xray/'+data._id">Edit</button> -->
+
+                    <div *ngIf="data.admin_marked_status == true">
+                      <button
+                        type="button"
+                        class="btn btn-primary add-btn pd-1 other-btn fw-bolder"
+                        (click)="view(data._id)"
+                      >
+                        View
+                      </button>
+                    </div>
+                    <div *ngIf="data.admin_marked_status == false">
+                      <button
+                        type="button"
+                        class="btn btn-primary save-btn fw-bold other-btn pd-1 text-nowrap"
+                        [routerLink]="'/mark-xray/' + data._id"
+                        [disabled]="false"
+                      >
+                        Edit
+                      </button>
+                    </div>
+                  </td>
+                </tr>
+              </tbody>
+
+              <tbody *ngIf="this.admin_pending?.length != 0 && this.n == 1">
+                <tr *ngFor="let data of this.admin_pending; let i = index">
+                  <td>
+                    {{ data.user_id.first_name | titlecase }}
+                    {{ data.user_id.last_name | titlecase }}
+                  </td>
+                  <!-- <td>{{data.user_id.city}}</td>
+                <td>{{data.user_id.contact_number}}</td> -->
+                  <td>{{ data.user_id.accuracy || 0}}%</td>
+                  <td>{{ data.created_at | date : "MM/dd/yyyy hh:mm a" }}</td>
+                  <!-- <td>{{data.user_id.noOfXrayUploaded}}</td> -->
+
+                  <td class="text-center">
+                    <div *ngIf="data.admin_marked_status == true">
+                      <input
+                        class="form-check-input checkbox1"
+                        type="checkbox"
+                        value=""
+                        id="checkbox-1"
+                        checked
+                      />
+                    </div>
+
+                    <div *ngIf="data.admin_marked_status == false">
+                      <input
+                        class="form-check-input checkbox1"
+                        type="checkbox"
+                        value=""
+                        id="checkbox-1"
+                      />
+                    </div>
+                  </td>
+
+                  <td class="text-center">
+                    <!-- <button title="View" type="button" class="btn btn-primary pd-1 view-btn fw-bolder"
+                    [routerLink]="'/mark-xray/'+data._id">Edit</button> -->
+
+                    <div *ngIf="data.admin_marked_status == true">
+                      <button
+                        type="button"
+                        class="btn btn-primary add-btn pd-1 other-btn fw-bolder"
+                        (click)="view(data._id)"
+                      >
+                        View
+                      </button>
+                    </div>
+                    <div *ngIf="data.admin_marked_status == false">
+                      <button
+                        type="button"
+                        class="btn btn-primary save-btn fw-bold other-btn pd-1 text-nowrap"
+                        [routerLink]="'/mark-xray/' + data._id"
+                        [disabled]="false"
+                      >
+                        Edit
+                      </button>
+                    </div>
+                  </td>
+                </tr>
+              </tbody>
+
+              <tbody *ngIf="this.admin_eval?.length != 0 && this.n == 2">
+                <tr *ngFor="let data of this.admin_eval; let i = index">
+                  <td>
+                    {{ data.user_id.first_name | titlecase }}
+                    {{ data.user_id.last_name | titlecase }}
+                  </td>
+                  <!-- <td>{{data.user_id.city}}</td>
+              <td>{{data.user_id.contact_number}}</td> -->
+                  <td>{{ data.user_id.accuracy || 0}}%</td>
+                  <td>{{ data.created_at | date : "MM/dd/yyyy hh:mm a" }}</td>
+                  <!-- <td>{{data.user_id.noOfXrayUploaded}}</td> -->
+
+                  <td class="text-center">
+                    <div *ngIf="data.admin_marked_status == true">
+                      <input
+                        class="form-check-input checkbox1"
+                        type="checkbox"
+                        value=""
+                        id="checkbox-1"
+                        checked
+                      />
+                    </div>
+
+                    <div *ngIf="data.admin_marked_status == false">
+                      <input
+                        class="form-check-input checkbox1"
+                        type="checkbox"
+                        value=""
+                        id="checkbox-1"
+                      />
+                    </div>
+                  </td>
+
+                  <td class="text-center">
+                    <!-- <button title="View" type="button" class="btn btn-primary pd-1 view-btn fw-bolder"
+                  [routerLink]="'/mark-xray/'+data._id">Edit</button> -->
+
+                    <div *ngIf="data.admin_marked_status == true">
+                      <button
+                        type="button"
+                        class="btn btn-primary add-btn pd-1 other-btn fw-bolder"
+                        (click)="view(data._id)"
+                      >
+                        View
+                      </button>
+                    </div>
+                    <div *ngIf="data.admin_marked_status == false">
+                      <button
+                        type="button"
+                        class="btn btn-primary save-btn fw-bold other-btn pd-1 text-nowrap"
+                        [routerLink]="'/mark-xray/' + data._id"
+                        [disabled]="false"
+                      >
+                        Edit
+                      </button>
+                    </div>
+                  </td>
+                </tr>
+              </tbody>
+
+              <tbody *ngIf="this.allData?.length == 0">
+                <tr>
+                  <td colspan="8" class="no-data-available text-center">
+                    No data
+                  </td>
+                  <td colspan="0" class="no-data-available p-0"></td>
+                  <td colspan="0" class="no-data-available p-0"></td>
+                  <td colspan="0" class="no-data-available p-0"></td>
+                  <td colspan="0" class="no-data-available p-0"></td>
+                  <!-- <td colspan="0" class="no-data-available p-0" ></td>
+                  <td colspan="0" class="no-data-available p-0" ></td>
+                  <td colspan="0" class="no-data-available p-0" ></td> -->
+                </tr>
+              </tbody>
+              <tbody *ngIf="this.admin_pending?.length == 0 && this.n == 1">
+                <tr>
+                  <td colspan="8" class="no-data-available text-center">
+                    No data
+                  </td>
+                  <td colspan="0" class="no-data-available p-0"></td>
+                  <td colspan="0" class="no-data-available p-0"></td>
+                  <td colspan="0" class="no-data-available p-0"></td>
+                  <td colspan="0" class="no-data-available p-0"></td>
+                  <!-- <td colspan="0" class="no-data-available p-0" ></td>
+                  <td colspan="0" class="no-data-available p-0" ></td>
+                  <td colspan="0" class="no-data-available p-0" ></td> -->
+                </tr>
+              </tbody>
+              <tbody *ngIf="this.admin_eval?.length == 0 && this.n == 2">
+                <tr>
+                  <td colspan="8" class="no-data-available text-center">
+                    No data
+                  </td>
+                  <td colspan="0" class="no-data-available p-0"></td>
+                  <td colspan="0" class="no-data-available p-0"></td>
+                  <td colspan="0" class="no-data-available p-0"></td>
+                  <td colspan="0" class="no-data-available p-0"></td>
+                  <!-- <td colspan="0" class="no-data-available p-0" ></td>
+                  <td colspan="0" class="no-data-available p-0" ></td>
+                  <td colspan="0" class="no-data-available p-0" ></td> -->
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+<!-- <thead>
+                  <tr>
+                    <th class="text-nowrap">X-Ray ID</th>
+                    <th>Dentist Name</th>
+                    <th>X-Ray Uploaded Date</th>
+                    <th>X-Ray Evaluated Date</th>
+                    <th >Total Cavities Detected</th>
+                    <th>Submitted For Review</th>
+                    <th class="text-nowrap">Marked By Admin</th>
+                    <th>Flag</th>
+                    <th>Percentage</th>
+                    <th>Action</th>
+                  </tr>
+                </thead> -->
+<!-- <tbody  *ngIf="allData?.length != 0">
+                  <tr *ngFor="let data of this.allData; let i = index">
+                    <td>{{data._id}}</td>
+
+                    <td>{{data.user_id.first_name | titlecase}} {{data.user_id.last_name | titlecase}}</td>
+                    <td class="">{{data.created_at | date : 'dd/MM/yyyy'}}</td>
+                    <td class="">{{data.updated_at | date : 'dd/MM/yyyy'}}</td>
+                    <td>{{data.totalCavitiesDetectedByUser}}</td>
+                    <td>
+                      <div *ngIf="data.evaluation_status==true">Yes</div>
+
+                      <div *ngIf="data.evaluation_status==false">No</div>
+                    </td>
+                    <td>
+                    <div *ngIf="data.admin_marked_status==true">Yes</div>
+
+                    <div *ngIf="data.admin_marked_status==false">No</div>
+                  </td>
+                    <td>{{data.user_id.flag}}</td>
+                    <td>{{data.accurateCavitiesPerByUser}}</td>
+
+                    <td>
+
+                   <button
+                      title="View"
+                      type="button"
+                      class="btn btn-primary pd-1 view-btn fw-bolder"
+                      [routerLink]="'/mark-xray/'+data._id"
+                    >Edit</button></td>
+
+                  </tr>
+
+
+                </tbody>
+                <tbody *ngIf="this.allData?.length == 0">
+                  <tr>
+                    <td colspan="8" class="no-data-available text-center" >No data</td>
+                    <td colspan="0" class="no-data-available p-0" ></td>
+                    <td colspan="0" class="no-data-available p-0" ></td>
+                    <td colspan="0" class="no-data-available p-0" ></td>
+                    <td colspan="0" class="no-data-available p-0" ></td>
+                    <td colspan="0" class="no-data-available p-0" ></td>
+                    <td colspan="0" class="no-data-available p-0" ></td>
+                    <td colspan="0" class="no-data-available p-0" ></td>
+                    <td colspan="0" class="no-data-available p-0" ></td>
+                    <td colspan="0" class="no-data-available p-0" ></td>
+                  </tr>
+                </tbody> -->

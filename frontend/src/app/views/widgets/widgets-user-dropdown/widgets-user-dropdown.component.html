@@ -1,0 +1,394 @@
+<c-row>
+    <c-col sm="6" xl="3" class="mb-3 min-h">
+      <c-widget-stat-a
+        [title]="'  '"
+        class="mb-4 p-2 bg-danger h-100 position-relative"
+      >
+        <ng-template cTemplateId="widgetValueTemplate" ngPreserveWhitespaces>
+        <div class="d-flex justify-content-between flex-column div-height">
+            <h6 class="text-white fw-bold">Revenue Earned</h6>
+            <h6 class="text-white fw-bold">$ 0.00</h6>
+          </div>
+        </ng-template>
+        <!-- <h6 class="text-white rotate fw-bold mtop title-pos m-0 py-2 px-4 rounded-3 text-center">
+          Click Here
+        </h6> -->
+        <img src="../../../../assets/images/money.png" class="image">
+
+      </c-widget-stat-a>
+    </c-col>
+    <!-- <c-col sm="6" xl="3" [routerLink]="'/upload-xray/0'" class="mb-3 min-h">
+      <c-widget-stat-a
+        [title]="''"
+        class="mb-4 p-2 bg-info h-100 position-relative"
+      >
+        <ng-template cTemplateId="widgetValueTemplate" ngPreserveWhitespaces>
+          <div class="d-flex justify-content-between flex-column div-height">
+            <h6 class="text-white fw-bold my" [routerLink]="'/upload-xray/0'">
+              Number of X-Ray Uploaded
+            </h6>
+            <h6 class="text-white fw-bold my" [routerLink]="'/upload-xray/0'">
+              {{this.noOfXray}}
+            </h6>
+          </div>
+        </ng-template>
+        <img src="../../../../assets/images/cloud-computing.png" class="image my" [routerLink]="'/upload-xray/0'">
+        <h6 class="text-white rotate fw-bold title-pos m-0 py-2 px-4 rounded-3 text-center">
+          Click Here
+        </h6>
+        <svg xmlns="http://www.w3.org/2000/svg" version="1.1" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svgjs="http://svgjs.com/svgjs" width="64" height="64" x="0" y="0" viewBox="0 0 512 512" style="enable-background:new 0 0 512 512" xml:space="preserve" class="hovered-paths"><g transform="matrix(1,-2.4492935982947064e-16,2.4492935982947064e-16,1,-1.1368683772161603e-13,1.1368683772161603e-13)"><path d="M464 160.003h-16v-48c0-8.864-7.168-16-16-16H48c-26.464 0-48 21.536-48 48v288c0 26.464 21.536 48 48 48h416c8.832 0 16-7.168 16-16v-288c0-8.864-7.168-16-16-16z" style="" fill="#ecb641" data-original="#2196f3" class="hovered-path"></path><path d="M48 128.003h368v32H48c-8.832 0-16-7.168-16-16s7.168-16 16-16z" style="" fill="#fafafa" data-original="#fafafa" class=""></path><path d="M496 352.003h-96c-26.496 0-48-21.504-48-48 0-26.528 21.504-48 48-48h96c8.832 0 16 7.168 16 16v64c0 8.832-7.168 16-16 16z" style="" fill="#fffcd3" data-original="#1976d2" class=""></path><path d="M409.888 160.003 350.304 40.835c-3.968-7.904-13.568-11.072-21.472-7.168L76.224 160.003h333.664z" style="" fill="#ecb641" data-original="#4caf50" class=""></path><path d="M32 160.003h313.888L286.304 40.835c-3.968-7.904-13.568-11.072-21.472-7.136L32 150.115v9.888z" style="" fill="#fffcd3" data-original="#81c784" class=""></path></g></svg>
+        <ng-template cTemplateId="widgetActionTemplate">
+          <c-dropdown alignment="end" variant="btn-group">
+            <button [caret]="false" cButton cDropdownToggle class="p-0" color="transparent">
+              <svg cIcon class="text-high-emphasis-inverse" name="cilOptions"></svg>
+            </button>
+            <ul cDropdownMenu>
+              <li><a routerLink="./" cDropdownItem>Action</a></li>
+              <li><a routerLink="./" cDropdownItem>Another action</a></li>
+              <li><a routerLink="./" cDropdownItem>Something else here</a></li>
+              <li><a [disabled]="true" routerLink="./" cDropdownItem>Disabled</a></li>
+            </ul>
+          </c-dropdown>
+        </ng-template>
+        <ng-template cTemplateId="widgetChartTemplate">
+          <c-chart [data]="data[1]" [options]="options[1]" class="mt-3 mx-3" height="70" type="line"></c-chart>
+        </ng-template>
+      </c-widget-stat-a>
+    </c-col> -->
+    <c-col sm="6" xl="3" class="mb-3 min-h">
+      <c-widget-stat-a
+        [title]="''"
+        class="mb-4 p-2 bg-success h-100 position-relative"
+      >
+      <!-- [routerLink]="'/upload-xray/1'" -->
+        <ng-template cTemplateId="widgetValueTemplate" ngPreserveWhitespaces>
+          <div class="d-flex justify-content-between flex-column div-height">
+            <h6 class="text-white fw-bold my">
+              X-Rays Evaluated
+            </h6>
+            <h6 class="text-white fw-bold my">
+              {{this.noOfXrayEval}}
+            </h6>
+          </div>
+        </ng-template>
+        <!-- <h6 class="text-white rotate fw-bold title-pos m-0 py-2 px-4 rounded-3 text-center">
+          Click Here
+        </h6> -->
+        <img src="../../../../assets/images/done.png" class="image my" [routerLink]="'/upload-xray/1'">
+
+      </c-widget-stat-a>
+    </c-col>
+    <c-col sm="6" xl="3" class="mb-3 min-h">
+      <c-widget-stat-a
+        [title]="''"
+        class="mb-4 p-2 bg-warning h-100 position-relative"
+      >
+        <ng-template cTemplateId="widgetValueTemplate" ngPreserveWhitespaces>
+        <div class="d-flex justify-content-between flex-column div-height">
+
+          <h6 class="text-white fw-bold">Cavities Detected by AI</h6>
+          <h6 class="text-white fw-bold">{{this.count}}</h6>
+        </div>
+        </ng-template>
+        <!-- <h6 class="text-white rotate fw-bold title-pos m-0 py-2 px-4 rounded-3 text-center">
+         Click Here
+        </h6> -->
+        <img src="../../../../assets/images/AI.png" class="image">
+        <!-- <svg xmlns="http://www.w3.org/2000/svg" version="1.1" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svgjs="http://svgjs.com/svgjs" width="64" height="64" x="0" y="0" viewBox="0 0 512 512" style="enable-background:new 0 0 512 512" xml:space="preserve" class=""><g><path fill="#4793ff" d="M421.315 60.533C375.159 21.498 316.449 0 256 0c-46.563 0-92.123 12.779-131.695 36.499-1.399-3.958-4.429-7.314-8.642-8.971-7.709-3.03-16.417.76-19.45 8.468L83.016 69.547a14.999 14.999 0 0 0 14.553 20.48l36.026-1.427c8.278-.328 14.722-7.304 14.395-15.582-.196-4.94-2.768-9.211-6.562-11.795C175.966 40.925 215.554 30 256 30c53.365 0 105.195 18.979 145.941 53.439a14.934 14.934 0 0 0 9.679 3.547c4.26 0 8.494-1.806 11.46-5.313 5.351-6.326 4.56-15.79-1.765-21.14zM427.086 428.273a14.998 14.998 0 0 0-12.821-6.3l-36.026 1.427c-8.278.328-14.722 7.304-14.395 15.582.196 4.943 2.763 9.213 6.56 11.796C335.866 471.075 296.279 482 255.833 482c-53.365 0-105.195-18.979-145.942-53.439-6.324-5.349-15.789-4.559-21.139 1.767s-4.559 15.79 1.767 21.14C136.675 490.502 195.385 512 255.833 512c46.563 0 92.123-12.779 131.695-36.499 1.399 3.958 4.429 7.315 8.642 8.972a14.964 14.964 0 0 0 5.487 1.045c5.984 0 11.64-3.607 13.963-9.513l13.198-33.552a14.999 14.999 0 0 0-1.732-14.18z" data-original="#02f2c8" class=""></path><path fill="#4793ff" d="M226 114H15c-8.284 0-15 6.716-15 15v254c0 8.284 6.716 15 15 15h211c8.284 0 15-6.716 15-15V129c0-8.284-6.716-15-15-15z" data-original="#f9f9f9" class=""></path><path fill="#f9f9f9" d="M166 211H75c-8.284 0-15-6.716-15-15s6.716-15 15-15h91c8.284 0 15 6.716 15 15s-6.715 15-15 15zM166 271H75c-8.284 0-15-6.716-15-15s6.716-15 15-15h91c8.284 0 15 6.716 15 15s-6.715 15-15 15zM111 331H75c-8.284 0-15-6.716-15-15s6.716-15 15-15h36c8.284 0 15 6.716 15 15s-6.715 15-15 15z" data-original="#4793ff" class=""></path><path fill="#f9f9f9" d="M497 114H286c-8.284 0-15 6.716-15 15v254c0 8.284 6.716 15 15 15h211c8.284 0 15-6.716 15-15V129c0-8.284-6.716-15-15-15z" data-original="#e2dff4" class=""></path><path fill="#4793ff" d="M437 211h-91c-8.284 0-15-6.716-15-15s6.716-15 15-15h91c8.284 0 15 6.716 15 15s-6.715 15-15 15zM437 271h-91c-8.284 0-15-6.716-15-15s6.716-15 15-15h91c8.284 0 15 6.716 15 15s-6.715 15-15 15zM382 331h-36c-8.284 0-15-6.716-15-15s6.716-15 15-15h36c8.284 0 15 6.716 15 15s-6.715 15-15 15z" data-original="#525cdd" class=""></path><g fill="#00c1c3"><path d="M421.315 60.533C375.159 21.498 316.449 0 256 0h-.064v30H256c53.365 0 105.195 18.979 145.941 53.439a14.934 14.934 0 0 0 9.679 3.547c4.26 0 8.494-1.806 11.46-5.313 5.351-6.326 4.56-15.79-1.765-21.14zM427.086 428.273a14.998 14.998 0 0 0-12.821-6.3l-36.026 1.427c-8.278.328-14.722 7.304-14.395 15.582.196 4.943 2.763 9.213 6.56 11.796-34.51 20.28-74.059 31.203-114.469 31.222v30c46.527-.019 92.049-12.797 131.592-36.499 1.399 3.958 4.429 7.315 8.642 8.972a14.964 14.964 0 0 0 5.487 1.045c5.984 0 11.64-3.607 13.963-9.513l13.198-33.552a14.996 14.996 0 0 0-1.731-14.18z" fill="#4793ff" data-original="#00c1c3" class=""></path></g></g></svg> -->
+        <!-- <ng-template cTemplateId="widgetActionTemplate"> -->
+          <!-- <c-dropdown alignment="end" variant="btn-group">
+            <button [caret]="false" cButton cDropdownToggle class="p-0" color="transparent">
+              <svg cIcon class="text-high-emphasis-inverse" name="cilOptions"></svg>
+            </button>
+            <ul cDropdownMenu>
+              <li><a routerLink="./" cDropdownItem>Action</a></li>
+              <li><a routerLink="./" cDropdownItem>Another action</a></li>
+              <li><a routerLink="./" cDropdownItem>Something else here</a></li>
+              <li><a [disabled]="true" routerLink="./" cDropdownItem>Disabled</a></li>
+            </ul>
+          </c-dropdown> -->
+        <!-- </ng-template> -->
+        <!-- <ng-template cTemplateId="widgetChartTemplate"> -->
+          <!-- <c-chart [data]="data[2]" [options]="options[2]" class="mt-3" height="70" type="line"></c-chart> -->
+        <!-- </ng-template> -->
+      </c-widget-stat-a>
+    </c-col>
+    <!-- <c-col sm="6" xl="3">
+      <c-widget-stat-a
+        [title]="'  '"
+        class="mb-4 p-2"
+      >
+        <ng-template cTemplateId="widgetValueTemplate" ngPreserveWhitespaces>
+         <h6 class="color fw-bold">Pending Evaluation</h6>
+          <h3 class="text-danger rotate fw-bold mtop">
+           {{this.xrayNotCount}}  -->
+          <!-- </h3>
+        </ng-template>
+        <img src="../../../../assets/images/tooth.png" class="image" >
+
+      </c-widget-stat-a>
+    </c-col> -->
+
+    <c-col sm="6" xl="3" data-bs-toggle="modal" data-bs-target="#exampleModal" class="mb-3 min-h">
+      <c-widget-stat-a
+      class="mb-4 p-2 myclass min-height bg-danger h-100 position-relative"
+      [title]="''"
+      >
+        <ng-template cTemplateId="widgetValueTemplate" ngPreserveWhitespaces>
+        <div class="d-flex justify-content-between flex-column div-height">
+          <h6 class="text-white fw-bold my" data-bs-toggle="modal" data-bs-target="#exampleModal" >
+          My Plan
+          </h6>
+          <h6 class="text-white fw-bold my" data-bs-toggle="modal" data-bs-target="#exampleModal" >
+            {{this.planDetail?.subscription_details?.name | titlecase}}
+          </h6>
+        </div>
+          <!-- <span cInputGroupText>
+            <svg cIcon name="cilFile"></svg>
+          </span> -->
+        </ng-template>
+        <h6 class="text-white rotate fw-bold mtop title-pos m-0 py-2 px-4 rounded-3 text-center">
+          Click Here
+        </h6>
+        <img src="../../../../assets/images/plan.png" class="image my" data-bs-toggle="modal" data-bs-target="#exampleModal">
+        <!-- <svg xmlns="http://www.w3.org/2000/svg" version="1.1" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svgjs="http://svgjs.com/svgjs" width="64" height="64" x="0" y="0" viewBox="0 0 53 53" style="enable-background:new 0 0 512 512" xml:space="preserve" class=""><g><path d="m18.613 41.552-7.907 4.313a7.106 7.106 0 0 0-1.269.903A26.377 26.377 0 0 0 26.5 53c6.454 0 12.367-2.31 16.964-6.144a7.015 7.015 0 0 0-1.394-.934l-8.467-4.233a3.229 3.229 0 0 1-1.785-2.888v-3.322c.238-.271.51-.619.801-1.03a19.482 19.482 0 0 0 2.632-5.304c1.086-.335 1.886-1.338 1.886-2.53v-3.546c0-.78-.347-1.477-.886-1.965v-5.126s1.053-7.977-9.75-7.977-9.75 7.977-9.75 7.977v5.126a2.644 2.644 0 0 0-.886 1.965v3.546c0 .934.491 1.756 1.226 2.231.886 3.857 3.206 6.633 3.206 6.633v3.24a3.232 3.232 0 0 1-1.684 2.833z" style="" fill="#9afdc4" data-original="#e7eced" class=""></path><path d="M26.953.004C12.32-.246.254 11.414.004 26.047-.138 34.344 3.56 41.801 9.448 46.76a7.041 7.041 0 0 1 1.257-.894l7.907-4.313a3.23 3.23 0 0 0 1.683-2.835v-3.24s-2.321-2.776-3.206-6.633a2.66 2.66 0 0 1-1.226-2.231v-3.546c0-.78.347-1.477.886-1.965v-5.126S15.696 8 26.499 8s9.75 7.977 9.75 7.977v5.126c.54.488.886 1.185.886 1.965v3.546c0 1.192-.8 2.195-1.886 2.53a19.482 19.482 0 0 1-2.632 5.304c-.291.411-.563.759-.801 1.03V38.8c0 1.223.691 2.342 1.785 2.888l8.467 4.233a7.05 7.05 0 0 1 1.39.932c5.71-4.762 9.399-11.882 9.536-19.9C53.246 12.32 41.587.254 26.953.004z" style="" fill="#00d957" data-original="#556080" class=""></path></g></svg> -->
+        <!-- <ng-template cTemplateId="widgetActionTemplate"> -->
+          <!-- <c-dropdown alignment="end" variant="btn-group">
+            <button [caret]="false" cButton cDropdownToggle class="p-0" color="transparent">
+              <svg cIcon class="text-high-emphasis-inverse" name="cilOptions"></svg>
+            </button>
+            <ul cDropdownMenu>
+              <li><a routerLink="./" cDropdownItem>Action</a></li>
+              <li><a routerLink="./" cDropdownItem>Another action</a></li>
+              <li><a routerLink="./" cDropdownItem>Something else here</a></li>
+              <li>
+                <hr cDropdownDivider>
+              </li>
+              <li>
+                <button cDropdownItem>Separated link</button>
+              </li>
+            </ul>
+          </c-dropdown> -->
+        <!-- </ng-template> -->
+        <!-- <ng-template cTemplateId="widgetChartTemplate"> -->
+          <!-- <c-chart [data]="data[0]" [options]="options[0]" class="mt-3 mx-3" height="70" type="line"></c-chart> -->
+        <!-- </ng-template> -->
+      </c-widget-stat-a>
+    </c-col>
+  </c-row>
+  <c-row>
+    <c-col sm="6" xl="3" [routerLink]="'/dentist-profile/'+this.userInfo.id" class="mb-3 min-h">
+      <c-widget-stat-a
+      class="mb-4 p-2 myclass min-height bg-info h-100 position-relative"
+      [title]="''"
+      >
+        <ng-template cTemplateId="widgetValueTemplate" ngPreserveWhitespaces>
+        <div class="d-flex justify-content-between flex-column div-height">
+          <h6 class="text-white fw-bold my" [routerLink]="'/dentist-profile/'+this.userInfo.id">
+          My Profile
+          </h6>
+          <h6 class="text-white fw-bold my" [routerLink]="'/dentist-profile/'+this.userInfo.id">
+            {{this.planDetail?.license_no}}
+          </h6>
+        </div>
+          <!-- <span cInputGroupText>
+            <svg cIcon name="cilFile"></svg>
+          </span> -->
+        </ng-template>
+        <h6 class="text-white rotate fw-bold fs-6 title-pos m-0 py-2 px-4 rounded-3 text-center" [routerLink]="'/dentist-profile/'+this.userInfo.id">
+          Click Here
+        </h6>
+        <img src="../../../../assets/images/dentist-profile.png" class="image my" [routerLink]="'/dentist-profile/'+this.userInfo.id">
+        <!-- <svg xmlns="http://www.w3.org/2000/svg" version="1.1" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svgjs="http://svgjs.com/svgjs" width="64" height="64" x="0" y="0" viewBox="0 0 53 53" style="enable-background:new 0 0 512 512" xml:space="preserve" class=""><g><path d="m18.613 41.552-7.907 4.313a7.106 7.106 0 0 0-1.269.903A26.377 26.377 0 0 0 26.5 53c6.454 0 12.367-2.31 16.964-6.144a7.015 7.015 0 0 0-1.394-.934l-8.467-4.233a3.229 3.229 0 0 1-1.785-2.888v-3.322c.238-.271.51-.619.801-1.03a19.482 19.482 0 0 0 2.632-5.304c1.086-.335 1.886-1.338 1.886-2.53v-3.546c0-.78-.347-1.477-.886-1.965v-5.126s1.053-7.977-9.75-7.977-9.75 7.977-9.75 7.977v5.126a2.644 2.644 0 0 0-.886 1.965v3.546c0 .934.491 1.756 1.226 2.231.886 3.857 3.206 6.633 3.206 6.633v3.24a3.232 3.232 0 0 1-1.684 2.833z" style="" fill="#9afdc4" data-original="#e7eced" class=""></path><path d="M26.953.004C12.32-.246.254 11.414.004 26.047-.138 34.344 3.56 41.801 9.448 46.76a7.041 7.041 0 0 1 1.257-.894l7.907-4.313a3.23 3.23 0 0 0 1.683-2.835v-3.24s-2.321-2.776-3.206-6.633a2.66 2.66 0 0 1-1.226-2.231v-3.546c0-.78.347-1.477.886-1.965v-5.126S15.696 8 26.499 8s9.75 7.977 9.75 7.977v5.126c.54.488.886 1.185.886 1.965v3.546c0 1.192-.8 2.195-1.886 2.53a19.482 19.482 0 0 1-2.632 5.304c-.291.411-.563.759-.801 1.03V38.8c0 1.223.691 2.342 1.785 2.888l8.467 4.233a7.05 7.05 0 0 1 1.39.932c5.71-4.762 9.399-11.882 9.536-19.9C53.246 12.32 41.587.254 26.953.004z" style="" fill="#00d957" data-original="#556080" class=""></path></g></svg> -->
+        <!-- <ng-template cTemplateId="widgetActionTemplate"> -->
+          <!-- <c-dropdown alignment="end" variant="btn-group">
+            <button [caret]="false" cButton cDropdownToggle class="p-0" color="transparent">
+              <svg cIcon class="text-high-emphasis-inverse" name="cilOptions"></svg>
+            </button>
+            <ul cDropdownMenu>
+              <li><a routerLink="./" cDropdownItem>Action</a></li>
+              <li><a routerLink="./" cDropdownItem>Another action</a></li>
+              <li><a routerLink="./" cDropdownItem>Something else here</a></li>
+              <li>
+                <hr cDropdownDivider>
+              </li>
+              <li>
+                <button cDropdownItem>Separated link</button>
+              </li>
+            </ul>
+          </c-dropdown> -->
+        <!-- </ng-template> -->
+        <!-- <ng-template cTemplateId="widgetChartTemplate"> -->
+          <!-- <c-chart [data]="data[0]" [options]="options[0]" class="mt-3 mx-3" height="70" type="line"></c-chart> -->
+        <!-- </ng-template> -->
+      </c-widget-stat-a>
+    </c-col>
+
+    <c-col sm="6" xl="3" class="mb-3 min-h" data-bs-toggle="modal" data-bs-target="#ResetPassModal">
+      <c-widget-stat-a
+      class="mb-4 p-2 myclass min-height bg-warning h-100 position-relative"
+      [title]="''"
+      >
+        <ng-template cTemplateId="widgetValueTemplate" ngPreserveWhitespaces>
+        <div class="d-flex justify-content-between flex-column div-height">
+
+          <h6 class="text-white fw-bold my" data-bs-toggle="modal" data-bs-target="#ResetPassModal">
+           Reset Password
+          </h6>
+          <h3 class="text-white fw-bold m-0 my" data-bs-toggle="modal" data-bs-target="#ResetPassModal">
+            ******
+          </h3>
+        </div>
+        </ng-template>
+        <h6 class="text-white rotate fw-bold fs-6 title-pos m-0 py-2 px-4 rounded-3 text-center">
+          Click Here
+        </h6>
+        <img src="../../../../assets/images/password-reset.png" class="image my">
+
+      </c-widget-stat-a>
+    </c-col>
+    <c-col sm="6" xl="3" class="mb-3 min-h" [routerLink]="'/upload-xray/0'">
+      <c-widget-stat-a
+      class="mb-4 p-2 myclass min-height bg-my-background h-100 position-relative"
+      [title]="''"
+      >
+        <ng-template cTemplateId="widgetValueTemplate" ngPreserveWhitespaces>
+        <div class="d-flex justify-content-between flex-column div-height">
+
+          <h6 class="text-white fw-bold my">
+           Upload X-Ray
+          </h6>
+          <h6 class="text-white fw-bold my">
+            Upload here
+          </h6>
+        </div>
+        </ng-template>
+        <h6 class="text-white rotate fw-bold fs-6 title-pos m-0 py-2 px-4 rounded-3 text-center" [routerLink]="'/upload-xray/0'">
+          Start Here
+        </h6>
+        <img src="../../../../assets/images/photo.png" class="image my">
+
+      </c-widget-stat-a>
+    </c-col>
+
+    <c-col sm="6" xl="3" [routerLink]="'/renew-sub/'+this.userInfo.id" class="mb-3 min-h">
+      <c-widget-stat-a class="mb-4 p-2 myclass min-height bg-info h-100 position-relative">
+        <ng-template cTemplateId="widgetValueTemplate" ngPreserveWhitespaces>
+        <div class="d-flex justify-content-between flex-column div-height">
+          <h6 class="text-white fw-bold my" [routerLink]="'/renew-sub/'+this.userInfo.id">
+            Upgrade Your Plan
+          </h6>
+          <!-- <h6 class="text-white fw-bold my" [routerLink]="'/renew-sub/'+this.userInfo.id">
+            {{this.planDetail?.license_no}}
+          </h6> -->
+        </div>
+         
+        </ng-template>
+        <h6 class="text-white rotate fw-bold fs-6 title-pos m-0 py-2 px-4 rounded-3 text-center" [routerLink]="'/renew-sub/'+this.userInfo.id">
+          Click Here
+        </h6>
+        <img src="../../../../assets/images/installment.png" class="image my" [routerLink]="'/renew-sub/'+this.userInfo.id">
+        
+      </c-widget-stat-a>
+    </c-col>
+    
+  </c-row>
+
+  <!--My Plan Modal-->
+
+  <!-- <div class="modal fade Subscription-popup" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered modal-md" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h4 class="modal-title fw-semibold color ps-2" id="exampleModalLabel">Subscription Details:</h4>
+
+        </div>
+        <div class="modal-body pt-0">
+            <div class="d-flex align-items-start flex-column sub-body-content">
+
+                <ul class="proceed-details m-0 p-0 align-self-center  mx-2 w-100 color">
+                  <li class=" fs-6  ms-2 mt-0 fw-semibold d-flex justify-content-between align-items-center">
+                    <span>Plan Name:</span>&nbsp;<span class="me-2">{{
+                      this.planDetail?.subscription_details?.name
+
+                      | titlecase
+                      }}</span>
+                  </li>
+                  <li class=" fs-6  ms-2 mt-3 fw-semibold d-flex justify-content-between align-items-center">
+                    <span>Plan Type:</span>&nbsp;<span class="me-2">{{
+                        this.planDetail?.subscription_details?.type | titlecase
+                      }}</span>
+                  </li>
+                  <li class=" fs-6  ms-2 mt-3 fw-semibold d-flex justify-content-between align-items-center">
+                    <span>Price:</span>&nbsp;<span class="me-2">${{ this.planDetail?.subscription_details?.price }}</span>
+                  </li>
+                  <li class=" fs-6  ms-2 mt-3 fw-semibold d-flex justify-content-between align-items-center ">
+                    <span>Start Date:</span>&nbsp;<span class="me-2">&nbsp;{{ this.planDetail?.subscription_details?.start_date |date : 'dd/MM/yyyy hh:mm a'}}</span>
+                  </li>
+                  <li class=" fs-6  ms-2 mt-3 fw-semibold d-flex justify-content-between align-items-center">
+                    <span>End Date:</span>&nbsp;<span class="me-2">&nbsp;{{ this.planDetail?.subscription_details?.end_date |date : 'dd/MM/yyyy hh:mm a'}}</span>
+                  </li>
+                </ul>
+              </div>
+        </div>
+        <div class="modal-footer pb-4">
+          <button type="button" class="btn btn-primary p-2 fw-bold">Renew <svg stroke="currentColor" fill="currentColor" stroke-width="0" viewBox="0 0 24 24" height="1em" width="1em" xmlns="http://www.w3.org/2000/svg"><path d="M12 3c-4.625 0-8.442 3.507-8.941 8.001H10v-3l5 4-5 4v-3H3.06C3.56 17.494 7.376 21 12 21c4.963 0 9-4.037 9-9s-4.037-9-9-9z"></path></svg> </button>
+          <button type="button btn" class="btn btn-secondary fw-semibold pd-1 cancel-btn font-size" data-bs-dismiss="modal">Cancel</button>
+        </div>
+      </div>
+    </div>
+  </div> -->
+
+  <!--Reset Password-------->
+
+  <!-- <div class="modal fade" id="ResetPassModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h4 class="modal-title fw-semibold font-color" id="exampleModalLabel">Reset Password</h4>
+
+        </div>
+        <div class="modal-body">
+            <div class="inputContainer align-self-center">
+                <div class="mb-3 mt-2">
+                  <div class="w-100 d-flex position-relative color align-items-center justify-content-evenly">
+                    <label class="mb-2">First Name<sup>*</sup></label>
+                   <label>Current Password</label>
+                    <input type="password" class=" ml-a my-w-50 form-control" placeholder="Current Password"  (input)="onCurPass($event)"
+                    maxlength="25"/>
+                    <i class="fa-solid fa-user icon-position"></i>
+                  </div>
+                </div>
+                <div class="mb-3 mt-2 inputMargin">
+                  <div class="w-100 d-flex position-relative color align-items-center justify-content-evenly">
+                    <label class="mb-2">Last Name<sup>*</sup></label>
+                    <label class="mt-1">New Password</label>
+                    <input type="password" class="ml-b my-w-50 form-control" placeholder="New Password"  (input)="onNewPass($event)"
+                    maxlength="25"/>
+                    <i class="fa-solid fa-user icon-position"></i>
+                  </div>
+                  <div class="d-flex justify-content-end">
+                    <small class="pass-small">* Password must contain atleast 7 characters, 1 letter and 1 number</small>
+                  </div>
+                </div>
+                <div class="mb-3 mt-2 inputMargin">
+                    <div class="w-100 d-flex position-relative color align-items-center justify-content-evenly">
+                      <label class="mb-2">Last Name<sup>*</sup></label>
+                      <label>Confirm New Password</label>
+                      <input type="password" class="ml-c my-w-50 form-control" placeholder="Confirm New Password"  (input)="onCnfPass($event)" maxlength="25"
+                       />
+                      <i class="fa-solid fa-user icon-position"></i>
+                    </div>
+                  </div>
+
+              </div>
+        </div>
+        <div class="modal-footer">
+          <button type="button btn" class="btn  fw-semibold pd-1 cancel-btn font-size" id="close" data-bs-dismiss="modal">Close</button>
+          <button type="button btn" class="btn  fw-semibold pd-1"  (click)="setNew()">Reset Password</button>
+        </div>
+      </div>
+    </div>
+  </div> -->
+
+

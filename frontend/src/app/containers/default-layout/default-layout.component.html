@@ -1,0 +1,564 @@
+<!--sidebar-->
+<!-- <c-sidebar [(visible)]="isVisible"> -->
+<c-sidebar>
+  <!--<c-sidebar-brand> <i class="fa-solid fa-tooth me-2 fs-3"></i> ARTI</c-sidebar-brand>
+<c-sidebar-header><img  src="./assets/img/avatars/no-logo-icon-1-green.png">&nbsp;{{userDetail.first_name}} {{userDetail.last_name}}</c-sidebar-header>
+  --><c-sidebar-brand>
+    <i class="fa-solid fa-tooth me-2 fs-3"></i> Dark
+    <div class="mountain-color">Mountain</div></c-sidebar-brand
+  >
+  <!-- <c-sidebar-header><img  src="./assets/img/avatars/no-logo-icon-1-green.png">&nbsp;Super Admin</c-sidebar-header> -->
+  <!-- <c-sidebar-nav [navItems]="navItems" dropdownMode="close"></c-sidebar-nav> -->
+
+  <!-- <c-sidebar-brand>ARTI</c-sidebar-brand> -->
+  <!-- <c-sidebar-header><img  src="./assets/img/avatars/no-logo-icon-1.webp">&nbsp;Super Admin</c-sidebar-header> -->
+
+  <c-sidebar-nav
+    *ngIf="this.role === 'admin'"
+    [navItems]="navItems"
+    dropdownMode="close"
+  >
+    <!-- <li class="nav-item" style="cursor:pointer">
+    <a class=" nav-link-success nav-link" (click)="logout()">
+      <i class="fa-solid fa-right-from-bracket nav-icon"></i> Logout
+    </a>
+  </li> -->
+  </c-sidebar-nav>
+
+  <c-sidebar-nav
+    *ngIf="this.role === 'dentist' && !this.changeUrl; else dootherone"
+    [navItems]="navItemsUser"
+    dropdownMode="close"
+  >
+    <!-- <c-sidebar-nav-link class="nav-item">
+    <a routerlinkactive="active" ng-reflect-router-link-active="active" ng-reflect-ng-class="[object Object]" ng-reflect-c-html-attr="[object Object]" ng-reflect-preserve-fragment="false" ng-reflect-skip-location-change="false" ng-reflect-replace-url="false" ng-reflect-state="[object Object]" ng-reflect-router-link="upload-xray/0" ng-reflect-router-link-active-options="[object Object]" class="nav-link active" href="/upload-xray/0"><i ng-reflect-ng-class="[object Object]" class="nav-icon fa-solid fa-cloud-arrow-up"></i><c-sidebar-nav-link-content>Upload X-ray</c-sidebar-nav-link-content></a></c-sidebar-nav-link> -->
+    <!-- <c-sidebar-nav-link></c-sidebar-nav-link> -->
+    <!-- <li class="nav-item" style="cursor:pointer">
+    <a class=" nav-link-success nav-link" (click)="logout()">
+      <i class="fa-solid fa-right-from-bracket nav-icon"></i> Logout
+    </a>
+  </li> -->
+  </c-sidebar-nav>
+  <ng-template #dootherone>
+    <c-sidebar-nav
+      dropdownMode="close"
+      *ngIf="this.role === 'dentist' && this.changeUrl"
+    >
+      <!-- <c-sidebar-nav-link class="nav-item">
+      <a routerlinkactive="active" ng-reflect-router-link-active="active" ng-reflect-ng-class="[object Object]" ng-reflect-c-html-attr="[object Object]" ng-reflect-preserve-fragment="false" ng-reflect-skip-location-change="false" ng-reflect-replace-url="false" ng-reflect-state="[object Object]" ng-reflect-router-link="upload-xray/0" ng-reflect-router-link-active-options="[object Object]" class="nav-link active" href="/upload-xray/0"><i ng-reflect-ng-class="[object Object]" class="nav-icon fa-solid fa-cloud-arrow-up"></i><c-sidebar-nav-link-content>Upload X-ray</c-sidebar-nav-link-content></a></c-sidebar-nav-link> -->
+      <!-- <c-sidebar-nav-link></c-sidebar-nav-link> -->
+      <li class="nav-item" style="cursor: pointer">
+        <a class="nav-link-success nav-link" (click)="dashboardFn('dashboard')">
+          <i class="fa-solid fa-house-chimney nav-icon"></i> Dashboard
+        </a>
+      </li>
+      <li class="nav-item" style="cursor: pointer">
+        <a
+          class="nav-link-success nav-link"
+          (click)="dashboardFn('upload-xray/0')"
+        >
+          <i class="fa-solid fa-cloud-arrow-up nav-icon"></i> Upload X-Ray
+        </a>
+      </li>
+      <li class="nav-item" style="cursor: pointer">
+        <a class="nav-link-success nav-link" (click)="dashboardFn('logout')">
+          <i class="fa-solid fa-right-from-bracket nav-icon"></i> Logout
+        </a>
+      </li>
+    </c-sidebar-nav>
+  </ng-template>
+</c-sidebar>
+
+<!--main-->
+<div
+  class="wrapper d-flex flex-column min-vh-100 dark:bg-transparent color-bg"
+  *ngIf="!windowWidth; else dootherscreen"
+>
+  <!--app-header-->
+  <app-default-header
+    class="mb-4 d-print-none header header-sticky"
+    position="sticky"
+    sidebarId="sidebar"
+    (toggleMenuSidebar)="receiveMessage($event)"
+  ></app-default-header>
+  <!--app-body-->
+  <div class="body flex-grow-1">
+    <c-container breakpoint="lg" class="h-auto">
+      <router-outlet></router-outlet>
+      <ngx-spinner
+      bdColor="rgba(0, 0, 0, 0.8)"
+        template="<img  src='./assets/images/loader.gif' height='150px'>"
+        color="#fff"
+        [fullScreen]="true"
+        loadingText=""
+      ></ngx-spinner>
+    </c-container>
+  </div>
+  <!--app footer-->
+  <app-default-footer></app-default-footer>
+</div>
+<ng-template #dootherscreen>
+  <div class="less-width">
+    <div class="less-wdith-container">
+      <div class="emptyDiv w-logo-header">
+        <img src="../../../assets/images/arti_new.png" class="w-100" />
+      </div>
+      <div>This web app is only supported in screen larger than 768px.</div>
+    </div>
+  </div>
+</ng-template>
+
+<!-- ! user pop -->
+<div
+  class="modal fade"
+  id="myProfile"
+  tabindex="-1"
+  role="dialog"
+  aria-labelledby="exampleModalLabel"
+  aria-hidden="true"
+>
+  <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
+    <div class="modal-content">
+      <!-- <div class="modal-header">
+        <h5 class="modal-title fw-semibold color ps-2" id="exampleModalLabel">Subscription Details:</h5>
+      </div> -->
+      <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+      <!-- <div class="modal-header border-bottom-0 px-4 pb-2">
+        <h5 class="modal-title fw-bold fw-semibold"> My Profile</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+      </div>
+      <div class="modal-body pt-0 px-4">
+        <div class="row">
+          <form [formGroup]="addSuperForm" class="form-inline" role="form">
+            <div class="row mb-3 mt-3">
+              <div class="col-md-4 form-group">
+                <label class="mb-2">First Name</label>
+                <div class="w-100 d-flex position-relative">
+                  <span cInputGroupText class="rounded-0 rounded-start icon-position">
+                    <svg cIcon name="cilUser"></svg>
+                  </span>
+                  <input type="text" placeholder="Enter First Name" formControlName="first_name" class="form-control rounded ps-5 w-100"
+                  maxlength="25" />
+                </div>
+              </div>
+              <div class="col-md-4 form-group">
+                <label class="mb-2">Last Name</label>
+                <div class="w-100 d-flex position-relative">
+                  <span cInputGroupText class="rounded-0 rounded-start icon-position">
+                    <svg cIcon name="cilUser"></svg>
+                  </span>
+                  <input type="text" placeholder="Enter Last Name" formControlName="last_name" class="form-control rounded ps-5 w-100"
+                  maxlength="25" />
+                </div>
+              </div>
+              <div class="col-md-4 form-group">
+                <label class="mb-2">Email</label>
+                <div class="w-100 d-flex position-relative">
+                  <span cInputGroupText class="rounded-0 rounded-start icon-position">
+                    <svg cIcon name="cilEnvelopeClosed"></svg>
+                  </span>
+                  <input type="text" placeholder="Email" formControlName="email" class="form-control rounded ps-5 w-100" maxlength="70" />
+                </div>
+              </div>
+            </div>
+            <div class="row mb-2"></div>
+            <div class="row mb-3">
+              <div class="col-md-4 form-group">
+                <label class="mb-2">Contact Number</label>
+                <div class="w-100 d-flex position-relative">
+                  <span cInputGroupText class="rounded-0 rounded-start icon-position">
+                    <svg cIcon name="cilEnvelopeClosed"></svg>
+                  </span>
+                  <input type="tel" placeholder="Enter Contact Number" formControlName="contact_number" class="form-control rounded ps-5 w-100"
+                  (keypress)="onlyNumberKey($event)" maxlength="10" />
+                </div>
+              </div>
+              <div class="col-md-4 form-group">
+                <label class="mb-2">Address 1</label>
+                <div class="w-100 d-flex position-relative">
+                  <span cInputGroupText class="rounded-0 rounded-start icon-position">
+                    <svg cIcon name="cilLocationPin"></svg>
+                  </span>
+                  <input type="text" placeholder="Enter Address 1" formControlName="address1" class="form-control rounded ps-5 w-100"
+                  maxlength="100" />
+                </div>
+              </div>
+              <div class="col-md-4 form-group">
+                <label class="mb-2">City</label>
+                <div class="w-100 d-flex position-relative">
+                  <span cInputGroupText class="rounded-0 rounded-start icon-position">
+                    <svg cIcon name="cilMap"></svg>
+                  </span>
+                  <input type="text" placeholder="Enter City" formControlName="city" class="form-control rounded ps-5 w-100" maxlength="50" />
+                </div>
+              </div>
+            </div>
+            <div class="row mb-2"></div>
+            <div class="row mb-3">
+              <div class="col-md-4 form-group">
+                <label class="mb-2" for="inputState">Country</label>
+                <div class="w-100 d-flex position-relative">
+                  <span cInputGroupText class="rounded-0 rounded-start icon-position">
+                    <svg cIcon name="cilLocationPin"></svg>
+                  </span>
+                  <select class="form-select form-control rounded ps-5 w-100" aria-label="Default select example" formControlName="country" (change)="stateByCountry($event)">
+                  <option [selected]="true" [disabled]="true" [defaultSelected]="true">
+                    -Select Country-
+                  </option>
+                  <option *ngFor="let country of allcountries; let i = index" value="{{country.countryName}}">{{country.countryName}}</option>
+                </select>
+                </div>
+              </div>
+              <div class="col-md-4 form-group">
+                <label class="mb-2">State</label>
+                <div class="w-100 d-flex position-relative">
+                  <span cInputGroupText class="rounded-0 rounded-start icon-position">
+                    <svg cIcon name="cilLocationPin"></svg>
+                  </span>
+                  <select aria-label="Default select example" class="form-select form-control rounded ps-5 w-100" formControlName="state" [value]="stateList">
+                    <option [disabled]="true" [defaultSelected]="true" [selected]="true" [value]="stateList">
+                      {{stateList}}
+                    </option>
+                    <option *ngFor="let state of allstates; let i = index" value="{{state.name}}">{{state.name}}</option>
+                  </select>
+                </div>
+              </div>
+              <div class="col-md-4 form-group">
+                <label class="mb-2">Zip</label>
+                <div class="w-100 d-flex position-relative">
+                  <span cInputGroupText class="rounded-0 rounded-start icon-position">
+                    <svg cIcon name="cilLocationPin"></svg>
+                  </span>
+                  <input type="text" placeholder="Zip" formControlName="pincode" class="form-control rounded ps-5 w-100" maxlength="10"
+                  (keypress)="onlyNumberKey($event)" />
+                </div>
+              </div>
+            </div>
+            <div class="row mb-2"></div>
+            <div class="row mb-3">
+              <div class="col-md-4 form-group">
+                <label class="mb-2">Registration/License No.</label>
+                <div class="w-100 d-flex position-relative">
+                  <span cInputGroupText class="rounded-0 rounded-start icon-position">
+                    <svg cIcon name="cilLocationPin"></svg>
+                  </span>
+                  <input type="text" placeholder="Enter Number" formControlName="license_no"
+                  class="form-control rounded ps-5 w-100" maxlength="25"/>
+                </div>
+              </div>
+              <div class="col-md-8 btn-div-btn">
+                <button type="button" class="btn btn-primary save-btn m-2 mb-0 pd-1 other-btn fw-bolder"
+                  (click)="updateUser()">
+                  Save Changes <svg stroke="currentColor" fill="#fff" stroke-width="0" viewBox="0 0 24 24" height="1em" width="1em" xmlns="http://www.w3.org/2000/svg"><path d="M12 3c-4.625 0-8.442 3.507-8.941 8.001H10v-3l5 4-5 4v-3H3.06C3.56 17.494 7.376 21 12 21c4.963 0 9-4.037 9-9s-4.037-9-9-9z"></path></svg>
+                </button>
+                <button type="button" class="btn btn-primary save-btn m-2 mb-0 cancel-btn pd-1 other-btn fw-bolder"
+                (click)="resetUser()">
+                Reset
+              </button>
+              </div>
+            </div>
+          </form>
+        </div>
+      </div> -->
+      <app-dentist-profile></app-dentist-profile>
+    </div>
+  </div>
+</div>
+
+<!-- ! subs -->
+<div
+  class="modal fade Subscription-popup"
+  id="exampleModal"
+  tabindex="-1"
+  role="dialog"
+  aria-labelledby="exampleModalLabel"
+  aria-hidden="true"
+>
+  <div class="modal-dialog modal-dialog-centered modal-md" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title fw-semibold ps-2" id="exampleModalLabel">
+          Subscription Details:
+        </h5>
+        <button
+          type="button"
+          class="btn-close"
+          data-bs-dismiss="modal"
+        ></button>
+      </div>
+      <div class="modal-body pt-0">
+        <div class="d-flex align-items-start flex-column sub-body-content">
+          <ul
+            class="proceed-details m-0 p-0 align-self-center mx-2 w-100 color"
+          >
+            <li
+              class="fs-6 ms-2 mt-0 fw-semibold d-flex justify-content-between align-items-center"
+            >
+              <span>Plan Name:</span>&nbsp;<span class="me-2">{{
+                this.planDetail?.all_subscription_details[this.planDetail?.all_subscription_details.length - 1]?.name | titlecase
+              }}</span>
+            </li>
+            <li
+              class="fs-6 ms-2 mt-3 fw-semibold d-flex justify-content-between align-items-center"
+            >
+              <span>Plan Type:</span>&nbsp;<span class="me-2">{{
+                this.planDetail?.all_subscription_details[this.planDetail?.all_subscription_details.length - 1]?.type | titlecase
+              }}</span>
+            </li>
+            <li
+              class="fs-6 ms-2 mt-3 fw-semibold d-flex justify-content-between align-items-center"
+            >
+              <span>Price:</span>&nbsp;<span class="me-2"
+                >{{ this.planDetail?.all_subscription_details[this.planDetail?.all_subscription_details.length - 1]?.price | currency:this.planDetail?.all_subscription_details[this.planDetail?.all_subscription_details.length - 1]?.currency?.toUpperCase() }}</span
+              >
+            </li>
+            <li
+              class="fs-6 ms-2 mt-3 fw-semibold d-flex justify-content-between align-items-center"
+            >
+              <span>Start Date:</span>&nbsp;<span class="me-2"
+                >&nbsp;{{
+                  this.planDetail?.all_subscription_details[this.planDetail?.all_subscription_details.length - 1]?.start_date
+                    | date : "dd/MM/yyyy hh:mm a"
+                }}</span
+              >
+            </li>
+            <li
+              class="fs-6 ms-2 mt-3 fw-semibold d-flex justify-content-between align-items-center"
+            >
+              <span>End Date:</span>&nbsp;<span class="me-2"
+                >&nbsp;{{
+                  this.planDetail?.all_subscription_details[this.planDetail?.all_subscription_details.length - 1]?.end_date
+                    | date : "dd/MM/yyyy hh:mm a"
+                }}</span
+              >
+            </li>
+          </ul>
+        </div>
+      </div>
+      <div class="modal-footer pb-4">
+        <button
+          type="button"
+          class="btn btn-primary p-2 fw-bold width-btn"
+          (click)="handleRenew(this.planDetail.all_subscription_details[this.planDetail?.all_subscription_details.length - 1].subscription_id)"
+        >
+          Renew
+          <svg
+            stroke="currentColor"
+            fill="currentColor"
+            stroke-width="0"
+            viewBox="0 0 24 24"
+            height="1em"
+            width="1em"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <path
+              d="M12 3c-4.625 0-8.442 3.507-8.941 8.001H10v-3l5 4-5 4v-3H3.06C3.56 17.494 7.376 21 12 21c4.963 0 9-4.037 9-9s-4.037-9-9-9z"
+            ></path>
+          </svg>
+        </button>
+        <button
+          type="button"
+          class="btn btn-secondary fw-semibold pd-1 cancel-btn font-size btnDanger width-btn price-font"
+          data-bs-dismiss="modal"
+          (click)="handleCancel()"
+        >
+          Cancel
+        </button>
+        <!-- (click)="handleCancel()" -->
+        <button
+          type="button"
+          class="btn btn-secondary fw-semibold pd-1 cancel-btn font-size width-btn price-font"
+          data-bs-dismiss="modal"
+        >
+          Close
+        </button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ! reset password -->
+<div
+  class="modal fade"
+  id="ResetPassModal"
+  tabindex="-1"
+  role="dialog"
+  aria-labelledby="exampleModalLabel"
+  aria-hidden="true"
+>
+  <div class="modal-dialog modal-dialog-centered modal-md" role="document">
+    <div class="modal-content p-4">
+      <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+
+      <!-- <div class="modal-header pb-0">
+        <h5 class="modal-title fw-semibold font-color" id="exampleModalLabel">
+          Reset Password
+        </h5>
+        <button
+          type="button"
+          class="btn-close"
+          data-bs-dismiss="modal"
+        ></button>
+      </div>
+      <div class="modal-body">
+        <div class="inputContainer align-self-center">
+          <div class="mb-3 mt-2">
+            <div
+              class="w-100 d-flex position-relative color align-items-start flex-column justify-content-center"
+            >
+              <label class="mb-2">Current Password</label>
+              <div class="w-100 d-flex position-relative">
+                <span
+                  cInputGroupText
+                  class="rounded-0 rounded-start icon-position"
+                >
+                  <svg
+                    _ngcontent-tmk-c209=""
+                    font-Size="20px"
+                    stroke="currentColor"
+                    fill="currentColor"
+                    stroke-width="0"
+                    viewBox="0 0 16 16"
+                    height="1em"
+                    width="1em"
+                    xmlns="http://www.w3.org/2000/svg"
+                  >
+                    <path
+                      _ngcontent-tmk-c209=""
+                      d="M0 8a4 4 0 0 1 7.465-2H14a.5.5 0 0 1 .354.146l1.5 1.5a.5.5 0 0 1 0 .708l-1.5 1.5a.5.5 0 0 1-.708 0L13 9.207l-.646.647a.5.5 0 0 1-.708 0L11 9.207l-.646.647a.5.5 0 0 1-.708 0L9 9.207l-.646.647A.5.5 0 0 1 8 10h-.535A4 4 0 0 1 0 8zm4-3a3 3 0 1 0 2.712 4.285A.5.5 0 0 1 7.163 9h.63l.853-.854a.5.5 0 0 1 .708 0l.646.647.646-.647a.5.5 0 0 1 .708 0l.646.647.646-.647a.5.5 0 0 1 .708 0l.646.647.793-.793-1-1h-6.63a.5.5 0 0 1-.451-.285A3 3 0 0 0 4 5z"
+                    ></path>
+                    <path
+                      _ngcontent-tmk-c209=""
+                      d="M4 8a1 1 0 1 1-2 0 1 1 0 0 1 2 0z"
+                    ></path>
+                  </svg>
+                </span>
+                <input
+                  type="password"
+                  placeholder="Enter Current Password"
+                  formControlName="last_name"
+                  class="form-control rounded ps-5 w-100"
+                  maxlength="25"
+                  (input)="onCurPass($event)"
+                />
+              </div>
+            </div>
+          </div>
+          <div class="mb-3 mt-2 inputMargin">
+            <div
+              class="w-100 d-flex position-relative color align-items-start flex-column justify-content-center"
+            >
+              <label class="mb-2">New Password</label>
+              <div class="w-100 d-flex position-relative">
+                <span
+                  cInputGroupText
+                  class="rounded-0 rounded-start icon-position"
+                >
+                  <svg
+                    _ngcontent-tmk-c209=""
+                    font-Size="20px"
+                    stroke="currentColor"
+                    fill="currentColor"
+                    stroke-width="0"
+                    viewBox="0 0 16 16"
+                    height="1em"
+                    width="1em"
+                    xmlns="http://www.w3.org/2000/svg"
+                  >
+                    <path
+                      _ngcontent-tmk-c209=""
+                      d="M0 8a4 4 0 0 1 7.465-2H14a.5.5 0 0 1 .354.146l1.5 1.5a.5.5 0 0 1 0 .708l-1.5 1.5a.5.5 0 0 1-.708 0L13 9.207l-.646.647a.5.5 0 0 1-.708 0L11 9.207l-.646.647a.5.5 0 0 1-.708 0L9 9.207l-.646.647A.5.5 0 0 1 8 10h-.535A4 4 0 0 1 0 8zm4-3a3 3 0 1 0 2.712 4.285A.5.5 0 0 1 7.163 9h.63l.853-.854a.5.5 0 0 1 .708 0l.646.647.646-.647a.5.5 0 0 1 .708 0l.646.647.646-.647a.5.5 0 0 1 .708 0l.646.647.793-.793-1-1h-6.63a.5.5 0 0 1-.451-.285A3 3 0 0 0 4 5z"
+                    ></path>
+                    <path
+                      _ngcontent-tmk-c209=""
+                      d="M4 8a1 1 0 1 1-2 0 1 1 0 0 1 2 0z"
+                    ></path>
+                  </svg>
+                </span>
+                <input
+                  type="password"
+                  placeholder="Enter New Password"
+                  formControlName="last_name"
+                  class="form-control rounded ps-5 w-100"
+                  maxlength="25"
+                  (input)="onNewPass($event)"
+                />
+              </div>
+            </div>
+            <div class="">
+              <small class="pass-small"
+                >* Password must contain atleast 7 characters, 1 letter and 1
+                number</small
+              >
+            </div>
+          </div>
+          <div class="mb-3 mt-2 inputMargin">
+            <div
+              class="w-100 d-flex position-relative color align-items-start flex-column justify-content-center"
+            >
+              <label class="mb-2">Confirm New Password</label>
+              <div class="w-100 d-flex position-relative">
+                <span
+                  cInputGroupText
+                  class="rounded-0 rounded-start icon-position"
+                >
+                  <svg
+                    _ngcontent-tmk-c209=""
+                    font-Size="20px"
+                    stroke="currentColor"
+                    fill="currentColor"
+                    stroke-width="0"
+                    viewBox="0 0 16 16"
+                    height="1em"
+                    width="1em"
+                    xmlns="http://www.w3.org/2000/svg"
+                  >
+                    <path
+                      _ngcontent-tmk-c209=""
+                      d="M0 8a4 4 0 0 1 7.465-2H14a.5.5 0 0 1 .354.146l1.5 1.5a.5.5 0 0 1 0 .708l-1.5 1.5a.5.5 0 0 1-.708 0L13 9.207l-.646.647a.5.5 0 0 1-.708 0L11 9.207l-.646.647a.5.5 0 0 1-.708 0L9 9.207l-.646.647A.5.5 0 0 1 8 10h-.535A4 4 0 0 1 0 8zm4-3a3 3 0 1 0 2.712 4.285A.5.5 0 0 1 7.163 9h.63l.853-.854a.5.5 0 0 1 .708 0l.646.647.646-.647a.5.5 0 0 1 .708 0l.646.647.646-.647a.5.5 0 0 1 .708 0l.646.647.793-.793-1-1h-6.63a.5.5 0 0 1-.451-.285A3 3 0 0 0 4 5z"
+                    ></path>
+                    <path
+                      _ngcontent-tmk-c209=""
+                      d="M4 8a1 1 0 1 1-2 0 1 1 0 0 1 2 0z"
+                    ></path>
+                  </svg>
+                </span>
+                <input
+                  type="password"
+                  placeholder="Enter Confirm New Password"
+                  formControlName="last_name"
+                  class="form-control rounded ps-5 w-100"
+                  maxlength="25"
+                  (input)="onCnfPass($event)"
+                />
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="modal-footer justify-content-center pt-0">
+        <button
+          type="button btn"
+          class="btn fw-semibold pd-1 fs-6"
+          (click)="setNew()"
+        >
+          Reset Password
+          <svg
+            stroke="currentColor"
+            fill="#fff"
+            stroke-width="0"
+            viewBox="0 0 24 24"
+            height="1em"
+            width="1em"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <path
+              d="M12 3c-4.625 0-8.442 3.507-8.941 8.001H10v-3l5 4-5 4v-3H3.06C3.56 17.494 7.376 21 12 21c4.963 0 9-4.037 9-9s-4.037-9-9-9z"
+            ></path>
+          </svg>
+        </button>
+      </div> -->
+      <app-reset-password></app-reset-password>
+    </div>
+  </div>
+</div>

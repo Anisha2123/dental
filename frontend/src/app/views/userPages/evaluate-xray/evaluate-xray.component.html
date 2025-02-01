@@ -1,0 +1,269 @@
+<section class="content evaluate-xray">
+  <div class="row mb-1">
+    <h2 class="col fw-bold position-relative pt-2 mb-0" *ngIf="!forTesting; else dootherheading">
+      ARTI Evaluation Result
+    </h2>
+    <ng-template #dootherheading>
+      <h2 class="col fw-bold position-relative pt-2 mb-0">
+        ARTI Evaluating Result
+      </h2>
+    </ng-template>
+    <div
+      class="col-md-7 mt-1 mb-2 icon-div fw-semibold d-flex justify-content-end align-items-end"
+    >
+      <span
+        ><i class="fa-solid fa-circle dentist-i me-1"></i> Dentist Marking</span
+      >
+      &nbsp;&nbsp;
+      <span
+        ><i class="fa-solid fa-circle ai-i me-1"></i> AI (Confirmed)
+        Marking</span
+      >
+      &nbsp;&nbsp;
+      <span
+        ><i class="fa-solid fa-circle aiprob-i me-1"></i> AI (Probable)
+        Marking</span
+      >
+    </div>
+  </div>
+
+  <div class="row mt-4 mb-2">
+    <!-- *ngIf="!forTesting" -->
+    <!--<div class="col-6 d-flex p-0">
+       <button
+        type="button"
+        class="btn btn-primary save-btn pd-1 fw-bold other-btn evaluate-btn ms-2"
+        [class]="evaluationResult ? 'hide-btn' : ''"
+        (click)="handleSwitch('show')"
+      >
+        Evaluation Result
+      </button>
+      <button
+        type="button"
+        class="btn btn-primary pd-1 fw-bold other-btn original-xray"
+        [class]="!evaluationResult ? 'hide-btn' : ''"
+        (click)="handleSwitch('hide')"
+      >
+        Original X-Ray
+      </button>
+    </div>-->
+    <div
+      class="col-12 d-flex justify-content-end align-items-center icon-sec p-0"
+      *ngIf="!forTesting"
+    >
+      <button
+        *ngIf="!evaluationResult"
+        type="button"
+        class="btn fw-bold cancel-btn pd-1 ms-2"
+        (click)="delete()"
+        title="Click on delete marking to delete"
+      >
+        Delete Marking
+        <svg
+          stroke="currentColor"
+          fill="currentColor"
+          stroke-width="0"
+          viewBox="0 0 24 24"
+          height="1em"
+          width="1em"
+          xmlns="http://www.w3.org/2000/svg"
+        >
+          <g>
+            <path fill="none" d="M0 0h24v24H0z"></path>
+            <path
+              d="M4 8h16v13a1 1 0 0 1-1 1H5a1 1 0 0 1-1-1V8zm2 2v10h12V10H6zm3 2h2v6H9v-6zm4 0h2v6h-2v-6zM7 5V3a1 1 0 0 1 1-1h8a1 1 0 0 1 1 1v2h5v2H2V5h5zm2-1v1h6V4H9z"
+            ></path>
+          </g>
+        </svg>
+      </button>
+
+      <button
+        *ngIf="!evaluationResult"
+        type="button"
+        class="btn fw-bold refresh-btn pd-1 ms-2"
+        (click)="refresh()"
+        title="Remove all your marking"
+      >
+      Reset to AI Marking
+        <svg
+          stroke="currentColor"
+          fill="currentColor"
+          stroke-width="0"
+          viewBox="0 0 24 24"
+          height="1em"
+          width="1em"
+          xmlns="http://www.w3.org/2000/svg"
+        >
+          <path
+            fill="none"
+            stroke="#fff"
+            stroke-width="2"
+            d="M20,8 C18.5974037,5.04031171 15.536972,3 12,3 C7.02943725,3 3,7.02943725 3,12 C3,16.9705627 7.02943725,21 12,21 L12,21 C16.9705627,21 21,16.9705627 21,12 M21,3 L21,9 L15,9"
+          ></path>
+        </svg>
+      </button>
+
+      <button
+        *ngIf="!evaluationResult"
+        type="button"
+        class="btn btn-primary save-btn pd-1 fw-bold other-btn ms-2 pd-2"
+        (click)="saveMarks()"
+        title="Save your changes & submit for review"
+      >
+        Commit Correction&nbsp;
+        <svg
+          stroke="currentColor"
+          fill="currentColor"
+          stroke-width="0"
+          viewBox="0 0 24 24"
+          height="1em"
+          width="1em"
+          xmlns="http://www.w3.org/2000/svg"
+        >
+          <path
+            d="M12 3c-4.625 0-8.442 3.507-8.941 8.001H10v-3l5 4-5 4v-3H3.06C3.56 17.494 7.376 21 12 21c4.963 0 9-4.037 9-9s-4.037-9-9-9z"
+          ></path>
+        </svg>
+      </button>
+
+      <button
+        type="button"
+        class="btn me-0 btn-danger fw-bold other-btn pd-1 ms-2 discard h-100"
+        id="close"
+        (click)="handleClick('/upload-xray/0')"
+        title="Discard this evaluation"
+      >
+        Discard
+      </button>
+
+      <!-- <button type="button" class="btn btn-primary save-btn pd-1 fw-bold other-btn ms-2">
+          <svg stroke="currentColor" fill="currentColor" stroke-width="0" viewBox="0 0 24 24" height="1em" width="1em" xmlns="http://www.w3.org/2000/svg"><path d="M19.045 7.401c.378-.378.586-.88.586-1.414s-.208-1.036-.586-1.414l-1.586-1.586c-.378-.378-.88-.586-1.414-.586s-1.036.208-1.413.585L4 13.585V18h4.413L19.045 7.401zm-3-3 1.587 1.585-1.59 1.584-1.586-1.585 1.589-1.584zM6 16v-1.585l7.04-7.018 1.586 1.586L7.587 16H6zm-2 4h16v2H4z"></path></svg>
+        </button> -->
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-12 d-flex justify-content-between p-0">
+      <!-- left-img -->
+      <!-- [hidden]="!evaluationResult" -->
+      <div class="position-relative col-6 original-xray-margin">
+        <div class="for-loader" *ngIf="forTesting && pageRefresh">
+          <div class="scan">
+            <div class="retina"></div>
+          </div>
+        </div>
+        <!-- *ngIf="forTesting" -->
+        <!-- <div class="for-loader1" >
+            <div class="scan1">
+              <div class="retina1"></div>
+            </div>
+          </div> -->
+        <!-- <img [src]="renderImage(this.xRayData[0]?.xray_image.path)" alt="" class="w-100" >
+                    <label class="text-center w-100 mt-3 fw-bold">Original X-ray</label>-->
+        <!-- <div id="label-studio1" (mousedown)="zoom($event)" (mouseleave)="zoomOut($event)"></div> -->
+        <lib-ngx-image-zoom
+          [thumbImage]="myThumbnail"
+          [fullImage]="myFullresImage"
+          [magnification]="3"
+          [enableScrollZoom]="true"
+          [enableLens]="true"
+          [lensWidth]="250"
+          [lensHeight]="250"
+          [circularLens]="true"
+        >
+        </lib-ngx-image-zoom>
+        <!-- <label class="text-center w-100 fw-bold mark-label1 mt-4">Original X-Ray</label> -->
+      </div>
+      <!-- [hidden]="evaluationResult" class='right-img'-->
+      <div class="col-6 m-1" >
+        <!--
+                    <img  [src]="renderImage(this.xRayData[0]?.xray_image.path)" alt="" class="w-100 ms-2"
+                    (click)="addMarker($event)" >
+                    <div class="ms-2 markDiv">
+                    <div *ngFor="let marker of marker" class="marker" [style.left.px]="marker.x" [style.top.px]="marker.y">
+                </div>
+            </div>-->
+        <div id="label-studio"></div>
+
+        <!-- <label class="text-center w-100 fw-bold mark-label" *ngIf="!forTesting">Evaluated X-Ray</label> -->
+      </div>
+    </div>
+    <!-- *ngIf="evaluationResult" -->
+    <!-- *ngIf="!evaluationResult" -->
+    <div class="col-12 d-flex justify-content-between my-2">
+      <div
+        class="text-center col-6 fw-bold mark-label"
+      >
+        Original X-Ray
+      </div>
+      <div
+        class="text-center col-6 fw-bold mark-label"
+        *ngIf="!forTesting"
+      >
+        Evaluated X-Ray
+      </div>
+    </div>
+  </div>
+
+  <div class="row sec-II">
+    <div class="col-12">
+      <h6>Disclaimers: </h6>
+      <p>
+        The final diagnosis remains the responsibility of the dentist. ARTI serves as an additional diagnostic tool, enhancing the accuracy and efficiency of dental professionals Decay is deeper then it appears. Your dentist will assess treatment accordingly.
+      </p>
+    </div>
+  </div>
+
+  <div class="container">
+    <div class="row fw-semibold" id="cavity">
+      <h5 class="fw-semibold">
+        {{ this.totalAI }} Cavities detected by AI Model
+      </h5>
+    </div>
+  </div>
+
+  <!-- <div *ngIf="forTesting">
+    <div class="scan">
+      <div class="retina"></div>
+    </div>
+  </div> -->
+</section>
+
+<!--<div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+
+
+        </div>
+        <div class="modal-body">
+            <div class="row ">
+                <div class="row mb-2 mt-4">
+
+                    <div class="col-md-12 form-group d-flex align-items-center">
+                      <label class="label1 me-4">Accuracy</label>
+                      <div class="w-100 position-relative">
+                        <input #myinput type="range" min="0" value="0" max="100" (input)="onRangeChange($event)"/>
+                          <span class="inputValue fw-semibold p-1 fs-6 text-center"  [ngStyle]="{'left': leftPos}">
+                          {{valInput}}%-->
+<!-- <span class="smallTrianlge"></span> -->
+<!-- </span>
+                      </div>
+                    </div>
+                </div>
+                <div class="row my-3">
+
+                    <div class="col-md-12 form-group d-flex align-items-center justify-content-between">
+                      <label class="label2 mb-3">Tag</label>
+                      <input type="text" class="form-control tag-input">
+                    </div>
+                </div>
+
+             </div>
+        <div class="modal-footer">
+          <button type="button" id="close" class="btn btn-secondary cancel-btn other-btn pd-1 fw-bold me-2" data-bs-dismiss="modal">Close</button>
+          <button type="button" class="btn btn-primary other-btn pd-1 fw-bold " (click)="saveMarks()">Save&nbsp;<i class="fa-sharp fa-regular fa-floppy-disk"></i></button>
+        </div>
+      </div>
+    </div>
+  </div>-->

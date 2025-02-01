@@ -1,0 +1,40 @@
+// .btn{
+//     color: white;
+// }
+
+// tr .btn{
+    // height: 28px;
+    // width: 28px;
+// }
+.btn i{
+    font-size: 16px;
+
+     position: relative;
+     top: -3px;
+    text-align: center;
+    line-height: 1
+}
+.head-div{
+  margin-bottom: -2rem;
+}
+
+* {
+  color: #043049;
+}
+
+.dataTables_wrapper .dataTables_paginate .paginate_button.current:hover {
+  color: #fff!important;
+}
+a.current{
+  color: #fff!important;
+}
+.paddingForCenter {
+  padding-left: 5.25%;
+}
+.text-right {
+  text-align: right;
+  // padding-right: 1.5rem;
+}
+.textCenter {
+  min-width: 110px;
+}

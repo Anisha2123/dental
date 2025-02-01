@@ -1,0 +1,174 @@
+// .form-group input,select{
+
+//     width: 90%;
+// }
+
+.form label {
+  position: relative;
+}
+
+sup {
+  position: relative;
+  top: -2px;
+  color: red;
+  font-weight: 800;
+  font-size: 14px;
+}
+
+.save-btn {
+  background-color: #17a2b8;
+}
+.save-btn:hover {
+  background-color: #138091;
+}
+.btn-div{
+// margin-left: -2.2rem;
+  display: flex;
+  align-items: flex-end;
+  justify-content: flex-end;
+}
+.btn-cancel {
+  margin-top: -5%;
+  margin-left: 2.9rem;
+  // width: max-content;
+}
+.adminbtn-cancel{
+  margin-top: -3%;
+  margin-left: 2.9rem;
+  width: max-content;
+  float:right;
+}
+.card {
+  width: 100%;
+}
+// .xray-table-container {
+  // position: relative;
+  // right: 2%;
+// }
+th {
+  font-weight: 700;
+}
+h5 {
+  font-weight: 700;
+}
+.sub-row {
+  margin-left: -1.5rem;
+}
+// .xray-row {
+  // margin-left: -0.1rem;
+// }
+
+tbody tr td {
+  vertical-align: middle;
+}
+// i {
+//   position: relative;
+//   top: 1px;
+// }
+
+.cancel-btn {
+  background-color: var(--bs-gray) !important;
+}
+
+.cancel-btn:hover {
+  background-color: var(--bs-gray-700) !important;
+}
+
+* {
+  // color: #043049;
+}
+
+i {
+  color: #fff !important;
+}
+.fontColor {
+  color: #043049 !important;
+}
+.mountain-color {
+  color: #009ace;
+  font-size: inherit !important;
+}
+.hand {
+  cursor: pointer;
+}
+.overflowForScroll {
+  overflow-x: scroll;
+}
+.button-div{
+  left: 65%;
+    top: 9%;
+    margin-top: 31px;
+    position: relative;
+    /* padding-bottom: 25px; */
+    margin-bottom: 0px;
+}
+.back-btn {
+  position: absolute;
+  right: 0%;
+  top: -10px;
+}
+.flag{
+  background-color: red !important;
+    border-color: red !important;
+    padding: 10px !important
+}
+.flag:hover{
+  background-color: rgb(173, 46, 46) !important;
+  border-color: rgb(173, 46, 46) !important;
+}
+.unflag{
+  background-color: #00d957 !important;
+  border-color: #00d957 !important;
+  padding: 10px !important;
+
+}
+.unflag:hover{
+  background-color: #02c24f !important;
+  border-color: #02c24f !important;
+}
+.flag-btn{
+  right: 73px;
+    position: absolute;
+    top: -10px;
+}
+
+@media (min-width: 410px) and (max-width : 820px){
+    .button-div{
+      left: 0 !important;
+    }
+    .other-btn{
+      width: 133px !important;
+    }
+}
+.modal-header{
+  // border-bottom: none !important;
+  // color: #043049 !important;
+}
+.modal-footer{
+  // border-top: none !important;
+}
+.color{
+  // color: #043049 !important;
+}
+.checkbox1{
+  pointer-events: none;
+}
+.renew-btn{
+  width: max-content;
+}
+.close-modal {
+  color: #043049 !important;
+}
+.new-btn-color {
+  background-color: #043049 !important;
+  border-color: #043049 !important;
+}
+.text-right {
+  text-align: right;
+}
+.x-mark {
+  color: #043049 !important;
+}
+.paypal-btn {
+  width: 200px;
+}

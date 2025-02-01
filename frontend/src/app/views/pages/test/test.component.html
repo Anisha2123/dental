@@ -1,0 +1,85 @@
+<section class="content">
+  <div class="row" >
+    <div class="col-12">
+      <div class="card">
+        <div class="card-body">
+          <a
+            [routerLink]="['/add-user']"
+            class="btn btn-info float-right mb-3"
+            >Add User</a
+          >
+          <table
+            datatable
+            [dtOptions]="dtOptions"
+            [dtTrigger]="dtTrigger"
+            class="row-border hover"
+          >
+            <thead>
+              <tr>
+                <th>S. No.</th>
+                <th>Name</th>
+                <th>Mobile Number</th>
+                <!-- <th>Description</th> -->
+                <th>Status</th>
+                <th>Action</th>
+                <th>Add Order</th>
+                <th>Order History</th>
+              </tr>
+            </thead>
+            <tbody *ngIf="allData?.length != 0">
+              <tr *ngFor="let data of allData; let i = index">
+                <td>{{ i + 1 }}</td>
+                <td>{{ data.firstname}} {{ data.lastname}}</td>
+                <td>{{ data.mobile }}</td>
+                <!-- <td>{{ blogs.title | titlecase }}</td>
+                <td><div [innerHTML]="blogs.description"></div></td> -->
+                <td *ngIf="data.status === 'active'">Active</td>
+                <td *ngIf="data.status !== 'active'">Inactive</td>
+
+                <td>
+                  <div class="btn-group">
+                    <!-- <button
+                      type="button"
+                      class="btn btn-info"
+                      routerLink="/adventure-type/edit-adventure-type/{{ data._id }}"
+
+                       ><i class="fas fa-pen"></i></button> -->
+                    <button
+                      *ngIf="data.status === 'active'"
+                      type="button"
+                      class="btn btn-success"
+                      (click)="Weblist(data._id, data.status)"
+                    ><i class="far fa-check-circle"></i></button>
+                    <button
+                      *ngIf="data.status !== 'active'"
+                      type="button"
+                      class="btn btn-danger"
+                      (click)="Weblist(data._id, data.status)"
+                    ><i class="fas fa-ban"></i></button>
+                  </div>
+                </td>
+                <td>
+                  <div class="btn-group">
+                    <button type="button" class="btn btn-info" [routerLink]="['/user-history/'+data._id]">Add
+                      Order</button>
+                  </div>
+                </td>
+                <td>
+                  <div class="btn-group">
+                    <button type="button" class="btn btn-info" [routerLink]="['/user-order-history/'+data._id]">
+                      Order History</button>
+                  </div>
+                </td>
+              </tr>
+            </tbody>
+            <tbody *ngIf="allData?.length == 0">
+              <tr>
+                <td colspan="3" class="no-data-available">No data!</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

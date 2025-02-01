@@ -1,0 +1,65 @@
+#!/usr/bin/env node
+
+/**
+ * Module dependencies.
+ */
+const app = require('../app');
+const fs = require('fs');
+const cronJob = require('../middleware/cron');
+
+cronJob.cronJob()
+
+var httpServer;
+var defaultPort = process.env.PORT;
+if (process.env.IS_SSL && process.env.IS_SSL == "true") {
+	const privateKey = fs.readFileSync(process.env.SSL_KEY, 'utf8');
+	const certificate = fs.readFileSync(process.env.SSL_CERT, 'utf8');
+	const credentials = {
+		key: privateKey,
+		cert: certificate
+	};
+
+	/**
+	 * Create HTTPS server.
+	 */
+	const https = require('https');
+	defaultPort = process.env.SSL_PORT || 4000;
+	httpServer = https.createServer(credentials, app);
+
+} else {
+	/**
+	 * Create HTTP server.
+	 */
+	const http = require('http');
+	defaultPort = process.env.PORT || 3100;
+	httpServer = http.createServer(app);
+}
+
+/**
+ * Get port from environment and store in Express.
+ */
+const port = normalizePort(defaultPort);
+app.set('port', port);
+
+/**
+ * Listen on provided port, on all network interfaces.
+ */
+httpServer.listen(port, function() {
+	console.log(`Dark mountain dentist Started on ${port}`);
+});
+
+/**
+ * Normalize a port into a number, string, or false.
+ */
+function normalizePort(val) {
+	var port = parseInt(val, 10);
+	if (isNaN(port)) {
+		// named pipe
+		return val;
+	}
+	if (port >= 0) {
+		// port number
+		return port;
+	}
+	return false;
+}

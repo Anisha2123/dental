@@ -1,0 +1,104 @@
+
+<section class="form">
+
+
+<section class="form-page">
+  <h1>Contact Us</h1>
+  <form [formGroup]="myForm" (ngSubmit)="onSubmit()" action="https://formspree.io/f/xbllqjlv"
+  method="POST">
+    <div class="form-row">
+      <!-- First Name -->
+      <div class="form-group">
+        <label for="fname">First Name</label>
+        <input id="fname" name="fname" type="text" formControlName="fname" placeholder="Enter your first name" />
+        <small *ngIf="myForm.controls['fname'].invalid && myForm.controls['fname'].touched">
+          First name is required.
+        </small>
+      </div>
+
+      <!-- Last Name -->
+      <div class="form-group">
+        <label for="lname">Last Name</label>
+        <input id="lname" name="lname" type="text" formControlName="lname" placeholder="Enter your last name" />
+        <small *ngIf="myForm.controls['lname'].invalid && myForm.controls['lname'].touched">
+          Last name is required.
+        </small>
+      </div>
+    </div>
+
+    <div class="form-row">
+      <!-- Email -->
+      <div class="form-group">
+        <label for="email">Email</label>
+        <input id="email" name="email" type="email" formControlName="email" placeholder="Enter your email" />
+        <small *ngIf="myForm.controls['email'].invalid && myForm.controls['email'].touched">
+          Please enter a valid email.
+        </small>
+      </div>
+
+      <!-- Phone Number -->
+      <div class="form-group">
+        <label for="phone">Phone Number</label>
+        <input id="phone" name="phone" type="text" formControlName="phone" placeholder="Enter your 10 digit phone number(No 0 in front)" />
+        <small *ngIf="myForm.controls['phone'].invalid && myForm.controls['phone'].touched">
+          Phone number is required.
+        </small>
+      </div>
+    </div>
+
+    <div class="form-row">
+      <!-- Comments -->
+      <div class="form-group full-width">
+        <label for="comments">Comments</label>
+        <textarea id="comments" name="comments" formControlName="comments" placeholder="Enter your comments"></textarea>
+        <small *ngIf="myForm.controls['comments'].invalid && myForm.controls['comments'].touched">
+          Comments are required.
+        </small>
+      </div>
+    </div>
+
+    <div class="form-row last">
+      <!-- Date Picker -->
+      <div class="form-group">
+        <label for="date">Preferred Date</label>
+        <input id="date" type="date" name="date" formControlName="date" />
+        <small *ngIf="myForm.controls['date'].invalid && myForm.controls['date'].touched">
+          Please select a date.
+        </small>
+      </div>
+
+      <!-- Submit Button -->  
+      <div class="form-group">
+        <button type="submit" [disabled]="myForm.invalid">Submit</button>
+      </div>
+
+    </div>
+  </form>
+        <!-- Success Popup -->
+<div *ngIf="isSubmitted" class="popup">
+  Form submitted successfully!
+</div>
+</section>
+<!-- <stripe-pricing-table
+pricing-table-id="prctbl_1Qeb0qLv9SvIAKlow0szi7VP"
+publishable-key="pk_live_51IHVxjLv9SvIAKloIuNY6qGRRKMr6IkTYboFPQNMT3tIXn1dwQhjIMBNxNSceqwFQsyqdvLUl1Xfegm0y4jd7oyM00FbjlZIQ0">
+</stripe-pricing-table> -->
+<!-- <app-pricing></app-pricing> -->
+<!-- <div class="container">
+  <h2>Form1 Page</h2>
+  <button class="btn btn-primary mt-3" (click)="sendTestEmail()" [disabled]="loading">
+    {{ loading ? 'Sending Email...' : 'Send Test Email' }}
+  </button>
+
+  <div *ngIf="loading" class="mt-3">Processing...</div>
+  
+  <div *ngIf="responseMessage" class="mt-3 alert" [class.alert-success]="success" [class.alert-danger]="!success">
+    {{ responseMessage }}
+  </div>
+</div> -->
+
+
+
+</section>
+
+  

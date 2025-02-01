@@ -1,0 +1,1 @@
+{"options":{},"indexes":[{"v":{"$numberInt":"2"},"key":{"_id":{"$numberInt":"1"}},"name":"_id_","ns":"dark_mountain_dentist.users"}],"uuid":"f3ebaa4c705c4563ad8a5662d5b1b5fa"}

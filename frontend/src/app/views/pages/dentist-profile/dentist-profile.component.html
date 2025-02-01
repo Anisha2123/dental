@@ -1,0 +1,1215 @@
+<div class="container p-0">
+  <div class="card card-primary">
+    <div class="card-body p-4">
+      <h5 class="well position-relative">
+        My Profile
+      </h5>
+      <!-- <button class="cancel-btn rounded text-light fw-bold back-btn" (click)="handleClick()"
+        *ngIf="this.role == 'admin' && this.dentistId != this.userID">
+        Back
+      </button> -->
+      <!-- <div class="flag-btn">
+        <button class="btn fw-bold rounded p-1 cancel-btn flag" (click)="flagClick()" id="flag"
+          *ngIf="this.role == 'admin' && this.dentistId != this.userID" [hidden]="hiddenFlag">
+          Flag
+        </button>
+        <button class="btn fw-bold unflag ms-2 rounded cancel-btn" id="unflag" (click)="unflagClick()"
+          [hidden]="hiddenunFlag" *ngIf="this.role == 'admin' && this.dentistId != this.userID">
+          Unflag
+        </button>
+      </div> -->
+
+      <div class="row">
+        <form [formGroup]="addSuperForm" class="form-inline" role="form">
+          <div class="row mb-3 mt-3">
+            <div class="col-md-4 form-group">
+              <label class="mb-2">First Name</label>
+              <div class="w-100 d-flex position-relative">
+                <span cInputGroupText class="rounded-0 rounded-start icon-position">
+                  <svg cIcon name="cilUser"></svg>
+                </span>
+                <input type="text" placeholder="Enter First Name" formControlName="first_name" class="form-control rounded ps-5 w-100"
+                maxlength="25" />
+              </div>
+
+            </div>
+            <div class="col-md-4 form-group">
+              <label class="mb-2">Last Name</label>
+              <div class="w-100 d-flex position-relative">
+                <span cInputGroupText class="rounded-0 rounded-start icon-position">
+                  <svg cIcon name="cilUser"></svg>
+                </span>
+                <input type="text" placeholder="Enter Last Name" formControlName="last_name" class="form-control rounded ps-5 w-100"
+                maxlength="25" />
+              </div>
+
+            </div>
+            <div class="col-md-4 form-group">
+              <label class="mb-2">Email</label>
+              <div class="w-100 d-flex position-relative">
+                <span cInputGroupText class="rounded-0 rounded-start icon-position">
+                  <svg cIcon name="cilEnvelopeClosed"></svg>
+                </span>
+                <input type="text" placeholder="Email" formControlName="email" class="form-control rounded ps-5 w-100" maxlength="70" />
+              </div>
+            </div>
+
+          </div>
+          <div class="row mb-2"></div>
+
+          <div class="row mb-3">
+            <div class="col-md-4 form-group">
+              <label class="mb-2">Contact Number</label>
+              <div class="w-100 d-flex position-relative">
+                <span cInputGroupText class="rounded-0 rounded-start icon-position">
+                  <svg cIcon name="cilEnvelopeClosed"></svg>
+                </span>
+                <input type="tel" placeholder="Enter Contact Number" formControlName="contact_number" class="form-control rounded ps-5 w-100"
+                (keypress)="onlyNumberKey($event)" maxlength="10" />
+              </div>
+
+
+            </div>
+            <div class="col-md-4 form-group">
+              <label class="mb-2">Address 1</label>
+              <div class="w-100 d-flex position-relative">
+                <span cInputGroupText class="rounded-0 rounded-start icon-position">
+                  <svg cIcon name="cilLocationPin"></svg>
+                </span>
+                <input type="text" placeholder="Enter Address 1" formControlName="address1" class="form-control rounded ps-5 w-100"
+                maxlength="100" />
+              </div>
+
+            </div>
+            <div class="col-md-4 form-group">
+              <label class="mb-2">Address 2</label>
+              <div class="w-100 d-flex position-relative">
+                <span cInputGroupText class="rounded-0 rounded-start icon-position">
+                  <svg cIcon name="cilLocationPin"></svg>
+                </span>
+                <input type="text" placeholder="Enter Address 2" formControlName="address2" class="form-control rounded ps-5 w-100"
+                maxlength="70" />
+              </div>
+
+            </div>
+          </div>
+          <div class="row mb-2"></div>
+          <div class="row mb-3">
+            <div class="col-md-4 form-group">
+              <label class="mb-2">City</label>
+              <div class="w-100 d-flex position-relative">
+                <span cInputGroupText class="rounded-0 rounded-start icon-position">
+                  <svg cIcon name="cilMap"></svg>
+                </span>
+                <input type="text" placeholder="Enter City" formControlName="city" class="form-control rounded ps-5 w-100" maxlength="50" />
+              </div>
+
+            </div>
+            <div class="col-md-4 form-group">
+              <label class="mb-2" for="inputState">Country</label>
+              <div class="w-100 d-flex position-relative">
+                <span cInputGroupText class="rounded-0 rounded-start icon-position">
+                  <svg cIcon name="cilLocationPin"></svg>
+                </span>
+                <select class="form-select form-control rounded ps-5 w-100" aria-label="Default select example" formControlName="country"
+                [value]="country" (change)="stateByCountry($event)">
+                <option [selected]="true" [disabled]="true" [defaultSelected]="true">
+                  -Select Country-
+                </option>
+                <option *ngFor="let country of allcountries; let i = index" value="{{country.countryName}}">{{country.countryName}}</option>
+              </select>
+              </div>
+
+
+            </div>
+            <div class="col-md-4 form-group">
+              <label class="mb-2">State</label>
+              <!-- <input type="text" placeholder="State" formControlName="state" class="form-control" maxlength="20" /> -->
+              <!-- <select class="form-select me-4" aria-label="Default select example" formControlName="state" [(ngModel)]="stateList" name="state" placeholder="State" id="state">
+                <option [selected]="true" [disabled]="true" [defaultSelected]="true">
+                  {{stateList}}
+                </option>
+              </select> -->
+              <div class="w-100 d-flex position-relative">
+                <span cInputGroupText class="rounded-0 rounded-start icon-position">
+                  <svg cIcon name="cilLocationPin"></svg>
+                </span>
+                <select aria-label="Default select example" class="form-select form-control rounded ps-5 w-100" formControlName="state" [value]="stateList">
+                  <option [disabled]="true" [defaultSelected]="true" [selected]="true" [value]="stateList">
+                    {{stateList}}
+                  </option>
+                  <option *ngFor="let state of allstates; let i = index" value="{{state.name}}">{{state.name}}</option>
+                </select>
+              </div>
+
+            </div>
+          </div>
+
+          <div class="row mb-2"></div>
+          <div class="row mb-3">
+            <div class="col-md-4 form-group">
+              <label class="mb-2">Zip</label>
+              <div class="w-100 d-flex position-relative">
+                <span cInputGroupText class="rounded-0 rounded-start icon-position">
+                  <svg cIcon name="cilLocationPin"></svg>
+                </span>
+                <input type="text" placeholder="Zip" formControlName="pincode" class="form-control rounded ps-5 w-100" maxlength="10"
+                (keypress)="onlyNumberKey($event)" />
+              </div>
+
+            </div>
+            <div class="col-md-4 form-group">
+              <label class="mb-2">Registration/License No.</label>
+              <div class="w-100 d-flex position-relative">
+                <span cInputGroupText class="rounded-0 rounded-start icon-position">
+                  <svg cIcon name="cilLocationPin"></svg>
+                </span>
+                <input type="text" placeholder="Enter Number" formControlName="license_no"
+                class="form-control rounded ps-5 w-100" maxlength="25"/>
+              </div>
+
+            </div>
+            <div class="col-md-4 btn-div">
+
+              <button type="button" class="btn btn-primary save-btn ms-2 mt-2 pd-1 other-btn fw-bolder me-3"
+                (click)="updateUser()">
+                Save <svg stroke="currentColor" fill="#fff" stroke-width="0" viewBox="0 0 24 24" height="1em" width="1em" xmlns="http://www.w3.org/2000/svg"><path d="M12 3c-4.625 0-8.442 3.507-8.941 8.001H10v-3l5 4-5 4v-3H3.06C3.56 17.494 7.376 21 12 21c4.963 0 9-4.037 9-9s-4.037-9-9-9z"></path></svg>
+              </button>
+              <button type="button" class="btn btn-primary save-btn mt-2 cancel-btn pd-1 other-btn fw-bolder"
+              (click)="resetUser()">
+              Close
+            </button>
+            </div>
+
+          </div>
+
+
+        </form>
+
+        <div class="sub-container d-none">
+          <div class="sub-container mt-4">
+            <!-- <h5 *ngIf="this.userID != this.dentistId">Subscription Details THIS</h5> -->
+            <div class="mt-3 w-100" *ngIf="this.userData[0]?.subscription_details?.status == true || this.userData[0]?.subscription_details?.status == false">
+              <!--new code-->
+              <!-- <div class="container xray-table-container border-top p-0" *ngIf="this.role == 'dentist'">
+                <div class="sub-coontainer mt-4 xray-row">
+                  <h5>Subscription Details</h5>
+                  <div class="row mt-3">
+                    <div class="col-12 overflowForScroll">
+                      <table class="table table-bordered row-border hover" >
+                        <thead>
+                          <tr>
+                            <th scope="col">Plan</th>
+                            <th scope="col">Transaction Time</th>
+                            <th scope="col">Next Billing Date</th>
+                            <th scope="col" class="text-right">Amount</th>
+                            <th scope="col" class="text-center">View Details</th>
+                          </tr>
+                        </thead>
+                        <tbody *ngIf="
+                            this.all_subData?.length!= 0
+                          ">
+                        <tr *ngFor="let data of this.all_subData;
+                              let i = index">
+                              <td *ngIf="data?.start_date
+                              == this.preStart_date; else dotheOthersubs">{{ data?.name | titlecase }} (Active)</td>
+                              <ng-template #dotheOthersubs>
+                                <td>{{ data?.name | titlecase }}</td>
+                              </ng-template>
+                            <ng-template #dothatsub>
+                              <td>
+                                {{ data.subscription_id.plan_name | titlecase }}
+                              </td>
+                            </ng-template>
+                            <td>{{ data.start_date | date : "dd/MM/yyyy, hh:mm a" }}</td>
+                            <td>{{ data.end_date | date : "dd/MM/yyyy" }}</td>
+                            <td class="text-right">${{ data?.price }}</td>
+                            <td class="text-center">
+                              removed href from <a></a> for now, please add later when using it
+                              <a><button type="button" class="btn btn-primary pd-1 view-btn fw-bolder" title="View" data-bs-toggle="modal" data-bs-target="#exampleModal"(click)="planDetails(data._id)">
+                                  View Details
+                                </button></a>
+                            </td>
+                            <td>
+                              <div class="custom-control custom-checkbox">
+                                <input class="form-check-input" type="checkbox" value="" id="checkbox-1" checked />
+                              </div>
+                            </td>
+                          </tr>
+                        </tbody>
+                        <tbody *ngIf="
+                            this.all_subData?.length == 0
+                          ">
+                          <tr>
+                            <td colspan="3" class="no-data-available">
+                              No data available!
+                            </td>
+                            <td colspan="0" class="no-data-available p-0"></td>
+                            <td colspan="0" class="no-data-available p-0"></td>
+                            <td colspan="0" class="no-data-available p-0"></td>
+                            <td colspan="0" class="no-data-available p-0"></td>
+                          </tr>
+                        </tbody>
+                      </table>
+                    </div>
+                  </div>
+                </div>
+              </div> -->
+              <!--new code end-->
+
+              <!-- old code -->
+              <!-- <div class="col-sm-3" *ngIf="this.role == 'admin'">
+                Current Plan : {{ this.planData[0]?.type }}
+              </div>
+              <div class="col-sm-3 me-5 w-auto" *ngIf="this.role == 'admin'">
+                <span>
+                  Subscription End Date :
+                  {{ this.end_date | date : "dd/MM/yyyy" }}</span
+                >
+              </div>
+              <div class="col-sm-3 ms-3" *ngIf="this.role == 'admin'">
+                Subscription Amount : ${{ this.planData[0]?.amount }}
+              </div> -->
+              <!-- old code end -->
+
+              <!-- <div *ngIf="this.role =='admin'">
+                <div class="col-sm-3 ms-5 adminbtn-cancel ps-3">
+
+                    <button type="button" class="btn btn-danger ms-2 pd-1 other-btn fw-bolder" (click)="cancelSub($event)">
+                      Cancel Subscription&nbsp;<i class="fa-solid fa-ban ms-1"></i>
+                    </button>
+
+                </div>
+              </div> -->
+            </div>
+
+            <!-- ! new condition for admin to see dentist details -->
+            <!-- <div class="container mt-3 xray-table-container border-top p-0" *ngIf="this.userID != this.dentistId">
+              <div class="sub-coontainer mt-4 xray-row">
+                <h5>Subscription Detail</h5>
+                <div class="row mt-3">
+                  <div class="col-12 overflowForScroll">
+                    <table class="table table-bordered row-border hover" >
+                      <thead>
+                        <tr>
+                          <th scope="col">Plan</th>
+                          <th scope="col">Transaction Time</th>
+                          <th scope="col">Next Billing Date</th>
+                          <th scope="col" class="text-right">Amount</th>
+                          <th scope="col" class="text-center">View Details</th>
+                        </tr>
+                      </thead>
+                      <tbody *ngIf="
+                            this.all_subData?.length!= 0
+                          ">
+                        <tr *ngFor="let data of this.all_subData;
+                              let i = index">
+                          <td>{{ data?.name | titlecase }}</td>
+                          <td>{{ data.start_date | date : "dd/MM/yyyy, hh:mm a" }}</td>
+                          <td>{{ data.end_date | date : "dd/MM/yyyy" }}</td>
+                          <td class="text-right">${{ data?.price }}</td>
+                          <td class="text-center">
+                            <a><button type="button" class="btn btn-primary pd-1 view-btn fw-bolder" title="View" data-bs-toggle="modal" data-bs-target="#exampleModal"(click)="planDetails(data._id)">
+                              View Details
+                            </button></a>
+                          </td>
+                          <td>
+                              <div class="custom-control custom-checkbox">
+                                <input class="form-check-input" type="checkbox" value="" id="checkbox-1" checked />
+                              </div>
+                            </td>
+                        </tr>
+                      </tbody>
+                      <tbody *ngIf="
+                            this.all_subData?.length == 0
+                          ">
+                        <tr>
+                          <td colspan="3" class="no-data-available">
+                            No data available!
+                          </td>
+                          <td colspan="0" class="no-data-available p-0"></td>
+                          <td colspan="0" class="no-data-available p-0"></td>
+                          <td colspan="0" class="no-data-available p-0"></td>
+                          <td colspan="0" class="no-data-available p-0"></td>
+                        </tr>
+                      </tbody>
+                    </table>
+                  </div>
+                </div>
+              </div>
+            </div> -->
+            <!-- <div class="row mt-3" *ngIf="
+                this.userData[0]?.subscription_details.status == false &&
+                this.role == 'admin'
+              ">
+              <div class="col-sm-3">Current Plan :</div>
+              <div class="col-sm-3 me-5 w-auto">
+                <span> Subscription End Date : </span>
+              </div>
+              <div class="col-sm-3 ms-3">Subscription Amount :</div>
+
+              <div *ngIf="this.role =='admin'">
+                <div class="col-sm-3 ms-5 adminbtn-cancel ps-3">
+
+                    <button type="button" id="cancel" class="btn btn-danger ms-2 pd-1 other-btn fw-bolder" disabled= true>
+                      Cancel Subscription&nbsp;<i class="fa-solid fa-ban ms-1"></i>
+                    </button>
+
+                </div>
+              </div>
+            </div> -->
+            <!-- <div *ngIf="this.role == 'dentist'">
+              <div class="row mt-3">
+                <div class="col-sm-3 button-div">
+                <div class="col btn-cancel ms-2 ps-3">
+                <div class="d-flex justify-content-end">
+                  <button type="button" class="btn btn-danger ms-2 cancel-btn pd-1 other-btn fw-bolder"
+                    (click)="cancelSubfromUser()" *ngIf="!cancelBtn">
+                    Cancel Subscription&nbsp;<i class="fa-solid fa-ban ms-1"></i>
+                  </button>
+                  data-bs-toggle="modal" data-bs-target="#renewModal"
+                  <button type="button" class="btn ms-2 pd-1 other-btn fw-bolder" *ngIf="!renewBtn" (click)="handleRenew()">
+                    Renew Subscription&nbsp;<i class="fa-solid fa-arrows-rotate ms-1"></i>
+                  </button>
+                </div>
+                </div>
+                </div>
+              </div>
+              <div class="row mt-3">
+                <div class="custom-control custom-checkbox">
+                  <input class="form-check-input me-1" type="checkbox" value="" id="checkbox-1" checked />
+                  <span class="fw-semibold"><span>Yes, I agree to</span>&nbsp;<u class="hand" data-bs-toggle="modal"
+                      data-bs-target="#exampleModalCenter">terms</u>&nbsp;<span>&</span>&nbsp;<u class="hand"
+                      data-bs-toggle="modal"
+                      data-bs-target="#exampleModalCenter">conditions</u>&nbsp;<span>of</span>&nbsp;<span>this</span>&nbsp;<span>website.</span></span>
+                </div>
+              </div>
+            </div> -->
+          </div>
+        </div>
+      </div>
+
+      <!-- ! for users uploaded xray -->
+      <!-- <div *ngIf="this.userID != this.dentistId">
+        <div class="container mt-3 xray-table-container border-top p-0">
+          <div class="sub-coontainer mt-4 xray-row">
+            <h5>Uploaded X-ray</h5>
+            <div class="row mt-3">
+              <div class="col-12">
+                <table class="table table-bordered row-border hover">
+                  <thead>
+                    <tr>
+                      <th scope="col">X-ray Uploaded Date</th>
+                      <th scope="col" class="text-center">View X-ray</th>
+                      <th scope="col" class="text-center">Evaluated By Dentist</th>
+                    </tr>
+                  </thead>
+                  <tbody *ngIf="this.xrayData?.length != 0">
+                    <tr *ngFor="let data of this.xrayData; let i = index">
+                      <td>{{ data.created_at | date : "dd/MM/yyyy" }}</td>
+                      <td class="text-center">
+                        removed href from <a></a> for now, please add later when using it
+                        <a><button type="button" class="btn btn-primary pd-1 view-btn fw-bolder" title="View"
+                            [routerLink]="'/mark-xray/'+data._id">
+                            View Details</button></a>
+                      </td>
+                      <div *ngIf="data.admin_marked_status==true">
+                        <button
+                        type="button"
+                        class="btn btn-primary add-btn pd-1 other-btn fw-bolder"
+
+                        (click)="view(data._id)"
+                      >
+                        View
+                      </button>
+                    </div>
+                    <div *ngIf="data.admin_marked_status==false&&data.evaluation_status==true">
+                      <button
+                        type="button"
+                        class="btn btn-primary save-btn fw-bold other-btn pd-1 text-nowrap"
+                        [routerLink]="'/mark-xray/'+data._id"
+                        [disabled]="false"
+                      >
+                      Edit
+                      </button>
+                    </div>
+                    <div *ngIf="data.evaluation_status==false">
+                      Not Submitted By Dentist
+                    </div>
+                    </td>
+                      <td class="text-center">
+                        <div class="custom-control custom-checkbox">
+                          <div *ngIf="data.evaluation_status==true">
+                            <input class="form-check-input checkbox1" type="checkbox" value="" id="checkbox-1" checked />
+                          </div>
+                          <div *ngIf="data.evaluation_status==false">
+                            <input class="form-check-input checkbox1" type="checkbox" value="" id="checkbox-1" />
+                          </div>
+                        </div>
+                      </td>
+                    </tr>
+                  </tbody>
+                  <tbody *ngIf="this.xrayData?.length == 0">
+                    <tr>
+                      <td colspan="3" class="no-data-available">No data available!</td>
+                      <td colspan="0" class="no-data-available p-0"></td>
+                      <td colspan="0" class="no-data-available p-0"></td>
+
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div> -->
+    </div>
+  </div>
+</div>
+
+<!-- ! user pop -->
+<!-- <div class="modal fade" id="myProfile" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header border-bottom-0 px-4 pb-2">
+        <h5 class="modal-title fw-bold fw-semibold"> My Profile</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+      </div>
+      <div class="modal-body pt-0 px-4">
+        <div class="row">
+          <form [formGroup]="addSuperForm" class="form-inline" role="form">
+            <div class="row mb-3 mt-3">
+              <div class="col-md-4 form-group">
+                <label class="mb-2">First Name</label>
+                <div class="w-100 d-flex position-relative">
+                  <span cInputGroupText class="rounded-0 rounded-start icon-position">
+                    <svg cIcon name="cilUser"></svg>
+                  </span>
+                  <input type="text" placeholder="Enter First Name" formControlName="first_name" class="form-control rounded ps-5 w-100"
+                  maxlength="25" />
+                </div>
+
+              </div>
+              <div class="col-md-4 form-group">
+                <label class="mb-2">Last Name</label>
+                <div class="w-100 d-flex position-relative">
+                  <span cInputGroupText class="rounded-0 rounded-start icon-position">
+                    <svg cIcon name="cilUser"></svg>
+                  </span>
+                  <input type="text" placeholder="Enter Last Name" formControlName="last_name" class="form-control rounded ps-5 w-100"
+                  maxlength="25" />
+                </div>
+
+              </div>
+              <div class="col-md-4 form-group">
+                <label class="mb-2">Email</label>
+                <div class="w-100 d-flex position-relative">
+                  <span cInputGroupText class="rounded-0 rounded-start icon-position">
+                    <svg cIcon name="cilEnvelopeClosed"></svg>
+                  </span>
+                  <input type="text" placeholder="Email" formControlName="email" class="form-control rounded ps-5 w-100" maxlength="70" />
+                </div>
+              </div>
+
+            </div>
+
+            <div class="row mb-2"></div>
+            <div class="row mb-3">
+              <div class="col-md-4 form-group">
+                <label class="mb-2">Contact Number</label>
+                <div class="w-100 d-flex position-relative">
+                  <span cInputGroupText class="rounded-0 rounded-start icon-position">
+                    <svg cIcon name="cilEnvelopeClosed"></svg>
+                  </span>
+                  <input type="tel" placeholder="Enter Contact Number" formControlName="contact_number" class="form-control rounded ps-5 w-100"
+                  (keypress)="onlyNumberKey($event)" maxlength="10" />
+                </div>
+
+
+              </div>
+              <div class="col-md-4 form-group">
+                <label class="mb-2">Address 1</label>
+                <div class="w-100 d-flex position-relative">
+                  <span cInputGroupText class="rounded-0 rounded-start icon-position">
+                    <svg cIcon name="cilLocationPin"></svg>
+                  </span>
+                  <input type="text" placeholder="Enter Address 1" formControlName="address1" class="form-control rounded ps-5 w-100"
+                  maxlength="100" />
+                </div>
+
+              </div>
+              <div class="col-md-4 form-group">
+                <label class="mb-2">City</label>
+                <div class="w-100 d-flex position-relative">
+                  <span cInputGroupText class="rounded-0 rounded-start icon-position">
+                    <svg cIcon name="cilMap"></svg>
+                  </span>
+                  <input type="text" placeholder="Enter City" formControlName="city" class="form-control rounded ps-5 w-100" maxlength="50" />
+                </div>
+
+              </div>
+            </div>
+
+            <div class="row mb-2"></div>
+            <div class="row mb-3">
+
+              <div class="col-md-4 form-group">
+                <label class="mb-2" for="inputState">Country</label>
+                <div class="w-100 d-flex position-relative">
+                  <span cInputGroupText class="rounded-0 rounded-start icon-position">
+                    <svg cIcon name="cilLocationPin"></svg>
+                  </span>
+                  <select class="form-select form-control rounded ps-5 w-100" aria-label="Default select example" formControlName="country"
+                  [value]="country" (change)="stateByCountry($event)">
+                  <option [selected]="true" [disabled]="true" [defaultSelected]="true">
+                    -Select Country-
+                  </option>
+                  <option *ngFor="let country of allcountries; let i = index" value="{{country.countryName}}">{{country.countryName}}</option>
+                </select>
+                </div>
+
+
+              </div>
+              <div class="col-md-4 form-group">
+                <label class="mb-2">State</label>
+                <input type="text" placeholder="State" formControlName="state" class="form-control" maxlength="20" />
+                <select class="form-select me-4" aria-label="Default select example" formControlName="state" [(ngModel)]="stateList" name="state" placeholder="State" id="state">
+                  <option [selected]="true" [disabled]="true" [defaultSelected]="true">
+                    {{stateList}}
+                  </option>
+                </select>
+                <div class="w-100 d-flex position-relative">
+                  <span cInputGroupText class="rounded-0 rounded-start icon-position">
+                    <svg cIcon name="cilLocationPin"></svg>
+                  </span>
+                  <select aria-label="Default select example" class="form-select form-control rounded ps-5 w-100" formControlName="state" [value]="stateList">
+                    <option [disabled]="true" [defaultSelected]="true" [selected]="true" [value]="stateList">
+                      {{stateList}}
+                    </option>
+                    <option *ngFor="let state of allstates; let i = index" value="{{state.name}}">{{state.name}}</option>
+                  </select>
+                </div>
+
+              </div>
+              <div class="col-md-4 form-group">
+                <label class="mb-2">Zip</label>
+                <div class="w-100 d-flex position-relative">
+                  <span cInputGroupText class="rounded-0 rounded-start icon-position">
+                    <svg cIcon name="cilLocationPin"></svg>
+                  </span>
+                  <input type="text" placeholder="Zip" formControlName="pincode" class="form-control rounded ps-5 w-100" maxlength="10"
+                  (keypress)="onlyNumberKey($event)" />
+                </div>
+              </div>
+            </div>
+
+            <div class="row mb-2"></div>
+            <div class="row mb-3">
+
+
+              <div class="col-md-4 form-group">
+                <label class="mb-2">Registration/License No.</label>
+                <div class="w-100 d-flex position-relative">
+                  <span cInputGroupText class="rounded-0 rounded-start icon-position">
+                    <svg cIcon name="cilLocationPin"></svg>
+                  </span>
+                  <input type="text" placeholder="Enter Number" formControlName="license_no"
+                  class="form-control rounded ps-5 w-100" maxlength="25"/>
+                </div>
+
+              </div>
+              <div class="col-md-8 btn-div">
+
+                <button type="button" class="btn btn-primary save-btn m-2 mb-0 pd-1 other-btn fw-bolder"
+                  (click)="updateUser()">
+                  Save Changes <svg stroke="currentColor" fill="#fff" stroke-width="0" viewBox="0 0 24 24" height="1em" width="1em" xmlns="http://www.w3.org/2000/svg"><path d="M12 3c-4.625 0-8.442 3.507-8.941 8.001H10v-3l5 4-5 4v-3H3.06C3.56 17.494 7.376 21 12 21c4.963 0 9-4.037 9-9s-4.037-9-9-9z"></path></svg>
+                </button>
+                <button type="button" class="btn btn-primary save-btn m-2 mb-0 cancel-btn pd-1 other-btn fw-bolder"
+                (click)="resetUser()">
+                Reset
+              </button>
+              </div>
+
+            </div>
+
+
+          </form>
+
+          <div class="sub-container d-none">
+            <div class="sub-container mt-4">
+              <h5 *ngIf="this.userID != this.dentistId">Subscription Details THIS</h5>
+              <div class="mt-3 w-100" *ngIf="this.userData[0]?.subscription_details.status == true || this.userData[0]?.subscription_details.status == false">
+                <div class="container xray-table-container border-top p-0" *ngIf="this.role == 'dentist'">
+                  <div class="sub-coontainer mt-4 xray-row">
+                    <h5>Subscription Details</h5>
+                    <div class="row mt-3">
+                      <div class="col-12 overflowForScroll">
+                        <table class="table table-bordered row-border hover" >
+                          <thead>
+                            <tr>
+                              <th scope="col">Plan</th>
+                              <th scope="col">Next Billing Date</th>
+                              <th scope="col" class="text-right">Amount</th>
+                              <th scope="col" class="text-center">View Details</th>
+                            </tr>
+                          </thead>
+                          <tbody *ngIf="
+                              this.all_subData?.length!= 0
+                            ">
+                          <tr *ngFor="let data of this.all_subData;
+                                let i = index">
+                              <td>{{ data?.name | titlecase }}</td>
+                              <ng-template #dothatsub>
+                                <td>
+                                  {{ data.subscription_id.plan_name | titlecase }}
+                                </td>
+                              </ng-template>
+                              <td>{{ data.end_date | date : "dd/MM/yyyy" }}</td>
+                              <td class="text-right">${{ data?.price }}</td>
+                              <td class="text-center">
+                                removed href from <a></a> for now, please add later when using it
+                                <a><button type="button" class="btn btn-primary pd-1 view-btn fw-bolder" title="View" data-bs-toggle="modal" data-bs-target="#exampleModal"(click)="planDetails(data._id)">
+                                    View Details
+                                  </button></a>
+                              </td>
+                              <td>
+                                <div class="custom-control custom-checkbox">
+                                  <input class="form-check-input" type="checkbox" value="" id="checkbox-1" checked />
+                                </div>
+                              </td>
+                            </tr>
+                          </tbody>
+                          <tbody *ngIf="
+                              this.all_subData?.length == 0
+                            ">
+                            <tr>
+                              <td colspan="3" class="no-data-available">
+                                No data available!
+                              </td>
+                              <td colspan="0" class="no-data-available p-0"></td>
+                              <td colspan="0" class="no-data-available p-0"></td>
+                              <td colspan="0" class="no-data-available p-0"></td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                new code end
+
+                old code
+                <div class="col-sm-3" *ngIf="this.role == 'admin'">
+                  Current Plan : {{ this.planData[0]?.type }}
+                </div>
+                <div class="col-sm-3 me-5 w-auto" *ngIf="this.role == 'admin'">
+                  <span>
+                    Subscription End Date :
+                    {{ this.end_date | date : "dd/MM/yyyy" }}</span
+                  >
+                </div>
+                <div class="col-sm-3 ms-3" *ngIf="this.role == 'admin'">
+                  Subscription Amount : ${{ this.planData[0]?.amount }}
+                </div>
+                old code end
+
+                <div *ngIf="this.role =='admin'">
+                  <div class="col-sm-3 ms-5 adminbtn-cancel ps-3">
+
+                      <button type="button" class="btn btn-danger ms-2 pd-1 other-btn fw-bolder" (click)="cancelSub($event)">
+                        Cancel Subscription&nbsp;<i class="fa-solid fa-ban ms-1"></i>
+                      </button>
+
+                  </div>
+                </div>
+              </div>
+
+              ! new condition for admin to see dentist details
+              <div class="container mt-3 xray-table-container border-top p-0" *ngIf="this.userID != this.dentistId">
+                <div class="sub-coontainer mt-4 xray-row">
+                  <h5>Subscription Detail</h5>
+                  <div class="row mt-3">
+                    <div class="col-12 overflowForScroll">
+                      <table class="table table-bordered row-border hover" >
+                        <thead>
+                          <tr>
+                            <th scope="col">Plan</th>
+                            <th scope="col">Next Billing Date</th>
+                            <th scope="col" class="text-right">Amount</th>
+                            <th scope="col" class="text-center">View Details</th>
+                          </tr>
+                        </thead>
+                        <tbody *ngIf="
+                              this.all_subData?.length!= 0
+                            ">
+                          <tr *ngFor="let data of this.all_subData;
+                                let i = index">
+                            <td>{{ data?.name | titlecase }}</td>
+                            <td>{{ data.end_date | date : "dd/MM/yyyy" }}</td>
+                            <td class="text-right">${{ data?.price }}</td>
+                            <td class="text-center">
+                              removed href from <a></a> for now, please add later when using it
+                              <a><button type="button" class="btn btn-primary pd-1 view-btn fw-bolder" title="View" data-bs-toggle="modal" data-bs-target="#exampleModal"(click)="planDetails(data._id)">
+                                View Details
+                              </button></a>
+                            </td>
+                            <td>
+                                <div class="custom-control custom-checkbox">
+                                  <input class="form-check-input" type="checkbox" value="" id="checkbox-1" checked />
+                                </div>
+                              </td>
+                          </tr>
+                        </tbody>
+                        <tbody *ngIf="
+                              this.all_subData?.length == 0
+                            ">
+                          <tr>
+                            <td colspan="3" class="no-data-available">
+                              No data available!
+                            </td>
+                            <td colspan="0" class="no-data-available p-0"></td>
+                            <td colspan="0" class="no-data-available p-0"></td>
+                            <td colspan="0" class="no-data-available p-0"></td>
+                          </tr>
+                        </tbody>
+                      </table>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="row mt-3" *ngIf="
+                  this.userData[0]?.subscription_details.status == false &&
+                  this.role == 'admin'
+                ">
+                <div class="col-sm-3">Current Plan :</div>
+                <div class="col-sm-3 me-5 w-auto">
+                  <span> Subscription End Date : </span>
+                </div>
+                <div class="col-sm-3 ms-3">Subscription Amount :</div>
+
+                <div *ngIf="this.role =='admin'">
+                  <div class="col-sm-3 ms-5 adminbtn-cancel ps-3">
+
+                      <button type="button" id="cancel" class="btn btn-danger ms-2 pd-1 other-btn fw-bolder" disabled= true>
+                        Cancel Subscription&nbsp;<i class="fa-solid fa-ban ms-1"></i>
+                      </button>
+
+                  </div>
+                </div>
+              </div>
+              <div *ngIf="this.role == 'dentist'">
+                <div class="row mt-3">
+                  <div class="col-sm-3 button-div">
+                  <div class="col btn-cancel ms-2 ps-3">
+                  <div class="d-flex justify-content-end">
+                    <button type="button" class="btn btn-danger ms-2 cancel-btn pd-1 other-btn fw-bolder"
+                      (click)="cancelSubfromUser()">
+                      Cancel Subscription&nbsp;<i class="fa-solid fa-ban ms-1"></i>
+                    </button>
+                    <button type="button" class="btn ms-2 pd-1 other-btn fw-bolder" data-bs-toggle="modal" data-bs-target="#renewModal">
+                      Renew Subscription&nbsp;<i class="fa-solid fa-arrows-rotate ms-1"></i>
+                    </button>
+                  </div>
+                  </div>
+                  </div>
+                </div>
+                <div class="row mt-3">
+                  <div class="custom-control custom-checkbox">
+                    <input class="form-check-input me-1" type="checkbox" value="" id="checkbox-1" checked />
+                    <span class="fw-semibold"><span>Yes, I agree to</span>&nbsp;<u class="hand" data-bs-toggle="modal"
+                        data-bs-target="#exampleModalCenter">terms</u>&nbsp;<span>&</span>&nbsp;<u class="hand"
+                        data-bs-toggle="modal"
+                        data-bs-target="#exampleModalCenter">conditions</u>&nbsp;<span>of</span>&nbsp;<span>this</span>&nbsp;<span>website.</span></span>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div> -->
+
+<!-- ! modal -->
+<!-- <div class="modal fade modal-lg" id="exampleModalCenter" tabindex="-1" role="dialog"
+  aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable" role="document">
+    <div class="modal-content">
+      <div class="modal-header justify-content-between align-items-center">
+        <div></div>
+        <h2 class="modal-title fw-bold d-flex justify-content-center fw-semibold" id="exampleModalLongTitle">
+          Dark
+          <div class="mountain-color">Mountain</div>
+        </h2>
+        <i id="launch_ad" class="fa-solid fa-xmark fs-5 fontColor" data-bs-dismiss="modal" style="cursor: pointer"></i>
+      </div>
+      <div class="modal-body">
+        <h5>Terms & Conditions</h5>
+        <ol>
+          <li>
+            Lorem ipsum dolor sit, amet consectetur adipisicing elit.
+            Perferendis quo aspernatur
+          </li>
+          <br />
+          <li>
+            Lorem ipsum dolor sit amet consectetur adipisicing elit. Officia vel
+            molestiae ratione nam ipsam neque porro ipsum quia accusamus eaque
+            molestias assumenda blanditiis obcaecati, dolore archit
+          </li>
+          <br />
+          <li>
+            Lorem ipsum dolor sit amet consectetur adipisicing elit. Totam,
+            minima vel. Ipsum distinctio,
+          </li>
+          <br />
+          <li>
+            Lorem, ipsum dolor sit amet consectetur adipisicing elit. Repellat
+            accusantium explicabo amet soluta eum, culpa opt
+          </li>
+          <br />
+          <li>Lorem ipsum dolor sit amet consectetur adipisicing elit.</li>
+          <br />
+          <li>
+            Lorem ipsum dolor sit amet consectetur adipisicing elit. Error ea
+            ipsa ipsum, reiciendis rem aspernatur, quisquam temporibus nam odio
+            quaerat, fuga voluptate
+          </li>
+          <br />
+          <li>
+            Lorem ipsum dolor sit amet consectetur adipisicing elit. Autem
+            sapiente nemo, atque, officiis quae, aspernatur acc
+          </li>
+          <br />
+          <li>
+            Lorem ipsum dolor sit amet consectetur adipisicing elit. Odit labore
+            doloremque numquam quibusdam, voluptatum veniam architecto ab autem
+            laboriosam illo quos quam voluptas quasi!
+          </li>
+          <br />
+          <li>
+            Lorem ipsum dolor sit amet consectetur adipisicing elit. Quos
+            veniam, dignissimos expedita, veritatis ne
+          </li>
+          <br />
+          <li>
+            Lorem ipsum dolor sit amet consectetur adipisicing elit. Nisi dolor
+            commodi beatae odio.
+          </li>
+        </ol>
+        <div class="d-flex justify-content-center align-items-center mb-3">
+          <input type="checkbox" name="check" id="" class="me-2" (change)="checking($event)" class="form-check-input m-0 me-2" [checked]="checked">
+          <span>I agree to terms and conditions</span>
+        </div>
+        <ngx-paypal [config]="payPalConfig" *ngIf="checked"></ngx-paypal>
+      </div>
+      <div class="modal-footer justify-content-start">
+        <small>&#169; All rights reserved</small>
+        <button
+          type="button"
+          class="btn btn-save pd-1 fw-bold other-btn "
+        >
+          Save&nbsp;<i class="fa-sharp fa-regular fa-floppy-disk ms-2"></i>
+        </button>
+      </div>
+    </div>
+  </div>
+</div> -->
+
+<!--view plan modal-->
+<!-- <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered modal-md" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h4 class="modal-title fw-semibold color" id="exampleModalLabel">Subscription Details:</h4>
+
+        </div>
+        <div class="modal-body">
+            <div class="d-flex align-items-start flex-column sub-body-content">
+
+                <ul class="proceed-details m-0 p-0 align-self-center  mx-2 w-100 color">
+                <li class=" fs-6  ms-2 mt-4 fw-semibold d-flex justify-content-between align-items-center">
+                  <span>Plan Name:</span>&nbsp;<span class="me-2">{{
+                    this.planDetail?.name
+
+                    | titlecase
+                    }}</span>
+                </li>
+                <li class=" fs-6  ms-2 mt-4 fw-semibold d-flex justify-content-between align-items-center">
+                  <span>Plan Type:</span>&nbsp;<span class="me-2">{{
+                      this.planDetail?.type | titlecase
+                    }}</span>
+                </li>
+                <li class=" fs-6  ms-2 mt-4 fw-semibold d-flex justify-content-between align-items-center">
+                  <span>Price:</span>&nbsp;<span class="me-2">${{ this.planDetail?.price }}</span>
+                </li>
+                <li class=" fs-6  ms-2 mt-4 fw-semibold d-flex justify-content-between align-items-center ">
+                  <span>Start Date:</span>&nbsp;<span class="me-2">&nbsp;{{ this.planDetail?.start_date |date : 'dd/MM/yyyy hh:mm a'}}</span>
+                </li>
+                <li class=" fs-6  ms-2 mt-4 fw-semibold d-flex justify-content-between align-items-center">
+                  <span>Next Billing Date:</span>&nbsp;<span class="me-2">&nbsp;{{ this.planDetail?.end_date |date : 'dd/MM/yyyy hh:mm a'}}</span>
+                </li>
+              </ul>
+            </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button btn" class="btn btn-secondary fw-semibold pd-1" data-bs-dismiss="modal">Close</button>
+
+      </div>
+    </div>
+  </div>
+</div> -->
+
+<!----Renew Subscription-------->
+<!-- <div class="modal fade" id="renewModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h4 class="modal-title fw-semibold color" id="exampleModalLabel">Renew Subscription</h4>
+        <i class="fa-solid fa-xmark fs-5 close-modal" data-bs-dismiss="modal" style="cursor: pointer;"></i>
+        </div>
+        <div class="modal-body">
+            <div class="d-flex align-items-center justify-content-center sub-body-content">
+              <button type="button" class="btn fw-bold pd-1 renew-btn me-2" data-bs-toggle="modal" data-bs-target="#myModal" >Renew Existing Plan</button>
+              <button type="button" class="btn fw-bold pd-1 ms-2 new-btn-color" [routerLink]="'/renew-sub/'+this.userInfo.id" (click)="close()">Upgrade To A New Plan</button>
+            </div>
+            <p class="text-center mt-3 mb-0">* In case of upgrade, the new plan will be active only after the current plan expires.</p>
+      </div>
+      <div class="modal-footer">
+        <button type="button btn" class="btn btn-secondary fw-semibold pd-1 cancel-btn" data-bs-dismiss="modal">Close</button>
+      </div>
+    </div>
+  </div>
+</div> -->
+
+<!------Pricing Modal-------------------->
+<div class="modal fade modal-md" id="myModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle"
+  aria-hidden="true">
+  <!-- [hidden]="IsmodelShow" -->
+  <div class="modal-dialog modal-dialog-centered modal-md billing-modal" role="document">
+    <div class="modal-content modal-tall">
+      <div class="modal-header justify-content-between align-items-center">
+        <h4 class="modal-title d-flex justify-content-center fw-semibold text-start">
+          Subscription Details:
+        </h4>
+        <i class="fa-solid fa-xmark fs-5 x-mark" data-bs-dismiss="modal" style="cursor: pointer"></i>
+      </div>
+      <div class="modal-body px-5 py-4">
+        <div  class="d-flex align-items-center flex-column sub-body-content">
+          <!-- <div class="d-flex align-items-start flex-column sub-body-content billing-div">
+            <h5 class="text-center fw-semibold">Billing Details:</h5>
+            <form #register_form="ngForm" [formGroup]="registerForm">
+              <div class="inputContainer">
+                <c-input-group class="mb-3 mt-2">
+                  <div class="w-100 d-flex position-relative"> -->
+                    <!-- <label class="mb-2">First Name<sup>*</sup></label>
+                    <span cInputGroupText class="rounded-0 rounded-start icon-position">
+                      <svg cIcon name="cilUser"></svg>
+                    </span>
+                    <input type="text" class="form-control rounded ps-5 w-100" placeholder="First Name"
+                      formControlName="first_name" maxlength="25" [readOnly]="readOnly" />
+
+                  </div>
+                </c-input-group>
+                <c-input-group class="mb-3 mt-2 inputMargin">
+                  <div class="w-100 d-flex position-relative">
+
+                    <span cInputGroupText class="rounded-0 rounded-start icon-position">
+                      <svg cIcon name="cilUser"></svg>
+                    </span>
+                    <input type="text" class="form-control rounded ps-5 w-100" placeholder="Last Name"
+                      formControlName="last_name" maxlength="25" [readOnly]="readOnly"/>
+
+                  </div>
+                </c-input-group>
+              </div>
+              <div class="inputContainer">
+                <c-input-group class="mb-3 mt-2">
+                  <div class="w-100 d-flex position-relative">
+
+                    <span cInputGroupText class="rounded-0 rounded-start icon-position">
+                      <svg cIcon name="cilEnvelopeClosed"></svg>
+                    </span>
+                    <input type="email" class="form-control rounded ps-5 w-100" placeholder="Email ID/Username"
+                      formControlName="email" maxlength="70" readonly/>
+
+                  </div>
+                </c-input-group>
+                <c-input-group class="mb-3 mt-2 inputMargin">
+                  <div class="w-100 d-flex position-relative">
+
+                    <span cInputGroupText class="rounded-0 rounded-start icon-position">
+                      <svg cIcon name="cilSpreadsheet"></svg>
+                    </span>
+                    <input type="tel" class="form-control rounded ps-5 w-100" placeholder="Contact Number"
+                      formControlName="contact_number" (keypress)="onlyNumberKey($event)" maxlength="10" [readOnly]="readOnly" />
+
+                  </div>
+                </c-input-group>
+              </div>
+              <div class="inputContainer">
+                <c-input-group class="mb-3 mt-2">
+                  <div class="w-100 d-flex position-relative">
+
+                    <span cInputGroupText class="rounded-0 rounded-start icon-position">
+                      <svg cIcon name="cilHome"></svg>
+                    </span>
+                    <input type="text" class="form-control rounded ps-5 w-100" placeholder="Address"
+                      formControlName="address1" [readOnly]="readOnly" />
+
+                  </div>
+                </c-input-group>
+                <c-input-group class="mb-3 mt-2 inputMargin">
+                  <div class="w-100 d-flex position-relative">
+
+                    <span cInputGroupText class="rounded-0 rounded-start icon-position">
+                      <svg cIcon name="cilLocationPin"></svg>
+                    </span>
+                    <input type="text" class="form-control rounded ps-5 w-100" placeholder="City"
+                      formControlName="city" [readOnly]="readOnly"/>
+
+                  </div>
+                </c-input-group>
+              </div>
+              <div class="inputContainer">
+                <c-input-group class="mb-3 mt-2">
+                  <div class="w-100 d-flex position-relative">
+
+                    <span cInputGroupText class="rounded-0 rounded-start icon-position">
+                      <svg cIcon name="cilLocationPin"></svg>
+                    </span>
+                    <input type="text" class="form-control rounded ps-5 w-100" placeholder="State"
+                      formControlName="state" [readOnly]="readOnly"/>
+
+                  </div>
+                </c-input-group>
+                <c-input-group class="mb-3 mt-2 inputMargin">
+                  <div class="w-100 d-flex position-relative">
+
+                    <span cInputGroupText class="rounded-0 rounded-start icon-position">
+                      <svg cIcon name="cilMap"></svg>
+                    </span>
+                    <select class="form-select ps-5" aria-label="Default select example" name="country"
+                      placeholder="Country" id="country"formControlName="country" [disabled]="readOnly">
+                      <option [defaultSelected]="true" [selected]="true" disabled="true" >
+                        {{ countryList }}
+                      </option>
+                      <option>India</option>
+                      <option>America</option>
+                      <option>Japan</option>
+                      <option>China</option>
+                    </select>
+
+                  </div>
+                </c-input-group>
+              </div>
+              <div class="inputContainer">
+                <c-input-group class="mb-3 mt-2">
+                  <div class="w-100 d-flex position-relative">
+
+                    <span cInputGroupText class="rounded-0 rounded-start icon-position">
+                      <svg cIcon name="cilNotes"></svg>
+                    </span>
+                    <input type="number" class="form-control rounded ps-5 w-100" placeholder="Zip"
+                      formControlName="pincode" (keypress)="onlyNumberKey($event)" [readOnly]="readOnly"/>
+
+                  </div>
+                </c-input-group>
+                <c-input-group class="mb-3 mt-2 inputMargin">
+                  <div class="w-100 d-flex position-relative">
+                  ion">
+                      <svg cIcon name="cilSpreadsheet"></svg>
+                    </span>
+                    <input type="text" class="form-control rounded ps-5 w-100" placeholder="Registration/License Number" formControlName="license_no"
+                    [readOnly]="readOnly" />
+
+                  </div>
+                </c-input-group>
+                </div>
+                    <span cInputGroupText class="rounded-0 rounded-start icon-posit
+
+            </form>
+          </div> -->
+          <div class="d-flex align-items-center flex-column sub-body-content w-100">
+            <!-- <h5 class="text-center fw-semibold ">Subscription Details:</h5> -->
+            <ul class="proceed-details m-0 p-0 w-100">
+              <!-- <li
+                class="fs-6 fw-semibold d-flex justify-content-between align-items-center"
+              >
+                <span>Name:</span>&nbsp;<span>{{
+                  this.fname | titlecase
+                }} {{
+                  this.lname | titlecase
+                }}</span>
+              </li>
+              <li
+                class="fs-6 fw-semibold d-flex justify-content-between align-items-center text-wrap"
+              >
+                <span>Email:</span>&nbsp;<span>{{ this.mail }}</span>
+              </li> -->
+              <li class="fs-6  mt-2 fw-semibold d-flex justify-content-between align-items-center">
+                <span>Plan Name:</span>&nbsp; &nbsp; &nbsp;<span>{{
+                 this.curPlanDetail?.subscription_details?.name | titlecase
+                  }}</span>
+              </li>
+              <li class="fs-6  mt-4 fw-semibold d-flex justify-content-between align-items-center">
+                <span>Plan Type:</span>&nbsp;<span>{{
+                  this.curPlanDetail?.subscription_details?.type| titlecase
+                  }}</span>
+              </li>
+              <li class="fs-6  mt-4 fw-semibold d-flex justify-content-between align-items-center">
+                <span>Price:</span>&nbsp;<span>{{ this.curPlanDetail?.subscription_details?.price}}</span>
+              </li>
+              <li class="fs-6  mt-4 fw-bold d-flex justify-content-between align-items-center border-top">
+                <span>Total:</span>&nbsp;<span>{{  this.curPlanDetail?.subscription_details?.price }}</span>
+              </li>
+            </ul>
+          </div>
+        </div>
+        <!-- <div *ngIf="!checked && subsId != 0">
+          <div class="swal2-icon swal2-warning swal2-icon-show mt-1">
+            <div class="swal2-icon-content justify-content-center">!</div>
+          </div>
+          <div class="swal2-html-container">
+            Please accept the terms and conditions.
+          </div>
+        </div>
+        <div *ngIf="subsId == 0 && checked">
+          <div class="swal2-icon swal2-warning swal2-icon-show mt-1">
+            <div class="swal2-icon-content justify-content-center">!</div>
+          </div>
+          <div class="swal2-html-container">Please choose a plan.</div>
+        </div>
+        <div *ngIf="subsId == 0 && !checked">
+          <div class="swal2-icon swal2-warning swal2-icon-show mt-1">
+            <div class="swal2-icon-content justify-content-center">!</div>
+          </div>
+          <div class="swal2-html-container">
+            Please choose a plan and accept the terms and conditions.
+          </div>
+        </div> -->
+      </div>
+      <div  class="modal-footer justify-content-end">
+        <!-- <small>&#169; All rights reserved</small> -->
+        <!-- *ngIf="checked && subsId != 0 && !paypalView" -->
+        <!-- (click)="payView()" -->
+        <!-- <button class="btn btn-primary pd-1 fw-bold fs-6" (click)="handleClick()"> -->
+          <!-- <a href="https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=HDZ3G3DH8MY7Q" target="_blank">
+          </a> -->
+          <!-- Confirm & Pay -->
+          <!-- <ngx-paypal [config]="payPalConfig" class="w-100 paypal-btn"></ngx-paypal> -->
+          <!-- <ngx-paypal [config]="payPalConfig"></ngx-paypal> -->
+        <!-- </button> -->
+        <!-- <h3 class="fs-5">Proceed To:</h3>
+        <div class="paypal-btn">
+          <ngx-paypal [config]="payPalConfig" class="paypal-btn">Order Now</ngx-paypal>
+        </div> -->
+        <div>
+          <button class="btn pd-1 other-btn fw-bold paynow" (click)="handleCOnfirmPay()">
+            Confirm & Pay
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

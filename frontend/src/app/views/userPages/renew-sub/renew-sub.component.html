@@ -1,0 +1,300 @@
+<h2 class="head m-0 text-center fw-bold mt-1 mb-3">
+  Please Choose Your Subscription Plan
+</h2>
+
+<div class="w-100 d-flex justify-content-center mb-4">
+  <div class="plantype">
+  <button (click)="monthly()" [class]="
+      monthlyPlan
+        ? 'btn monthly-plans-true pd-1 fw-semibold'
+        : 'btn monthly-plans-btn pd-1 fw-semibold'
+    ">
+    Monthly Plans
+  </button>
+  <button (click)="yearly()" [class]="
+      yearlyPlan
+        ? 'btn yearly-plans-true pd-1 fw-semibold'
+        : 'btn yearly-plans-btn pd-1 fw-semibold'
+    ">
+    Yearly Plans
+  </button>
+</div>
+</div>
+<div class="sub-container">
+  <div *ngIf="monthlyAllData?.length != 0" class="row align-items-start justify-content-center flex-wrap inside-sub-container">
+      <div *ngFor="let data of monthlyAllData; let i = index" class="col-3 col-sm-3 col-md-3 col-lg-2 myCard m-0 p-2 w-100">
+        <!-- <div class="col-md-3 mb-3"></div> -->
+        <div class="card h-100 p-2 hover-effect">
+          <div class="card-body text-start d-flex flex-column justify-content-between">
+            <!-- <img src="" alt="" /> -->
+            <div class="col-12 col-md-12 included-sec">
+              <h4 style="text-align: center;"> {{ data.plan_name | titlecase }}</h4>
+            </div>
+
+            <!-- <ul class="dynamic-div list-group text-start">
+              <li class="list-group-item"><i>✔</i>{{ data.type }} pack</li>
+              <li class="list-group-item">
+                <i>✔</i>Country: {{ data.country | titlecase }}
+              </li>
+              <li class="list-group-item">
+                <i>✔</i>Status: {{ data.status | titlecase }}
+              </li>
+            </ul> -->
+            <div class="col-12 col-md-12 included-sec">
+              <h6 class="text-muted text-start">
+                What's included on {{ data.plan_name | titlecase }}
+              </h6>
+              <!-- <div class="dynamic-div" [innerHTML]="data.description"></div> -->
+              <ul class="list-group text-start">
+                <li *ngFor="let points of data.description.split(',')" class="list-group-item">
+                  <i>✔</i>{{points.trim()}}
+                </li>
+              </ul>
+              <!-- <ul class="list-group text-start">
+                <li class="list-group-item"><i>✔</i>Normal size office</li>
+                <li class="list-group-item"><i>✔</i>Single Doctor access</li>
+                <li class="list-group-item"><i>✔</i>Available from any computer</li>
+              </ul> -->
+            </div>
+            <!-- <p class="m-0 gst-sizing">
+              <i> {{ data.type }} pack </i>
+            </p>
+            <p class="m-0">Country: {{ data.country | titlecase }}</p>
+            <p class="m-0">Status: {{ data.status | titlecase }}</p> -->
+            <p>{{ data.currency | titlecase }}</p>
+            <div class="d-flex justify-content-center align-items-start flex-column mt-3">
+              <p class="price m-0 fw-bolder fs-2">{{ data.amount | currency:data.currency?.toUpperCase() }}</p>
+
+            </div>
+            <div class="text-center mt-3 w-100" *ngIf="data._id !== subsId">
+              <button class="pd-1 fw-bold btn btn-primary w-100" (click)="
+                  getSubscription(
+                    data._id,
+                    data.type,
+                    data.amount,
+                    data.plan_name,
+                    data.country,
+                    data.stripeProductID,
+                    data.stripePriceID,
+                    data.currency
+                  )
+                ">
+                Subscribe
+              </button>
+            </div>
+            <div class="text-center mt-3 w-100" *ngIf="data._id === subsId">
+              <button class="pd-1 fw-bold btn btn-primary w-100 cancel-selected" (click)="
+                  getSubscription(0, data.type, data.amount, data.plan_name, data.country,  data.stripeProductID,
+                    data.stripePriceID, data.currency)
+                ">
+                Selected
+              </button>
+            </div>
+            <div class="position-absolute bottom-0 start-0 end-0"></div>
+          </div>
+        </div>
+
+    </div>
+  </div>
+
+  <div *ngIf="yearlyAllData?.length != 0" class="w-100 d-flex align-items-center justify-content-center flex-wrap inside-sub-container">
+      <div *ngFor="let data of yearlyAllData; let i = index" class="col-3 col-sm-3 col-md-3 col-lg-2 myCard m-0 p-2 w-100">
+
+        <!-- <div class="col-md-3 mb-3"></div> -->
+        <div class="card h-100 p-2 hover-effect">
+          <div class="card-body text-start d-flex flex-column justify-content-between">
+            <!-- <img src="" alt="" /> -->
+
+            <div class="col-12 col-md-12 included-sec">
+              <h4 style="text-align: center;"> {{ data.plan_name | titlecase }}</h4>
+            </div>
+
+            <div class="col-12 col-md-12 included-sec">
+              <h6 class="text-muted text-start">
+                What's included on {{ data.plan_name | titlecase }}
+              </h6>
+              <!-- <div class="dynamic-div" [innerHTML]="data.description"></div> -->
+              <ul class="list-group text-start">
+                <li *ngFor="let points of data.description.split(',')" class="list-group-item">
+                  <i>✔</i>{{points.trim()}}
+                </li>
+              </ul>
+              <!-- <ul class="list-group text-start">
+                <li class="list-group-item"><i>✔</i>Normal size office</li>
+                <li class="list-group-item"><i>✔</i>Single Doctor access</li>
+                <li class="list-group-item"><i>✔</i>Available from any computer</li>
+              </ul> -->
+            </div>
+
+            <!-- <p class="m-0 gst-sizing">
+              <i> {{ data.type }} pack </i>
+            </p>
+            <p class="m-0">Country: {{ data.country | titlecase }}</p>
+            <p class="m-0">Status: {{ data.status | titlecase }}</p> -->
+            <p>{{ data.currency | titlecase }}</p>
+            <div class="d-flex justify-content-center align-items-start flex-column mt-3">
+              <p class="price m-0 fw-bolder fs-2">{{ data.amount | currency:data.currency?.toUpperCase()}}</p>
+              <!-- <p class="m-0">Max: ${{ data.maximum }}</p>
+              <p class="m-0">Min: ${{ data.minimum }}</p> -->
+            </div>
+
+            <div class="text-center mt-3 w-100" *ngIf="data._id !== subsId">
+              <button class="pd-1 fw-bold btn btn-primary w-100" (click)="
+                  getSubscription(
+                    data._id,
+                    data.type,
+                    data.amount,
+                    data.plan_name,
+                    data.country,
+                    data.stripeProductID,
+                    data.stripePriceID,
+                    data.currency
+                  )
+                ">
+                Subscribe
+              </button>
+            </div>
+            <div class="text-center mt-3 w-100" *ngIf="data._id === subsId">
+              <button class="pd-1 fw-bold btn btn-primary w-100 cancel-selected" (click)="
+                  getSubscription(0, data.type, data.amount, data.plan_name, data.country, data.stripeProductID,
+                    data.stripePriceID, data.currency)
+                ">
+                Selected
+              </button>
+            </div>
+            <div class="position-absolute bottom-0 start-0 end-0"></div>
+          </div>
+        </div>
+      </div>
+
+  </div>
+</div>
+<div class="d-flex justify-content-center align-items-center pricingFooter mb-3">
+
+  <div class="do-later-checkout-btn-container float-right">
+    <!-- <button class="btn pd-1 cancel-btn fw-bold doitlater fs-6" (click)="logout()">
+      Do later
+    </button> -->
+    <button class="btn pd-1 fw-bold paynow ms-2 fs-6" data-bs-toggle="modal" data-bs-target="#myModal"
+      (click)="checkoutBtn()">
+      Checkout
+    </button>
+  </div>
+</div>
+
+<!----Pricing Modal-->
+
+<div class="modal fade modal-md" id="myModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle"
+  aria-hidden="true">
+  <!-- [hidden]="IsmodelShow" -->
+  <div class="modal-dialog modal-dialog-centered modal-md billing-modal" role="document">
+    <div class="modal-content modal-tall">
+      <div *ngIf="this.selected==true">
+        <div class="modal-header justify-content-between align-items-center">
+          <!-- <div></div> -->
+          <h3 class="modal-title d-flex justify-content-center fw-semibold">
+            Subscription Details
+          </h3>
+          <i class="fa-solid fa-xmark fs-5" data-bs-dismiss="modal" style="cursor: pointer"></i>
+        </div>
+        <div class="modal-body px-5 py-4">
+          <div class="d-flex align-items-center flex-column sub-body-content">
+
+            <div class="d-flex align-items-center flex-column sub-body-content w-100">
+
+              <ul class="proceed-details m-0 p-0 w-100">
+                <!-- <li
+                class="fs-6 fw-semibold d-flex justify-content-between align-items-center"
+              >
+                <span>Name:</span>&nbsp;<span>{{
+                  this.fname | titlecase
+                }} {{
+                  this.lname | titlecase
+                }}</span>
+              </li>
+              <li
+                class="fs-6 fw-semibold d-flex justify-content-between align-items-center text-wrap"
+              >
+                <span>Email:</span>&nbsp;<span>{{ this.mail }}</span>
+              </li> -->
+                <li class="fs-6 ms-2 mt-2 fw-semibold d-flex justify-content-between align-items-center">
+                  <span>Plan Name:</span>&nbsp;<span class="ms-2">{{
+                    subsTitle | titlecase
+                    }}</span>
+                </li>
+                <li class="fs-6 ms-2 mt-4 fw-semibold d-flex justify-content-between align-items-center">
+                  <span>Plan Type:</span>&nbsp;<span>{{
+                    subsType | titlecase
+                    }}</span>
+                </li>
+                <li class="fs-6 ms-2 mt-4 fw-semibold d-flex justify-content-between align-items-center">
+                  <span>Price:</span>&nbsp;<span>{{ subsPrice | currency:subsCurrency?.toUpperCase() }}</span>
+                </li>
+                <li class="fs-6 ms-2 mt-4 fw-bold d-flex justify-content-between align-items-center border-top">
+                  <span class="mt-2">Total:</span>&nbsp;<span class="mt-2">{{ subsPrice | currency:subsCurrency?.toUpperCase()  }}</span>
+                </li>
+              </ul>
+            </div>
+          </div>
+          <!-- <div *ngIf="!checked && subsId != 0">
+          <div class="swal2-icon swal2-warning swal2-icon-show mt-1">
+            <div class="swal2-icon-content justify-content-center">!</div>
+          </div>
+          <div class="swal2-html-container">
+            Please accept the terms and conditions.
+          </div>
+        </div>
+        <div *ngIf="subsId == 0 && checked">
+          <div class="swal2-icon swal2-warning swal2-icon-show mt-1">
+            <div class="swal2-icon-content justify-content-center">!</div>
+          </div>
+          <div class="swal2-html-container">Please choose a plan.</div>
+        </div>
+        <div *ngIf="subsId == 0 && !checked">
+          <div class="swal2-icon swal2-warning swal2-icon-show mt-1">
+            <div class="swal2-icon-content justify-content-center">!</div>
+          </div>
+          <div class="swal2-html-container">
+            Please choose a plan and accept the terms and conditions.
+          </div>
+        </div> -->
+        </div>
+        <div class="modal-footer justify-content-end">
+          <!-- <small>&#169; All rights reserved</small> -->
+          <!-- *ngIf="checked && subsId != 0 && !paypalView" -->
+          <!-- (click)="payView()" -->
+          <!-- <button class="btn btn-primary pd-1 fw-bold fs-6" (click)="handleClick()"> -->
+          <!-- <a href="https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=HDZ3G3DH8MY7Q" target="_blank">
+          </a> -->
+          <!-- Confirm & Pay -->
+          <!-- <ngx-paypal [config]="payPalConfig" class="w-100 paypal-btn"></ngx-paypal> -->
+          <!-- <ngx-paypal [config]="payPalConfig"></ngx-paypal> -->
+          <!-- </button> -->
+        <!-- <h3 class="fs-5">Proceed To:</h3> -->
+          <div class="paypal-btn">
+            <!-- <ngx-paypal [config]="payPalConfig" class="paypal-btn"></ngx-paypal> -->
+            <!-- <a class="btn pd-1 other-btn fw-bold paynow" [href]="this.filterLink[0]?.href" (click)="handleClick()">
+              Confirm & Pay
+            </a> -->
+            <a class="btn pd-1 other-btn fw-bold paynow"  (click)="handleClick()">
+              Confirm & Pay
+            </a>
+          </div>
+        </div>
+      </div>
+      <div *ngIf="this.selected==false">
+        <div class="modal-header justify-content-between align-items-center">
+          <div></div>
+
+          <i class="fa-solid fa-xmark fs-5" data-bs-dismiss="modal" style="cursor: pointer"></i>
+        </div>
+        <div class="swal2-icon swal2-warning swal2-icon-show mt-1">
+          <div class="swal2-icon-content justify-content-center">!</div>
+        </div>
+        <div class="swal2-html-container">
+          Please choose a plan.
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

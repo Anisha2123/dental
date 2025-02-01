@@ -1,0 +1,86 @@
+.left-img{
+    float: left;
+}
+
+.right-img{
+    float: right;
+}
+.admin-i{
+  color: #d67027;
+}
+.dentist-i{
+    color: rgb(69, 159, 109);
+}
+.ai-i{
+    color: rgb(189, 66, 66);
+}
+.aiprob-i{
+    color:#FFFF00
+}
+.icon-div{
+    margin-top: -3.5rem;
+}
+.btn{
+    float: right;
+    top: -10%;
+    position: relative;
+}
+label , span{
+   color: #043049 !important;
+}
+img{
+    height: 22.125rem;
+}
+.btn-div{
+    margin-right: -0.5rem !important;
+   // margin-top: 1.3rem !important;
+}
+.evaluate-btn {
+  border-top-right-radius: 0% !important;
+  border-bottom-right-radius: 0% !important;
+}
+.original-xray {
+  border-bottom-left-radius: 0% !important;
+  border-top-left-radius: 0% !important;
+}
+.hide-btn {
+  background-color: #cfcfcf !important;
+  border: 1px solid #cfcfcf !important;
+  color: #434343 !important;
+}
+.label1{
+    font-size: 18px;
+}
+.label2{
+    float: left;
+    position: relative;
+    top: 22%;
+    margin-left: 2rem;
+    font-size: 18px;
+}
+
+.marker {
+    position: absolute;
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    background-color: transparent;
+    transform: translate(-50%, -50%);
+    border: 4px solid rgb(69, 159, 109);
+}
+.markDiv{
+    position: absolute;
+    top: 19%;
+
+}
+.Controls_container__LTeAA{
+    display: none !important;
+}
+.mark-label{
+    position: relative;
+    top: -90px;
+}
+.mark-label1{
+    position: relative;
+    top: -60px;
+}

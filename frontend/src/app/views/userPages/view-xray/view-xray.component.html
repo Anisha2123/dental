@@ -1,0 +1,166 @@
+<section class="content">
+  <div *ngIf="this.markData?.evaluated_patient" class="row mb-1">
+    <h2 class="col fw-bold position-relative pt-2 mb-3 mt-3">
+      Patient Details
+    </h2>
+   
+  </div>
+  <div *ngIf="this.markData?.evaluated_patient" class="row mb-3">
+    <div class="card carddesign">
+      <div class="card-body">
+
+        <div class="row">
+          <p class="col position-relative pt-2  ptaient">
+            Patient ID : {{patient_id}}
+          </p>
+        </div>
+  
+       <div class="row">
+         <p class="col position-relative pt-2 ptaient">
+            Name : {{first_name}} {{last_name}}
+         </p>
+       </div>
+       <div class="row">
+        <p class="col position-relative pt-2 ptaient">
+          Phone Number : {{contact_number}}
+        </p>
+        <div class="row">
+          <p class="col position-relative pt-2  ptaient">
+            Email : {{email}}
+          </p>
+        </div>
+  
+      </div>
+      <div class="row">
+        <p class="col position-relative pt-2  ptaient">
+          Date Of Birth : {{DOB | date}}
+        </p>
+      </div>
+
+      <div class="row">
+        <p class="col position-relative pt-2  ptaient">
+          Evaluated Date : {{evaluated_Date |date : 'MM/dd/yyyy'}}
+        </p>
+      </div>
+
+      
+
+      </div>
+    </div>
+    <!-- <h5 class="col fw-bold position-relative pt-2 mb-0">
+     
+    </h5> -->
+  </div>
+  <div class="row mb-1">
+    <h2 class="col fw-bold position-relative pt-2 mb-0">
+      ARTI Evaluation Result
+    </h2>
+  </div>
+  <div class="row">
+    <div class="col-md-12 mt-1 mb-3 icon-div fw-semibold">
+      <span
+        ><i class="fa-solid fa-circle dentist-i me-1"></i> Dentist Marking</span
+      >
+      &nbsp;&nbsp;
+      <span
+        ><i class="fa-solid fa-circle ai-i me-1"></i> AI (Confirmed)
+        Marking</span
+      >
+      &nbsp;&nbsp;
+      <span
+        ><i class="fa-solid fa-circle aiprob-i me-1"></i> AI (Probable)
+        Marking</span
+      >
+    </div>
+  </div>
+
+  <div class="container">
+    <div class="row">
+      <div class="col-12 d-flex ps-0">
+        <div class="col-6 d-flex ps-0">
+          <!-- <button
+            type="button"
+            class="btn btn-primary save-btn pd-1 fw-bold other-btn evaluate-btn ms-2"
+            [class]="evaluationResult ? 'hide-btn' : ''"
+            (click)="handleSwitch('show')"
+          >
+            Evaluation Result
+          </button>
+          <button
+            type="button"
+            class="btn btn-primary pd-1 fw-bold other-btn original-xray"
+            [class]="!evaluationResult ? 'hide-btn' : ''"
+            (click)="handleSwitch('hide')"
+          >
+            Original X-Ray
+          </button> -->
+        </div>
+        <div class="col-6 text-right icon-sec">
+          <button
+            type="button"
+            class="btn fw-bold cancel-btn pd-1 ms-2"
+            (click)="handleClick()"
+          >
+            Close
+          </button>
+
+           <button type="button" class="btn fw-bold pd-1 ms-2" (click)="generatePDF()">
+            Export
+          </button>
+        </div>
+      </div>
+      <div class="col-12 mt-2 d-flex justify-content-between ps-0">
+        <div class="col-6 me-1">
+          <!-- <img [src]="renderImage(this.xRayData[0]?.xray_image.path)" alt="" class="w-100" >
+                        <label class="text-center w-100 mt-3 fw-bold">Original X-ray</label>-->
+          <div id="label-studio1"></div>
+          <!-- <label class="text-center w-100 mt-3 fw-bold mark-label1"
+            >Original X-Ray</label
+          > -->
+        </div>
+        <div class="col-6 ms-1">
+          <!--
+                        <img  [src]="renderImage(this.xRayData[0]?.xray_image.path)" alt="" class="w-100 ms-2"
+                        (click)="addMarker($event)" >
+                        <div class="ms-2 markDiv">
+                        <div *ngFor="let marker of marker" class="marker" [style.left.px]="marker.x" [style.top.px]="marker.y">
+                    </div>
+                </div>-->
+          <div id="label-studio"></div>
+
+          <!-- <label class="text-center w-100 mt-3 fw-bold mark-label"
+            >Evaluated X-Ray</label
+          > -->
+        </div>
+        
+      </div>
+      <div class="col-12 d-flex justify-content-between ps-0">
+        <div class="text-center col-6 fw-bold">
+          Original X-Ray
+        </div>
+        <div class="text-center col-6 fw-bold">
+          Evaluated X-Ray
+        </div>
+      </div>
+    </div>
+  </div>
+
+  
+
+  <div class="row sec-II">
+    <div class="col-12">
+      <h6>Disclaimers: </h6>
+          <p>The final diagnosis remains the responsibility of the dentist. ARTI serves as an additional diagnostic tool, enhancing the accuracy and efficiency of dental professionals Decay is deeper then it appears. Your dentist will assess treatment accordingly.</p>
+    </div>
+    <!-- <div class="col-12">
+
+      <h6>ARTI Evaluation Result</h6>
+      <p>
+        <span class="border-bottom border-dark">*Legal Disclaimer :</span> There
+        is a direct correlation of diagnosis and X-Ray quality. This software is
+        just an aid for the Dentists to help them identifies cavities easily.<br />It
+        does not guarantee medical accuracy.
+      </p>
+    </div> -->
+  </div>
+</section>

@@ -1,0 +1,464 @@
+<!-- <div class="container-fluid p-0 min-vh-100 my-container"> -->
+<!-- <div class="card card-primary width-card"> -->
+<!-- <div class="card-body p-5"> -->
+<!-- <div class="row my-2 text-center"> -->
+<!-- <p class="mb-0 ">Create a new account</p> -->
+<!-- </div> -->
+<!-- <div class="row"> -->
+<!-- <div
+  class="container-fluid bg my-container min-vh-100 d-flex flex-row align-items-center"
+>
+  <c-container>
+    <c-row class="justify-content-center">
+      <c-col md="8">
+        <c-card-group class="d-flex justify-content-center">
+          <c-card class="p-4 w-50 mx-5 login-card">
+            <c-card-body>
+
+            </c-card-body>
+          </c-card>
+        </c-card-group>
+      </c-col>
+    </c-row>
+  </c-container>
+</div> -->
+<!-- </div> -->
+<!-- </div> -->
+<!-- </div> -->
+<!-- </div> -->
+
+
+
+<div class="container-fluid login-register">
+  <div class="logo w-logo-header"><img src="../../../../assets/images/arti_new.png" class="w-100"/></div>
+  <div class="row justify-content-center bg my-container1 min-vh-100 d-flex flex-row align-items-center">
+    <div class="col-md-6 min-vh-100 d-flex flex-row align-items-center">
+      <c-card-group class="col-12 d-flex justify-content-center card-group">
+        <c-card class="w-100 mx-2 wp-card card">
+          <c-card-body>
+            <form #register_form="ngForm" [formGroup]="registerForm">
+              <h2 class="d-flex justify-content-center fw-semibold mb-2">
+                Create Account
+              </h2>
+              <!-- <p class="text-center heading-sub mb-4 pb-2">Let's get started with your 10 day free trial.</p> -->
+              <div class="inputContainer">
+                <c-input-group class="mb-2 mt-1">
+                  <label class="form-label">First Name</label>
+                  <div class="w-100 d-flex position-relative">
+                    <!-- <label class="mb-2">First Name<sup>*</sup></label> -->
+                    <span
+                      cInputGroupText
+                      class="rounded-0 rounded-start icon-position"
+                    >
+                      <svg cIcon name="cilUser"></svg>
+                    </span>
+                    <input
+                      type="text"
+                      class="form-control rounded ps-5 w-100"
+                      placeholder="First Name"
+                      formControlName="first_name"
+                      maxlength="25"
+                    />
+                    <!-- <i class="fa-solid fa-user icon-position"></i> -->
+                  </div>
+                </c-input-group>
+                <c-input-group class="mb-2 mt-1">
+                  <label class="form-label">Last Name</label>
+                  <div class="w-100 d-flex position-relative">
+                    <!-- <label class="mb-2">Last Name<sup>*</sup></label> -->
+                    <span
+                      cInputGroupText
+                      class="rounded-0 rounded-start icon-position"
+                    >
+                      <svg cIcon name="cilUser"></svg>
+                    </span>
+                    <input
+                      type="text"
+                      class="form-control rounded ps-5 w-100"
+                      placeholder="Last Name"
+                      formControlName="last_name"
+                      maxlength="25"
+                    />
+                    <!-- <i class="fa-solid fa-user icon-position"></i> -->
+                  </div>
+                </c-input-group>
+                <c-input-group class="mb-2 mt-1">
+                  <label class="form-label">Enter Email</label>
+                  <div class="w-100 d-flex position-relative">
+                    <!-- <label class="mb-2">Email ID<sup>*</sup></label> -->
+                    <span
+                      cInputGroupText
+                      class="rounded-0 rounded-start icon-position"
+                    >
+                      <svg cIcon name="cilEnvelopeClosed"></svg>
+                    </span>
+                    <input
+                      type="email"
+                      class="form-control rounded ps-5 w-100"
+                      placeholder="Enter Email"
+                      formControlName="email"
+                      maxlength="70"
+                    />
+                    <!-- <i class="fa-solid fa-envelope icon-position"></i> -->
+                  </div>
+                </c-input-group>
+              </div>
+              <!-- <div class="inputContainer">
+                <c-input-group class="mb-3 mt-2">
+                  <div class="w-100 d-flex position-relative">
+                    <label class="mb-2">Password<sup>*</sup></label>
+                    <span
+                      cInputGroupText
+                      class="rounded-0 rounded-start icon-position"
+                    >
+                      <svg cIcon name="cilSpreadsheet"></svg>
+                    </span>
+                    <input
+                      type="tel"
+                      class="form-control rounded ps-5 w-100"
+                      placeholder="Contact Number"
+                      formControlName="contact_number"
+                      (keypress)="onlyNumberKey($event)"
+                    />
+                    <i class="fa-solid fa-lock icon-position"></i>
+                  </div>
+                </c-input-group>
+                <c-input-group class="mb-3 mt-2 ms-4">
+                  <div class="w-100 d-flex position-relative">
+                    <label class="mb-2">Password<sup>*</sup></label>
+                    <span
+                      cInputGroupText
+                      class="rounded-0 rounded-start icon-position"
+                    >
+                      <svg cIcon name="cilHome"></svg>
+                    </span>
+                    <input
+                      type="text"
+                      class="form-control rounded ps-5 w-100"
+                      placeholder="Address"
+                      formControlName="address1"
+                    />
+                    <i class="fa-solid fa-lock icon-position"></i>
+                  </div>
+                </c-input-group>
+                <c-input-group class="mb-3 mt-2 ms-4">
+                  <div class="w-100 d-flex position-relative">
+                    <label class="mb-2">Password<sup>*</sup></label>
+                    <span
+                      cInputGroupText
+                      class="rounded-0 rounded-start icon-position"
+                    >
+                      <svg cIcon name="cilNotes"></svg>
+                    </span>
+                    <input
+                      type="number"
+                      class="form-control rounded ps-5 w-100"
+                      placeholder="Zip"
+                      formControlName="pincode"
+                      (keypress)="onlyNumberKey($event)"
+                    />
+                    <i class="fa-solid fa-lock icon-position"></i>
+                  </div>
+                </c-input-group>
+              </div> -->
+              <!-- <div class="inputContainer">
+                <c-input-group class="mb-3 mt-2">
+                  <div class="w-100 d-flex position-relative">
+                    <label class="mb-2">Password<sup>*</sup></label>
+                    <span
+                      cInputGroupText
+                      class="rounded-0 rounded-start icon-position"
+                    >
+                      <svg cIcon name="cilLocationPin"></svg>
+                    </span>
+                    <input
+                      type="text"
+                      class="form-control rounded ps-5 w-100"
+                      placeholder="City"
+                      formControlName="city"
+                    />
+                    <i class="fa-solid fa-lock icon-position"></i>
+                  </div>
+                </c-input-group>
+                <c-input-group class="mb-3 mt-2 ms-4">
+                  <div class="w-100 d-flex position-relative">
+                    <label class="mb-2">Password<sup>*</sup></label>
+                    <span
+                      cInputGroupText
+                      class="rounded-0 rounded-start icon-position"
+                    >
+                      <svg cIcon name="cilLocationPin"></svg>
+                    </span>
+                    <input
+                      type="text"
+                      class="form-control rounded ps-5 w-100"
+                      placeholder="State"
+                      formControlName="state"
+                    />
+                    <i class="fa-solid fa-lock icon-position"></i>
+                  </div>
+                </c-input-group>
+                <c-input-group class="mb-3 mt-2 ms-4">
+                  <div class="w-100 d-flex position-relative">
+                    <label class="mb-2">Password<sup>*</sup></label>
+                    <span
+                      cInputGroupText
+                      class="rounded-0 rounded-start icon-position"
+                    >
+                      <svg cIcon name="cilMap"></svg>
+                    </span>
+                    <input
+                      type="password"
+                      class="form-control rounded ps-5 w-100"
+                      placeholder="Country"
+                      formControlName="country"
+                    />
+                    <select
+                      class="form-select ps-5"
+                      aria-label="Default select example"
+                      name="country"
+                      placeholder="Country"
+                      formControlName="country"
+                    >
+                      <option
+                        [defaultSelected]="true"
+                        [selected]="true"
+                        disabled="true"
+                      >
+                        {{ countryList }}
+                      </option>
+                      <option>India</option>
+                      <option>America</option>
+                      <option>Japan</option>
+                      <option>China</option>
+                    </select>
+                    <i class="fa-solid fa-lock icon-position"></i>
+                  </div>
+                </c-input-group>
+              </div> -->
+              <div class="inputContainer">
+                <c-input-group class="mb-2 mt-1">
+                  <label class="form-label">Password</label>
+
+
+
+
+
+                  <div class="w-100 d-flex position-relative">
+                    <!-- <label class="mb-2">Password<sup>*</sup></label> -->
+                    <span
+                      cInputGroupText
+                      class="rounded-0 rounded-start icon-position"
+                    >
+                      <svg cIcon name="cilLockLocked"></svg>
+                    </span>
+                    <input
+                      type="password"
+                      class="form-control rounded ps-5 w-100"
+                      placeholder="Enter Password"
+                      formControlName="password"
+                      maxlength="25"
+                    />
+                    <!-- <i class="fa-solid fa-lock icon-position"></i> -->
+                  </div>
+                  <small>* Password must contain atleast 7 characters, 1 letter and 1 number</small>
+                </c-input-group>
+                <c-input-group class="mb-2 mt-1">
+                  <label class="form-label">Confirm Password</label>
+                  <div class="w-100 d-flex position-relative cnf_password">
+                    <!-- <label class="mb-2">Password<sup>*</sup></label> -->
+                    <span
+                      cInputGroupText
+                      class="rounded-0 rounded-start icon-position"
+                    >
+                      <svg cIcon name="cilLockLocked"></svg>
+                    </span>
+                    <input
+                      type="password"
+                      class="form-control rounded ps-5 w-100"
+                      placeholder="Enter Confirm Password"
+                      formControlName="repassword"
+                      maxlength="25"
+                    />
+                    <!-- <i class="fa-solid fa-lock icon-position"></i> -->
+                  </div>
+                </c-input-group>
+                <!-- <c-input-group class="mb-3 mt-2 ms-4"> -->
+                  <!-- <div class="w-100 d-flex position-relative cnf_password">
+                    <span
+                      cInputGroupText
+                      class="rounded-0 rounded-start icon-position"
+                    >
+                      <svg cIcon name="cilNotes"></svg>
+                    </span>
+                    <input
+                      type="number"
+                      class="form-control rounded ps-5 w-100"
+                      placeholder="Age"
+                      formControlName="age"
+                      (keypress)="onlyNumberKey($event)"
+                    />
+                  </div> -->
+                <!-- </c-input-group> -->
+              </div>
+              <!-- <div class="row mb-3">
+                <c-input-group class="mb-3 mt-2">
+                  <label class="mb-2">Contact Number<sup>*</sup></label>
+                  <input
+                    type="tel"
+                    class="form-control"
+                    placeholder="Contact Number"
+                    name="number"
+                    ngModel
+                  />
+                </c-input-group>
+                <c-input-group class="mb-3 mt-2">
+                  <label class="mb-2">Address 1<sup>*</sup></label>
+                  <input
+                    type="text"
+                    class="form-control me-4"
+                    placeholder="Address 1"
+                    name="address1"
+                    ngModel
+                  />
+                </c-input-group>
+                <c-input-group class="mb-3 mt-2">
+                  <label class="mb-2">Address 2</label>
+                  <input
+                    type="text"
+                    class="form-control"
+                    placeholder="Address 2"
+                    name="address2"
+                    ngModel
+                  />
+                </c-input-group>
+              </div> -->
+              <!-- <div class="row mb-3">
+                <c-input-group class="col-md-4 form-group">
+                  <label class="mb-2">City<sup>*</sup></label>
+                  <input
+                    type="text"
+                    class="form-control me-4"
+                    placeholder="City"
+                    name="city"
+                    ngModel
+                  />
+                </c-input-group>
+                <c-input-group class="col-md-4 form-group">
+                  <label class="mb-2">State<sup>*</sup></label>
+                  <input
+                    type="text"
+                    class="form-control"
+                    placeholder="State"
+                    name="state"
+                    ngModel
+                  />
+                </c-input-group>
+                <c-input-group class="col-md-4 form-group">
+                  <label class="mb-2">Zip<sup>*</sup></label>
+                  <input
+                    type="number"
+                    class="form-control me-5"
+                    placeholder="Zip"
+                    name="zip"
+                    ngModel
+                  />
+                </c-input-group>
+              </div> -->
+              <!-- <div class="row mb-3"></div> -->
+              <!-- <c-input-group class="col-md-4 form-group">
+                <label class="mb-2">Country<sup>*</sup></label>
+                <select
+                  class="form-select me-4"
+                  aria-label="Default select example"
+                  name="country"
+                  placeholder="Country"
+                  ngModel
+                  [(ngModel)]="countryList"
+                >
+                  can use ngFor instead of hardcoded value
+                  <option
+                    *ngFor="let country of countryList"
+                    [ngValue]="country"
+                    [selected]="country"
+                  >
+                    {{ country }}
+                  </option>
+                  <option
+                    [defaultSelected]="true"
+                    selected="true"
+                    disabled="true"
+                  >
+                    {{ countryList }}
+                  </option>
+                  <option>India</option>
+                  <option>America</option>
+                  <option>Japan</option>
+                  <option>China</option>
+                </select>
+              </c-input-group> -->
+              <!-- <c-input-group class="col-md-4 form-group">
+                <label class="mb-2">Subscription Amount<sup>*</sup></label>
+                <input
+                  type="number"
+                  class="form-control me-5"
+                  placeholder="Amount"
+                  name="amount"
+                  ngModel
+                />
+              </c-input-group> -->
+              <div class="col-12 btn-div">
+                <!-- <button class="btn btn-primary register-btn ms-2 mt-4 cancel-btn p-1" title="Cancel">
+                  Cancel
+                </button> -->
+                <button
+                  class="btn btn-primary register-btn mt-2 p-2 fw-bold col-12"
+                  title="Register"
+                  (click)="register()"
+                  (window:keypress)="onSomeAction($event)"
+                >
+                  Register
+                  <svg stroke="currentColor" fill="currentColor" stroke-width="0" viewBox="0 0 24 24" height="1em" width="1em" xmlns="http://www.w3.org/2000/svg"><path d="M12 3c-4.625 0-8.442 3.507-8.941 8.001H10v-3l5 4-5 4v-3H3.06C3.56 17.494 7.376 21 12 21c4.963 0 9-4.037 9-9s-4.037-9-9-9z"></path></svg>
+                </button>
+              </div>
+              <c-row>
+                <c-col class="text-center mt-4"
+                  >Already have an account?
+                  <a routerLink="/login" class="signin fw-semibold">Login</a>
+                </c-col>
+              </c-row>
+              <!-- <c-row>
+            <c-col class="text-center mt-1">
+              <a href="/#/forgot-password" class="signin fw-semibold">Forgot Password?</a>
+            </c-col>
+          </c-row> -->
+            </form>
+          </c-card-body>
+        </c-card>
+
+      </c-card-group>
+    </div>
+    <div class="col-md-6 min-vh-100 d-flex flex-row align-items-center right-sec">
+      <div class="col-12 d-flex justify-content-center card-group">
+        <div class="w-100 mx-2 wp-card card">
+          <p class="sub sub-title">4eDentalAI</p>
+          <h2 class="title">Welcome Arti is here to assist the doctor</h2>
+            <p class="des">Artifical Intelligence is here to help identify dental disease. Your dentists is using every tool available to deliver top care to all patients.</p>
+              <c-row>
+                <c-col >
+                  <a href="https://qasolutionsbpo.com/demo/4edentalai/" target="_blank" cButton class="btn btn-primary mb-4 p-2 fw-bold" color="primary">
+                    Book a Demo <svg stroke="currentColor" fill="currentColor" stroke-width="0" viewBox="0 0 24 24" height="1em" width="1em" xmlns="http://www.w3.org/2000/svg"><path d="M12 3c-4.625 0-8.442 3.507-8.941 8.001H10v-3l5 4-5 4v-3H3.06C3.56 17.494 7.376 21 12 21c4.963 0 9-4.037 9-9s-4.037-9-9-9z"></path></svg>
+                  </a>
+
+                </c-col>
+              </c-row>
+
+            </div>
+      </div>
+    </div>
+
+  </div>
+
+</div>
+
+

@@ -1,0 +1,531 @@
+<!--<c-header class="mb-4 d-print-none" position="sticky">-->
+<ng-container>
+  <c-container [fluid]="true">
+    <!---->
+    <c-header-nav>
+      <ul class="navbar-nav logo">
+        <li class="nav-item w-logo-header-inner" [routerLink]="'upload-xray/0'">
+          <a class="nav-link p-0">
+            <img src="../../../../assets/images/arti_new.png" class="w-100"/>
+          </a>
+        </li>
+      </ul>
+    </c-header-nav>
+    <div
+      class="d-flex logo_and_info"
+      *ngIf="userInfo.role == 'dentist'; else adminHeader"
+    >
+      <ul class="navbar justify-content-start info mb-0 p-0">
+        <li class="nav-item" [routerLink]="'/upload-xray/0'">
+          <a class="nav-link d-flex">
+            <div class="icon">
+              <img src="../../../../assets/images/X-Ray-Evaluated.png" />
+            </div>
+            <div class="releted-info">
+              <h6>Home</h6>
+              <p>Upload X-Ray</p>
+            </div>
+          </a>
+        </li>
+        <li class="nav-item" [routerLink]="'upload-xray-list'">
+          <a class="nav-link d-flex">
+            <div class="icon">
+              <img src="../../../../assets/images/X-Ray-Evaluated.png" />
+            </div>
+            <div class="releted-info">
+              <h6>{{153683 + this.totalCount}}</h6>
+              <p>X-Rays Evaluated</p>
+            </div>
+          </a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link d-flex anchor-tag">
+            <div class="icon">
+              <img src="../../../../assets/images/Identified_By_AI.png" />
+            </div>
+            <div class="releted-info">
+              <h6>{{452983 + +this.countCavity}}</h6>
+              <p>Cavities Detected by AI</p>
+            </div>
+          </a>
+        </li>
+        <!-- <li class="nav-item">
+          <a class="nav-link d-flex">
+            <div class="icon">
+              <img src="../../../../assets/images/Identified_By_Dentist.png" />
+            </div>
+            <div class="releted-info">
+              <h6>{{ dentist_count }}</h6>
+              <p>Cavities Detected by you</p>
+            </div>
+          </a>
+        </li> -->
+        <li class="nav-item">
+          <a class="nav-link d-flex anchor-tag">
+            <div class="icon">
+              <img src="../../../../assets/images/System_Accuracy.png" />
+            </div>
+            <div class="releted-info" *ngIf="accuracyOfSys != 0; else dotheaccuracy">
+              <h6>{{((+'98.7' + +accuracyOfSys)/2).toFixed(2)}}%</h6>
+              <p>Avg. Accuracy by  ARTI </p>
+            </div>
+            <ng-template #dotheaccuracy>
+              <div class="releted-info">
+                <h6>98.7%</h6>
+                <p>Avg. Accuracy by  ARTI </p>
+              </div>
+            </ng-template>
+          </a>
+        </li>
+      </ul>
+    </div>
+    <ng-template #adminHeader>
+      <div class="d-flex logo_and_info">
+        <!-- <ul class="navbar-nav logo me-4">
+          <li class="nav-item" [routerLink]="'dashboard'">
+            <a class="nav-link">
+              <img src="../../../../assets/images/logo_w.png" />
+            </a>
+          </li>
+        </ul> -->
+        <ul class="navbar justify-content-start info mb-0 p-0">
+          <li class="nav-item" [routerLink]="'/dashoard'">
+            <a class="nav-link d-flex">
+              <div class="icon">
+                <img src="../../../../assets/images/X-Ray-Evaluated.png" />
+              </div>
+              <div class="releted-info">
+                <h6>Home</h6>
+                <p>Dashboard</p>
+              </div>
+            </a>
+          </li>
+          <!-- <li class="nav-item">
+            <a class="nav-link d-flex">
+              <div class="icon">
+                <img src="../../../../assets/images/X-Ray-Evaluated.png" />
+              </div>
+              <div class="releted-info">
+                <h6>$ {{amtEarned}}</h6>
+                <p>Revenue Earned</p>
+              </div>
+            </a>
+          </li> -->
+          <li class="nav-item" [routerLink]="'uploaded-xray/0'">
+            <a class="nav-link d-flex">
+              <div class="icon">
+                <img src="../../../../assets/images/X-Ray-Evaluated.png" />
+              </div>
+              <div class="releted-info">
+                <h6>{{ 153683 + this.totalCount }}</h6>
+                <p>X-Rays Evaluated</p>
+              </div>
+            </a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link d-flex anchor-tag">
+              <div class="icon">
+                <img src="../../../../assets/images/Identified_By_AI.png" />
+              </div>
+              <div class="releted-info">
+                <h6>{{452983 + +this.countCavity}}</h6>
+                <p>Cavities Detected by AI</p>
+              </div>
+            </a>
+          </li>
+          <li class="nav-item" [routerLink]="'registered-dentists'">
+            <a class="nav-link d-flex">
+              <div class="icon">
+                <img
+                  src="../../../../assets/images/Identified_By_Dentist.png"
+                />
+              </div>
+              <div class="releted-info">
+                <h6>{{ unsubCount + subCount }}</h6>
+                <p>Dentists on-board</p>
+              </div>
+            </a>
+          </li>
+          <!-- <li class="nav-item" [routerLink]="'subscription-list'">
+            <a class="nav-link d-flex">
+              <div class="icon">
+                <img src="../../../../assets/images/Identified_By_AI.png" />
+              </div>
+              <div class="releted-info">
+                <h6>{{ planCount }}</h6>
+                <p>Subscription Plans</p>
+              </div>
+            </a>
+          </li> -->
+          <li class="nav-item">
+            <a class="nav-link d-flex anchor-tag">
+              <div class="icon">
+                <img src="../../../../assets/images/System_Accuracy.png" />
+              </div>
+              <div class="releted-info" *ngIf="accuracyOfSys != 0; else dotheaccuracyadmin">
+                <h6>{{((+'98.7' + +accuracyOfSys)/2).toFixed(2)}}%</h6>
+                <p>Avg. Accuracy by  ARTI</p>
+              </div>
+              <ng-template #dotheaccuracyadmin>
+                <div class="releted-info">
+                  <h6>98.7%</h6>
+                  <p>Avg. Accuracy by  ARTI </p>
+                </div>
+              </ng-template>
+            </a>
+          </li>
+          <!-- <li class="nav-item">
+            <a class="nav-link d-flex">
+              <div class="icon">
+                <img src="../../../../assets/images/System_Accuracy.png" />
+              </div>
+              <div class="releted-info" *ngIf="accuracyOfDent != 0; else dothedentacc">
+                <h6>{{accuracyOfDent}}%</h6>
+                <p>Dentist Accuracy</p>
+              </div>
+              <ng-template #dothedentacc>
+                <div class="releted-info">
+                  <h6>0%</h6>
+                  <p>Dentist Accuracy</p>
+                </div>
+              </ng-template>
+            </a>
+          </li> -->
+        </ul>
+      </div>
+    </ng-template>
+    <!-- <c-header-nav class="d-none d-lg-flex me-auto">
+      <c-breadcrumb-router class="ms-2 breadcrumb"></c-breadcrumb-router>
+       <c-nav-item>
+        <a cNavLink routerLink="/users" routerLinkActive="active">Users</a>
+      </c-nav-item>
+      <c-nav-item>
+        <a cNavLink routerLink="/settings" routerLinkActive="active">
+          Settings
+        </a>
+      </c-nav-item>
+    </c-header-nav> -->
+
+    <!-- <c-header-nav class="d-none d-lg-flex">
+      <c-nav-item>
+        <a routerLink="./" cNavLink>
+          <svg cIcon name="cilBell" size="lg"></svg>
+        </a>
+      </c-nav-item>
+      <c-nav-item>
+        <a routerLink="./" cNavLink>
+          <svg cIcon name="cilList" size="lg"></svg>
+        </a>
+      </c-nav-item>
+      <c-nav-item>
+        <a routerLink="./" cNavLink>
+          <svg cIcon name="cilEnvelopeOpen" size="lg"></svg>
+        </a>
+      </c-nav-item>
+    </c-header-nav> -->
+
+    <!--  <c-breadcrumb-router class="ms-2"></c-breadcrumb-router>-->
+    <c-header-nav class="">
+      <ng-container *ngTemplateOutlet="userDropdown"></ng-container>
+    </c-header-nav>
+  </c-container>
+</ng-container>
+
+<!--</c-header>-->
+
+<ng-template #userDropdown>
+  <c-dropdown alignment="end" variant="nav-item">
+    <button
+      cButton
+      color=""
+      [caret]="false"
+      cDropdownToggle
+      class="py-0 icon-btn dd-header d-flex align-items-center"
+    >
+      <c-avatar
+        cTextColor="primary"
+        shape="rounded-1"
+        size="md"
+        src="../../../../assets/images/Icon_user.png"
+        class="rounded-circle border border-dark-sublte border-2 me-2"
+      >
+      </c-avatar>
+      <div class="user-name">
+        {{ this.fName | titlecase }} {{ this.lName | titlecase }}
+      </div>
+      <i class="fa-solid fa-caret-down icon-color fs-6 ms-2"> </i>
+    </button>
+    <ul cDropdownMenu class="py-0 pr-5 dropdown-menu">
+      <!--  <li>
+        <h6 cDropdownHeader class="bg-light fw-semibold py-2">Account</h6>
+      </li>
+      <li>
+        <a routerLink="./" cDropdownItem>
+          <svg cIcon class="me-2" name="cilBell"></svg>
+          Updates
+          <c-badge class="ms-2 float-end" color="info">
+            42
+          </c-badge>
+        </a>
+      </li>
+      <li>
+        <a routerLink="./" cDropdownItem>
+          <svg cIcon class="me-2" name="cilEnvelopeOpen"></svg>
+          Messages
+          <c-badge class="ms-2 float-end" color="success">
+            42
+          </c-badge>
+        </a>
+      </li>
+      <li>
+        <a routerLink="./" cDropdownItem>
+          <svg cIcon class="me-2" name="cilTask"></svg>
+          Tasks
+          <c-badge class="ms-2 float-end" color="danger">
+            42
+          </c-badge>
+        </a>
+      </li>
+      <li>
+        <a routerLink="./" cDropdownItem>
+          <svg cIcon class="me-2" name='cilCommentSquare'></svg>
+          Comments
+          <c-badge class="ms-auto" color="warning">
+            42
+          </c-badge>
+        </a>
+      </li>
+      <li>
+        <h6 cDropdownHeader class="bg-light fw-semibold py-2">Settings</h6>
+      </li>
+      <li></li>
+      <li>
+        <a routerLink="./" cDropdownItem>
+          <svg cIcon class="me-2" name="cilUser"></svg>
+          Profile
+        </a>
+      </li>
+      <li>
+        <a routerLink="./" cDropdownItem>
+          <svg cIcon class="me-2" name="cilSettings"></svg>
+          Settings
+        </a>
+      </li>
+      <li>
+        <a routerLink="./" cDropdownItem>
+          <svg cIcon class="me-2" name="cilCreditCard"></svg>
+          Payments
+          <c-badge class="ms-2 float-end" color="secondary">
+            42
+          </c-badge>
+        </a>
+      </li>
+      <li>
+        <a routerLink="./" cDropdownItem>
+          <svg cIcon class="me-2" name="cilFile"></svg>
+          Projects
+          <c-badge class="ms-2 float-end" color="primary">
+            42
+          </c-badge>
+        </a>
+      </li>
+      <li>
+        <hr cDropdownDivider/>
+      </li>-->
+
+      <!-- <li class="user-header p-3">
+        <img src="./assets/img/avatars/no-logo-icon-1-green.png" alt="User Image" />
+
+        <h5 class="text-center mt-2" style="color:white !important">
+          {{this.fName | titlecase}} {{this.lName | titlecase}}
+          -- <small>Brand Banao Admin</small> --
+        </h5>
+      </li> -->
+
+      <!-- Menu Body -->
+      <li class="user-body" style="display: none">
+        <div class="row">
+          <div class="col-4 text-center">
+            <a href="#">Followers</a>
+          </div>
+          <div class="col-4 text-center">
+            <a href="#">Sales</a>
+          </div>
+          <div class="col-4 text-center">
+            <a href="#">Friends</a>
+          </div>
+        </div>
+        <!-- /.row -->
+      </li>
+      <!-- Menu Footer-->
+
+      <ul class="list-group list-group-flush">
+        <li
+          class="list-group-item myprofile"
+          role="button"
+          [routerLink]="'dashboard'"
+          *ngIf="userInfo.role == 'admin'"
+        >
+          <a>
+            <svg cIcon name="cilNotes"></svg>
+            Dashboard
+          </a>
+        </li>
+        <li
+          class="list-group-item myprofile"
+          data-bs-toggle="modal"
+          data-bs-target="#myProfile"
+          role="button"
+        >
+          <a>
+            <svg
+              stroke="currentColor"
+              fill="currentColor"
+              stroke-width="0"
+              viewBox="0 0 448 512"
+              height="1em"
+              width="1em"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <path
+                d="M304 128a80 80 0 1 0 -160 0 80 80 0 1 0 160 0zM96 128a128 128 0 1 1 256 0A128 128 0 1 1 96 128zM49.3 464H398.7c-8.9-63.3-63.3-112-129-112H178.3c-65.7 0-120.1 48.7-129 112zM0 482.3C0 383.8 79.8 304 178.3 304h91.4C368.2 304 448 383.8 448 482.3c0 16.4-13.3 29.7-29.7 29.7H29.7C13.3 512 0 498.7 0 482.3z"
+              ></path>
+            </svg>
+            My Profile
+          </a>
+        </li>
+        <li class="list-group-item" *ngIf="userInfo.role == 'dentist'" data-bs-toggle="modal" data-bs-target="#exampleModal" role="button">
+          <a>
+            <svg
+              stroke="currentColor"
+              fill="currentColor"
+              stroke-width="0"
+              viewBox="0 0 1024 1024"
+              height="1em"
+              width="1em"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <path
+                d="M483.2 790.3L861.4 412c1.7-1.7 2.5-4 2.3-6.3l-25.5-301.4c-.7-7.8-6.8-13.9-14.6-14.6L522.2 64.3c-2.3-.2-4.7.6-6.3 2.3L137.7 444.8a8.03 8.03 0 0 0 0 11.3l334.2 334.2c3.1 3.2 8.2 3.2 11.3 0zm62.6-651.7l224.6 19 19 224.6L477.5 694 233.9 450.5l311.9-311.9zm60.16 186.23a48 48 0 1 0 67.88-67.89 48 48 0 1 0-67.88 67.89zM889.7 539.8l-39.6-39.5a8.03 8.03 0 0 0-11.3 0l-362 361.3-237.6-237a8.03 8.03 0 0 0-11.3 0l-39.6 39.5a8.03 8.03 0 0 0 0 11.3l243.2 242.8 39.6 39.5c3.1 3.1 8.2 3.1 11.3 0l407.3-406.6c3.1-3.1 3.1-8.2 0-11.3z"
+              ></path>
+            </svg>
+            My Plan
+          </a>
+        </li>
+
+        <li class="list-group-item"
+        *ngIf="userInfo.role == 'dentist'"
+        role="button"
+        [routerLink]="'/renew-sub/'+this.userInfo.id"
+        >
+          <a>
+            <svg
+              stroke="currentColor"
+              fill="currentColor"
+              stroke-width="0"
+              viewBox="0 0 1024 1024"
+              height="1em"
+              width="1em"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <path
+                d="M483.2 790.3L861.4 412c1.7-1.7 2.5-4 2.3-6.3l-25.5-301.4c-.7-7.8-6.8-13.9-14.6-14.6L522.2 64.3c-2.3-.2-4.7.6-6.3 2.3L137.7 444.8a8.03 8.03 0 0 0 0 11.3l334.2 334.2c3.1 3.2 8.2 3.2 11.3 0zm62.6-651.7l224.6 19 19 224.6L477.5 694 233.9 450.5l311.9-311.9zm60.16 186.23a48 48 0 1 0 67.88-67.89 48 48 0 1 0-67.88 67.89zM889.7 539.8l-39.6-39.5a8.03 8.03 0 0 0-11.3 0l-362 361.3-237.6-237a8.03 8.03 0 0 0-11.3 0l-39.6 39.5a8.03 8.03 0 0 0 0 11.3l243.2 242.8 39.6 39.5c3.1 3.1 8.2 3.1 11.3 0l407.3-406.6c3.1-3.1 3.1-8.2 0-11.3z"
+              ></path>
+            </svg>
+            Upgrade Your Plan
+          </a>
+        </li>
+
+        <li
+          class="list-group-item"
+          data-bs-toggle="modal"
+          data-bs-target="#ResetPassModal"
+          role="button"
+        >
+          <a>
+            <svg
+              _ngcontent-tmk-c209=""
+              font-Size="20px"
+              stroke="currentColor"
+              fill="currentColor"
+              stroke-width="0"
+              viewBox="0 0 16 16"
+              height="1em"
+              width="1em"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <path
+                _ngcontent-tmk-c209=""
+                d="M0 8a4 4 0 0 1 7.465-2H14a.5.5 0 0 1 .354.146l1.5 1.5a.5.5 0 0 1 0 .708l-1.5 1.5a.5.5 0 0 1-.708 0L13 9.207l-.646.647a.5.5 0 0 1-.708 0L11 9.207l-.646.647a.5.5 0 0 1-.708 0L9 9.207l-.646.647A.5.5 0 0 1 8 10h-.535A4 4 0 0 1 0 8zm4-3a3 3 0 1 0 2.712 4.285A.5.5 0 0 1 7.163 9h.63l.853-.854a.5.5 0 0 1 .708 0l.646.647.646-.647a.5.5 0 0 1 .708 0l.646.647.646-.647a.5.5 0 0 1 .708 0l.646.647.793-.793-1-1h-6.63a.5.5 0 0 1-.451-.285A3 3 0 0 0 4 5z"
+              ></path>
+              <path
+                _ngcontent-tmk-c209=""
+                d="M4 8a1 1 0 1 1-2 0 1 1 0 0 1 2 0z"
+              ></path>
+            </svg>
+            Reset Password
+          </a>
+        </li>
+        <li class="list-group-item" role="button" (click)="Logout()">
+          <a>
+            <svg
+              stroke="currentColor"
+              fill="none"
+              stroke-width="2"
+              viewBox="0 0 24 24"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              height="1em"
+              width="1em"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
+              <path
+                d="M14 8v-2a2 2 0 0 0 -2 -2h-7a2 2 0 0 0 -2 2v12a2 2 0 0 0 2 2h7a2 2 0 0 0 2 -2v-2"
+              ></path>
+              <path d="M7 12h14l-3 -3m0 6l3 -3"></path>
+            </svg>
+            Logout
+          </a>
+        </li>
+      </ul>
+
+      <!-- <ng-template #doThatValue>
+      <ul class="list-group list-group-flush">
+        <li class="list-group-item myprofile" data-bs-toggle="modal" data-bs-target="#myProfile"><svg stroke="currentColor" fill="currentColor" stroke-width="0" viewBox="0 0 448 512" height="1em" width="1em" xmlns="http://www.w3.org/2000/svg"><path d="M304 128a80 80 0 1 0 -160 0 80 80 0 1 0 160 0zM96 128a128 128 0 1 1 256 0A128 128 0 1 1 96 128zM49.3 464H398.7c-8.9-63.3-63.3-112-129-112H178.3c-65.7 0-120.1 48.7-129 112zM0 482.3C0 383.8 79.8 304 178.3 304h91.4C368.2 304 448 383.8 448 482.3c0 16.4-13.3 29.7-29.7 29.7H29.7C13.3 512 0 498.7 0 482.3z"></path></svg>  My Profile</li>
+        <li class="list-group-item"><a data-bs-toggle="modal" data-bs-target="#exampleModal"> <svg stroke="currentColor" fill="currentColor" stroke-width="0" viewBox="0 0 1024 1024" height="1em" width="1em" xmlns="http://www.w3.org/2000/svg"><path d="M483.2 790.3L861.4 412c1.7-1.7 2.5-4 2.3-6.3l-25.5-301.4c-.7-7.8-6.8-13.9-14.6-14.6L522.2 64.3c-2.3-.2-4.7.6-6.3 2.3L137.7 444.8a8.03 8.03 0 0 0 0 11.3l334.2 334.2c3.1 3.2 8.2 3.2 11.3 0zm62.6-651.7l224.6 19 19 224.6L477.5 694 233.9 450.5l311.9-311.9zm60.16 186.23a48 48 0 1 0 67.88-67.89 48 48 0 1 0-67.88 67.89zM889.7 539.8l-39.6-39.5a8.03 8.03 0 0 0-11.3 0l-362 361.3-237.6-237a8.03 8.03 0 0 0-11.3 0l-39.6 39.5a8.03 8.03 0 0 0 0 11.3l243.2 242.8 39.6 39.5c3.1 3.1 8.2 3.1 11.3 0l407.3-406.6c3.1-3.1 3.1-8.2 0-11.3z"></path></svg> My Plan </a></li>
+        <li class="list-group-item"><svg _ngcontent-tmk-c209="" font-Size="20px" stroke="currentColor" fill="currentColor" stroke-width="0" viewBox="0 0 16 16" height="1em" width="1em" xmlns="http://www.w3.org/2000/svg"><path _ngcontent-tmk-c209="" d="M0 8a4 4 0 0 1 7.465-2H14a.5.5 0 0 1 .354.146l1.5 1.5a.5.5 0 0 1 0 .708l-1.5 1.5a.5.5 0 0 1-.708 0L13 9.207l-.646.647a.5.5 0 0 1-.708 0L11 9.207l-.646.647a.5.5 0 0 1-.708 0L9 9.207l-.646.647A.5.5 0 0 1 8 10h-.535A4 4 0 0 1 0 8zm4-3a3 3 0 1 0 2.712 4.285A.5.5 0 0 1 7.163 9h.63l.853-.854a.5.5 0 0 1 .708 0l.646.647.646-.647a.5.5 0 0 1 .708 0l.646.647.646-.647a.5.5 0 0 1 .708 0l.646.647.793-.793-1-1h-6.63a.5.5 0 0 1-.451-.285A3 3 0 0 0 4 5z"></path><path _ngcontent-tmk-c209="" d="M4 8a1 1 0 1 1-2 0 1 1 0 0 1 2 0z"></path></svg> Reset Password</li>
+        <li class="list-group-item"><a (click)="dashboardFn('logout')"><svg stroke="currentColor" fill="none" stroke-width="2" viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round" height="1em" width="1em" xmlns="http://www.w3.org/2000/svg"><path stroke="none" d="M0 0h24v24H0z" fill="none"></path><path d="M14 8v-2a2 2 0 0 0 -2 -2h-7a2 2 0 0 0 -2 2v12a2 2 0 0 0 2 2h7a2 2 0 0 0 2 -2v-2"></path><path d="M7 12h14l-3 -3m0 6l3 -3"></path></svg> Logout</a></li>
+      </ul>
+    </ng-template> -->
+
+      <!-- <li class="user-footer text-center" *ngIf="!this.changeUrl; else doThatValue">
+        -- <a [routerLink]="['/profile']" class="btn btn-default btn-flat">
+          Profile
+        </a> --
+        <button class="btn fw-bold other-btn pd-1" (click)="myProfile()" >
+            My Profile <i class="fa fa-user ms-1"></i>
+        </button>
+
+        <button class="btn fw-bold other-btn pd-1 ms-2" (click)="Logout()">Logout <i class="fa-solid fa-right-from-bracket ms-1"></i> </button><!-- <a (click)="Logout()" class="btn btn-default btn-flat "
+          >Sign out</a
+        > --
+      </li> -->
+
+      <!-- <ng-template #doThatValue>
+        <li class="user-footer text-center">
+          -- <a [routerLink]="['/profile']" class="btn btn-default btn-flat">
+            Profile
+          </a> --
+          <button class="btn fw-bold other-btn pd-1" (click)="dashboardFn(true)" >
+              My Profile <i class="fa fa-user ms-1"></i>
+          </button>
+
+          <button class="btn fw-bold other-btn pd-1 ms-2" (click)="dashboardFn('logout')">Logout <i class="fa-solid fa-right-from-bracket ms-1"></i> </button><!-- <a (click)="Logout()" class="btn btn-default btn-flat "
+            >Sign out</a
+          > --
+        </li>
+      </ng-template> -->
+    </ul>
+  </c-dropdown>
+</ng-template>

@@ -1,0 +1,17 @@
+.text {
+  text-align: center;
+}
+.bg {
+  background-color: #45454523;
+}
+.my-container {
+  background-color: #45454523;
+  padding: 30px;
+
+}
+.sub-container{
+  height: 50vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+}

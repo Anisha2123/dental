@@ -1,0 +1,141 @@
+<div class="table-responsive resposive-table mb-3" style="position: relative">
+  <div class="col-12">
+    <div class="row mx-0 my-4">
+      <h2 class="mb-0 col fw-bold position-relative pt-2">      Uploaded X-Rays    </h2>
+    </div>
+  </div>
+
+  <div class="card pt-0 mb-2  table-card">
+    <div class="card-body pt-0 px-0" style="overflow-x: auto">
+      <table
+        datatable
+        *ngIf="showContent"
+        datatable="ng"
+        id="datatable"
+        class="row-border hover"
+        [dtOptions]="dtOptions"
+      >
+        <thead>
+          <tr>
+            <th class="text-nowrap" style="min-width: 150px;">File Name</th>
+            <!-- <th class="text-nowrap">Uploaded Date</th> -->
+            <th class="text-nowrap">Evaluated Date</th>
+            <!-- <th>Subscription&nbsp;End Date</th> -->
+
+            <!-- <th>Upload</th> -->
+            <th class="text-center">Total Cavities Detected</th>
+                  <th class="text-right textCenter">Action</th>
+          </tr>
+        </thead>
+        <tbody *ngIf="allData?.length != 0 &&n==0">
+          <tr *ngFor="let data of allData; let i = index">
+            <td>{{data?.xray_image?.path.split('/')[1]}}</td>
+            <td>{{data?.created_at | date : 'MM/dd/yyyy'}}</td>
+            <!-- <td>{{data?.updated_at | date : 'MM/dd/yyyy hh:mm a'}}</td> -->
+            <!-- <td>{{data.city | titlecase}}</td> -->
+            <!-- <td>{{data.contact_number}}</td> -->
+            <!-- <td>{{data.subscription_details.end_date | date : 'dd/MM/yyyy'}}</td> -->
+
+            <td class="text-center">{{data.totalCavitiesDetectedByUser}}</td>
+            <td class="text-right">
+              <!-- <div *ngIf="data.evaluation_status==true"> -->
+              <button
+                type="button"
+                class="btn btn-primary add-btn pd-1 other-btn fw-bolder"
+                data-bs-toggle="modal"
+                data-bs-target="#exampleModalCenter"
+                (click)="view(data._id)"
+              >
+              View Details
+              </button>
+            <!-- </div> -->
+            <!-- <div *ngIf="data.evaluation_status==false">
+              <button
+                type="button"
+                class="btn btn-primary save-btn fw-bold other-btn pd-1 text-nowrap"
+                (click)="evaluate()"
+                [disabled]="false"
+              >
+                Resume Evaluation
+              </button>
+            </div> -->
+            </td>
+            <!-- <td>
+            <button type="button" class="btn btn-primary save-btn fw-bold other-btn pd-1" (click)="evaluate()" [disabled]="hidden">Evaluate X-Ray</button>
+          </td> -->
+            <!-- <td>85%</td> -->
+          </tr>
+          <!-- <tr>
+
+        </tr>-->
+        </tbody>
+        <tbody *ngIf="this.allData?.length == 0 && n==0">
+          <tr>
+            <td colspan="8" class="no-data-available text-center">
+              No data
+            </td>
+            <td colspan="0" class="no-data-available p-0"></td>
+            <td colspan="0" class="no-data-available p-0"></td>
+            <td colspan="0" class="no-data-available p-0"></td>
+            <!-- <td colspan="0" class="no-data-available p-0"></td> -->
+            <!-- <td colspan="0" class="no-data-available p-0" ></td> -->
+          </tr>
+        </tbody>
+        <tbody *ngIf="user_eval?.length != 0 && n==1">
+          <tr *ngFor="let data of this.user_eval; let i = index">
+            <td>{{data?.xray_image?.path.split('/')[1]}}</td>
+            <td>{{data.created_at | date : 'MM/dd/yyyy hh:mm a'}}</td>
+            <!-- <td>{{data?.updated_at | date : 'MM/dd/yyyy hh:mm a'}}</td> -->
+            <!-- <td>{{data.city | titlecase}}</td> -->
+            <!-- <td>{{data.contact_number}}</td> -->
+            <!-- <td>{{data.subscription_details.end_date | date : 'dd/MM/yyyy'}}</td> -->
+            <td class="text-center">{{data.totalCavitiesDetectedByUser}}</td>
+
+            <td class="text-right">
+              <div *ngIf="data.evaluation_status==true">
+                <button
+                type="button"
+                class="btn btn-primary add-btn pd-1 other-btn fw-bolder"
+                data-bs-toggle="modal"
+                data-bs-target="#exampleModalCenter"
+                (click)="view(data._id)"
+              >
+              View Details
+              </button>
+            </div>
+            <div *ngIf="data.evaluation_status==false">
+              <button
+                type="button"
+                class="btn btn-primary save-btn fw-bold other-btn pd-1 text-nowrap"
+                (click)="evaluate()"
+                [disabled]="false"
+              >
+                Evaluate X-Ray
+              </button>
+            </div>
+            </td>
+            <!-- <td>
+            <button type="button" class="btn btn-primary save-btn fw-bold other-btn pd-1" (click)="evaluate()" [disabled]="hidden">Evaluate X-Ray</button>
+          </td> -->
+            <!-- <td>85%</td> -->
+          </tr>
+          <!-- <tr>
+
+        </tr>-->
+        </tbody>
+        <tbody *ngIf="this.user_eval?.length == 0 && n==1">
+          <tr>
+            <td colspan="8" class="no-data-available text-center">
+              No data
+            </td>
+            <td colspan="0" class="no-data-available p-0"></td>
+            <td colspan="0" class="no-data-available p-0"></td>
+            <td colspan="0" class="no-data-available p-0"></td>
+            <!-- <td colspan="0" class="no-data-available p-0"></td> -->
+            <!-- <td colspan="0" class="no-data-available p-0" ></td> -->
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>

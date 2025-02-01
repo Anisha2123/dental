@@ -1,0 +1,104 @@
+<section class="subscription py-70">
+    <div class="container container-lg">
+        <div class="commonHead text-center">
+            <h2 class="commonHead_title">
+                Please Choose Your <br/>
+                Subscription Plan
+            </h2>
+            <p>Try ARTI AI free for 30 days, no credit card required</p>
+            <p *ngIf="userCountry" class="mt-2">Plans available in {{ userCountry }}</p>
+        </div>
+
+        <!-- Loading State -->
+        <div *ngIf="loading" class="text-center">
+            <div class="spinner-border text-primary" role="status">
+                <span class="visually-hidden">Loading...</span>
+            </div>
+        </div>
+
+        <!-- Plans Content -->
+        <div *ngIf="!loading" class="subscription_tab">
+            <ul class="nav nav-tabs" id="myTab" role="tablist">
+                <li class="nav-item" role="presentation">
+                    <button class="nav-link active" id="monthly-tab" data-bs-toggle="tab" data-bs-target="#monthly" type="button" role="tab">Monthly Plans</button>
+                </li>
+                <li class="nav-item" role="presentation">
+                    <button class="nav-link" id="yearly-tab" data-bs-toggle="tab" data-bs-target="#yearly" type="button" role="tab">Yearly Plans</button>
+                </li>
+            </ul>
+
+            <div class="tab-content" id="myTabContent">
+                <!-- Monthly Plans -->
+                <div class="tab-pane fade show active" id="monthly" role="tabpanel">
+                    <div class="row g-4">
+                        <div *ngIf="monthlyPlans.length === 0" class="col-12 text-center">
+                            <p>No monthly plans available for your region.</p>
+                        </div>
+                        <div *ngFor="let plan of monthlyPlans" class="col-lg-4 col-sm-6">
+                            <div class="subscription_card" [class.active]="plan.popular">
+                                <div class="w-100 text-center">
+                                    <div class="text-center" *ngIf="plan.tag">
+                                        <span class="tag">{{ plan.tag }}</span>
+                                    </div>
+                                    <h2>{{ plan.currency?.toUpperCase() }} {{ plan.amount }}<span>/month</span></h2>
+                                    <h3>{{ plan.plan_name?.charAt(0).toUpperCase() + plan.plan_name?.slice(1) }}</h3>
+                                    <p>{{ plan.currency?.toUpperCase() }} {{ plan.amount }} paid monthly</p>
+                                    <ul class="list-unstyled">
+                                        <li *ngFor="let feature of plan.description?.split(',')">
+                                            <svg xmlns="http://www.w3.org/2000/svg" class="me-2" width="15" height="15" viewBox="0 0 511.985 511.985">
+                                                <path d="M500.088 83.681c-15.841-15.862-41.564-15.852-57.426 0L184.205 342.148 69.332 227.276c-15.862-15.862-41.574-15.862-57.436 0-15.862 15.862-15.862 41.574 0 57.436l143.585 143.585c7.926 7.926 18.319 11.899 28.713 11.899 10.394 0 20.797-3.963 28.723-11.899l287.171-287.181c15.862-15.851 15.862-41.574 0-57.435z" fill="#ed2323"/>
+                                            </svg>
+                                            {{ feature.trim() }}
+                                        </li>
+                                    </ul>
+                                    <button (click)="selectPlan(plan)" 
+                                            class="btn btn-outline btn-outline-secondary w-100">
+                                        Subscribe
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Yearly Plans -->
+                <div class="tab-pane fade" id="yearly" role="tabpanel">
+                    <div class="row g-4">
+                        <div *ngIf="yearlyPlans.length === 0" class="col-12 text-center">
+                            <p>No yearly plans available for your region.</p>
+                        </div>
+                        <div *ngFor="let plan of yearlyPlans" class="col-lg-4 col-sm-6">
+                            <div class="subscription_card" [class.active]="plan.popular">
+                                <div class="w-100 text-center">
+                                    <div class="text-center" *ngIf="plan.tag">
+                                        <span class="tag">{{ plan.tag }}</span>
+                                    </div>
+                                    <h2>{{ plan.currency?.toUpperCase() }} {{ plan.amount }}<span>/year</span></h2>
+                                    <h3>{{ plan.plan_name?.charAt(0).toUpperCase() + plan.plan_name?.slice(1) }}</h3>
+                                    <p>{{ plan.currency?.toUpperCase() }} {{ plan.amount }} paid annually</p>
+                                    <ul class="list-unstyled">
+                                        <li *ngFor="let feature of plan.description?.split(',')">
+                                            <svg xmlns="http://www.w3.org/2000/svg" class="me-2" width="15" height="15" viewBox="0 0 511.985 511.985">
+                                                <path d="M500.088 83.681c-15.841-15.862-41.564-15.852-57.426 0L184.205 342.148 69.332 227.276c-15.862-15.862-41.574-15.862-57.436 0-15.862 15.862-15.862 41.574 0 57.436l143.585 143.585c7.926 7.926 18.319 11.899 28.713 11.899 10.394 0 20.797-3.963 28.723-11.899l287.171-287.181c15.862-15.851 15.862-41.574 0-57.435z" fill="#ed2323"/>
+                                            </svg>
+                                            {{ feature.trim() }}
+                                        </li>
+                                    </ul>
+                                    <button (click)="selectPlan(plan)" 
+                                            class="btn btn-outline btn-outline-secondary w-100">
+                                        Subscribe
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<app-email-verify-modal
+    [show]="showEmailModal"
+    (closeModal)="closeEmailModal()">
+</app-email-verify-modal> 

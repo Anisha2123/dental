@@ -1,0 +1,50 @@
+<div class="modal" [class.show]="show" tabindex="-1" role="dialog" [style.display]="show ? 'block' : 'none'">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">Verify Email</h5>
+        <button type="button" class="btn-close" (click)="closeModal.emit()"></button>
+      </div>
+      <div class="modal-body">
+        <div *ngIf="error" class="alert alert-danger">{{ error }}</div>
+        
+        <!-- Email Form -->
+        <form [formGroup]="emailForm" *ngIf="!showOtpInput">
+          <div class="mb-3">
+            <label class="form-label">Email address</label>
+            <input type="email" class="form-control" formControlName="email">
+            <div class="invalid-feedback" *ngIf="emailForm.get('email')?.errors?.['required']">
+              Email is required
+            </div>
+            <div class="invalid-feedback" *ngIf="emailForm.get('email')?.errors?.['email']">
+              Please enter a valid email
+            </div>
+          </div>
+          <button type="button" 
+                  class="btn btn-primary" 
+                  [disabled]="emailForm.invalid || loading"
+                  (click)="sendOtp()">
+            {{ loading ? 'Sending...' : 'Send OTP' }}
+          </button>
+        </form>
+
+        <!-- OTP Form -->
+        <form [formGroup]="otpForm" *ngIf="showOtpInput">
+          <div class="mb-3">
+            <label class="form-label">Enter OTP</label>
+            <input type="text" class="form-control" formControlName="otp">
+            <div class="invalid-feedback" *ngIf="otpForm.get('otp')?.errors?.['required']">
+              OTP is required
+            </div>
+          </div>
+          <button type="button" 
+                  class="btn btn-primary" 
+                  [disabled]="otpForm.invalid || loading"
+                  (click)="verifyOtp()">
+            {{ loading ? 'Verifying...' : 'Verify OTP' }}
+          </button>
+        </form>
+      </div>
+    </div>
+  </div>
+</div> 

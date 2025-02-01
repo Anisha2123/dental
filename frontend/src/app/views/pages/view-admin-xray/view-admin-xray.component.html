@@ -1,0 +1,90 @@
+<section class="content">
+  <div class="container">
+    <h5 class="mb-3 fw-bold">ARTI Evaluation Result</h5>
+    <!-- <p>*Legal Disclaimer : There is a direct correlation of diagnosis and xray quality.
+            This software is just an aid for the Dentists to help them identifies cavities easily.<br>          It does not guarantee medical accuracy.</p> -->
+    <div class="row">
+      <div class="col-12 d-flex">
+        <div class="col-6 d-flex ps-0">
+          <!-- <button
+            type="button"
+            class="btn btn-primary save-btn pd-1 fw-bold other-btn evaluate-btn"
+            [class]="evaluationResult ? 'hide-btn' : ''"
+            (click)="handleSwitch('show')"
+          >
+            Evaluation Result
+          </button>
+          <button
+            type="button"
+            class="btn btn-primary pd-1 fw-bold other-btn original-xray"
+            [class]="!evaluationResult ? 'hide-btn' : ''"
+            (click)="handleSwitch('hide')"
+          >
+            Original X-Ray
+          </button> -->
+        </div>
+        <div class="col-6">
+          <button
+            type="button"
+            class="btn btn-primary save-btn me-2 cancel-btn fw-bold other-btn pd-1"
+            (click)="handleClick()"
+          >
+            Close
+          </button>
+        </div>
+      </div>
+      <div class="col-12 mt-2 d-flex justify-content-between ps-0">
+        <div class="col-6 me-1">
+          <!-- <img [src]="renderImage(this.xRayData[0]?.xray_image.path)" alt="" class="w-100" >
+                        <label class="text-center w-100 mt-3 fw-bold">Original X-ray</label>-->
+          <div id="label-studio1"></div>
+          <!-- <label class="text-center w-100 mt-3 fw-bold mark-label1"
+            >Original X-ray</label
+          > -->
+        </div>
+        <div class="col-6 ms-1">
+          <!--
+                        <img  [src]="renderImage(this.xRayData[0]?.xray_image.path)" alt="" class="w-100 ms-2"
+                        (click)="addMarker($event)" >
+                        <div class="ms-2 markDiv">
+                        <div *ngFor="let marker of marker" class="marker" [style.left.px]="marker.x" [style.top.px]="marker.y">
+                    </div>
+                </div>-->
+          <div id="label-studio"></div>
+
+          <!-- <label class="text-center w-100 mt-5 fw-bold mark-label"
+            >Marked Cavities</label
+          > -->
+        </div>
+      </div>
+      <div class="col-12 d-flex justify-content-between ps-0">
+        <div class="text-center col-6 fw-bold">
+          Original X-Ray
+        </div>
+        <div class="text-center col-6 fw-bold">
+          Evaluated X-Ray
+        </div>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col fw-semibold">
+        <span
+          ><i class="fa-solid fa-circle admin-i me-1"></i> Admin Marking</span
+        ><br />
+        <span
+          ><i class="fa-solid fa-circle dentist-i me-1"></i> Dentist
+          Marking</span
+        ><br />
+        <span
+          ><i class="fa-solid fa-circle ai-i me-1"></i> AI (Confirmed)
+          Marking</span
+        ><br />
+        <span
+          ><i class="fa-solid fa-circle aiprob-i me-1"></i> AI (Probable)
+          Marking</span
+        ><br />
+      </div>
+    </div>
+  </div>
+</section>

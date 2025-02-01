@@ -1,0 +1,957 @@
+<!-- ! use krasoul for price page and show t&c and age in form registration-->
+
+<!-- <div class="container-fluid min-vh-100 bg m-0"> -->
+<!-- <div class="row m-auto">
+</div> -->
+<!-- <div class="col-md-12 p-0"> -->
+<!-- <h2 class="d-flex justify-content-center mb-4 fw-semibold bg-white py-3">Dark<div class="mountain-color fs-2">Mountain</div>
+  </h2> -->
+<!-- </div> -->
+<div class="container-fluid min-vh-100 bg m-0 my-container position-relative">
+  <div class="headingContainer">
+    <div class="emptyDiv w-logo-header">
+      <img src="../../../../assets/images/arti_new.png" class="w-100" />
+    </div>
+
+    <div class="" *ngIf="this.userSubscription?.length == 0 || this.buyNow == true">
+      <h2 class="head m-0 text-center fw-bold mt-1">
+        Please Choose Your Subscription Plan
+      </h2>
+    </div>
+
+    <div class="btn-position" title="Logout">
+      <!-- <img src="./assets/img/avatars/no-logo-icon-1.png" alt="" style="width: 30px; border: 2px solid black; border-radius: 50%;">
+      <i class="fa-solid fa-power-off"></i> -->
+      <ng-container *ngTemplateOutlet="userDropdown"></ng-container>
+    </div>
+  </div>
+
+  <div *ngIf="this.userSubscription?.length > 0 && this.buyNow == false" class="mt-5">
+    <h2 class="head m-0 text-center fw-bold mt-1">
+      Your Subscription has expired! Please Buy a new plan
+    </h2>
+    <div class="w-100 d-flex justify-content-center mt-3">
+      <button class="pd-1 btn fw-bold mt-1 me-1" (click)="buyNowFunc()">
+        Buy Now
+      </button>
+      <button class="pd-1 btn fw-bold mt-1 ms-1" (click)="Logout()">
+        Not Now
+      </button>
+    </div>
+  </div>
+
+  <div *ngIf="this.userSubscription?.length == 0 || this.buyNow == true">
+    <div class="w-100 d-flex justify-content-center mb-4">
+      <div class="plantype">
+        <button (click)="monthly()" [class]="
+            monthlyPlan
+              ? 'btn active monthly-plans-true pd-1 fw-semibold'
+              : 'btn monthly-plans-btn pd-1 fw-semibold'
+          ">
+          Monthly Plans
+        </button>
+        <button (click)="yearly()" [class]="
+            yearlyPlan
+              ? 'btn active yearly-plans-true pd-1 fw-semibold'
+              : 'btn yearly-plans-btn pd-1 fw-semibold'
+          ">
+          Yearly Plans
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <ng-template #userDropdown>
+    <c-dropdown alignment="end" variant="nav-item">
+      <button cButton color="" [caret]="false" cDropdownToggle class="py-0 icon-btn dd-header">
+        <c-avatar cTextColor="primary" shape="rounded-1" size="md" src="./assets/img/avatars/no-logo-icon-1.png"
+          status="success" class="rounded-circle border border-dark-sublte border-2">
+        </c-avatar>
+        <i class="fa-solid fa-angle-down icon-color fs-6 ms-2"></i>
+      </button>
+      <ul cDropdownMenu class="pt-0 pr-5 dropdown-menu">
+        <!--  <li>
+          <h6 cDropdownHeader class="bg-light fw-semibold py-2">Account</h6>
+        </li>
+        <li>
+          <a routerLink="./" cDropdownItem>
+            <svg cIcon class="me-2" name="cilBell"></svg>
+            Updates
+            <c-badge class="ms-2 float-end" color="info">
+              42
+            </c-badge>
+          </a>
+        </li>
+        <li>
+          <a routerLink="./" cDropdownItem>
+            <svg cIcon class="me-2" name="cilEnvelopeOpen"></svg>
+            Messages
+            <c-badge class="ms-2 float-end" color="success">
+              42
+            </c-badge>
+          </a>
+        </li>
+        <li>
+          <a routerLink="./" cDropdownItem>
+            <svg cIcon class="me-2" name="cilTask"></svg>
+            Tasks
+            <c-badge class="ms-2 float-end" color="danger">
+              42
+            </c-badge>
+          </a>
+        </li>
+        <li>
+          <a routerLink="./" cDropdownItem>
+            <svg cIcon class="me-2" name='cilCommentSquare'></svg>
+            Comments
+            <c-badge class="ms-auto" color="warning">
+              42
+            </c-badge>
+          </a>
+        </li>
+        <li>
+          <h6 cDropdownHeader class="bg-light fw-semibold py-2">Settings</h6>
+        </li>
+        <li></li>
+        <li>
+          <a routerLink="./" cDropdownItem>
+            <svg cIcon class="me-2" name="cilUser"></svg>
+            Profile
+          </a>
+        </li>
+        <li>
+          <a routerLink="./" cDropdownItem>
+            <svg cIcon class="me-2" name="cilSettings"></svg>
+            Settings
+          </a>
+        </li>
+        <li>
+          <a routerLink="./" cDropdownItem>
+            <svg cIcon class="me-2" name="cilCreditCard"></svg>
+            Payments
+            <c-badge class="ms-2 float-end" color="secondary">
+              42
+            </c-badge>
+          </a>
+        </li>
+        <li>
+          <a routerLink="./" cDropdownItem>
+            <svg cIcon class="me-2" name="cilFile"></svg>
+            Projects
+            <c-badge class="ms-2 float-end" color="primary">
+              42
+            </c-badge>
+          </a>
+        </li>
+        <li>
+          <hr cDropdownDivider/>
+        </li>-->
+
+        <li class="user-header p-3">
+          <img src="./assets/img/avatars/no-logo-icon-1.png" alt="User Image" />
+
+          <h5 class="text-center mt-2" style="color: white !important">
+            {{ this.fname | titlecase }} {{ this.lname | titlecase }}
+            <!-- <small>User Name</small> -->
+          </h5>
+        </li>
+        <!-- Menu Body -->
+        <li class="user-body" style="display: none">
+          <div class="row">
+            <div class="col-4 text-center">
+              <a href="#">Followers</a>
+            </div>
+            <div class="col-4 text-center">
+              <a href="#">Sales</a>
+            </div>
+            <div class="col-4 text-center">
+              <a href="#">Friends</a>
+            </div>
+          </div>
+          <!-- /.row -->
+        </li>
+        <!-- Menu Footer-->
+        <li class="user-footer text-center">
+          <!-- <a [routerLink]="['/profile']" class="btn btn-default btn-flat">
+            Profile
+          </a> -->
+          <!-- <button class="btn fw-bold other-btn pd-1" >My Profile <i class="fa fa-user ms-1"></i> </button> -->
+
+          <button class="btn fw-bold other-btn pd-1 ms-2" (click)="Logout()">
+            Logout <i class="fa-solid fa-right-from-bracket ms-1"></i></button><!-- <a (click)="Logout()" class="btn btn-default btn-flat "
+            >Sign out</a
+          > -->
+        </li>
+
+        <li></li>
+      </ul>
+    </c-dropdown>
+  </ng-template>
+  <div *ngIf="this.userSubscription?.length == 0 || this.buyNow == true" class="sub-container">
+    <div *ngIf="monthlyAllData?.length != 0"
+      class="d-flex align-items-center justify-content-center flex-wrap inside-sub-container">
+      <div *ngFor="let data of monthlyAllData; let i = index">
+        <div class="col-3 col-sm-3 col-md-3 col-lg-2 myCard m-2">
+          <!-- <div class="col-md-3 mb-3"></div> -->
+          <div class="card h-100 p-2 hover-effect" [class.notActive]="data.plan_name !== 'basic'">
+            <div class="card-body text-center d-flex flex-column justify-content-between">
+              <!-- <img src="" alt="" /> -->
+              <div *ngIf="data.plan_name != 'basic'" class="text-center">
+                <span class="tag">Coming soon</span>
+              </div>
+              <h4>{{ data.plan_name | titlecase }}</h4>
+              <p class="mb-0 text-highlight">
+                New subscribers 30 days free,<br>Cancel anytime
+              </p>
+
+              <div class="d-flex justify-content-center align-items-center flex-column my-3">
+                <p class="price m-0 fw-bolder fs-2">
+                  {{ data.amount| currency:data.currency?.toUpperCase() }}<sub>/monthly</sub>
+                </p>
+                <!-- <p class="m-0">Max: ${{ data.maximum }}</p> -->
+                <!-- <p class="m-0">Min: ${{ data.minimum }}</p> -->
+              </div>
+
+              <div class="col-12 col-md-12 included-sec">
+                <h6 class="text-muted text-start">
+                  What's included on {{ data.plan_name | titlecase }}
+                </h6>
+                <!-- <div class="dynamic-div" [innerHTML]="data.description"></div> -->
+                <ul class="list-group text-start">
+                  <li *ngFor="let points of data.description.split(',')" class="list-group-item">
+                    <i>✔</i>{{points.trim()}}
+                  </li>
+                </ul>
+                <!-- <ul class="list-group text-start">
+                  <li class="list-group-item"><i>✔</i>Normal size office</li>
+                  <li class="list-group-item"><i>✔</i>Single Doctor access</li>
+                  <li class="list-group-item"><i>✔</i>Available from any computer</li>
+                </ul> -->
+              </div>
+
+              <!-- <p>{{ data.currency | titlecase }}</p> -->
+
+              <div class="text-center mt-3 w-100" *ngIf="data._id !== subsId">
+                <button class="pd-1 fw-bold btn btn-primary Subscription-btn" 
+                [disabled]="data.plan_name !== 'basic'"
+                (click)="
+                    getSubscription(
+                      data._id,
+                      data.type,
+                      data.amount,
+                      data.plan_name,
+                      data.country,
+                      data.stripeProductID,
+                      data.stripePriceID,
+                      data.currency
+                    )
+                  ">
+                  Subscribe
+                  <svg stroke="currentColor" fill="currentColor" stroke-width="0" viewBox="0 0 24 24" height="1em"
+                    width="1em" xmlns="http://www.w3.org/2000/svg">
+                    <path
+                      d="M12 3c-4.625 0-8.442 3.507-8.941 8.001H10v-3l5 4-5 4v-3H3.06C3.56 17.494 7.376 21 12 21c4.963 0 9-4.037 9-9s-4.037-9-9-9z">
+                    </path>
+                  </svg>
+                </button>
+              </div>
+              <div class="text-center mt-3 w-100" *ngIf="data._id === subsId">
+                <button class="pd-1 fw-bold btn btn-primary cancel-selected"
+                [disabled]="data.plan_name !== 'basic'"
+                 (click)="
+                    getSubscription(
+                      0,
+                      data.type,
+                      data.amount,
+                      data.plan_name,
+                      data.country,
+                      data.stripeProductID,
+                      data.stripePriceID,
+                      data.currency
+                    )
+                  ">
+                  Selected
+                  <svg stroke="currentColor" fill="currentColor" stroke-width="0" viewBox="0 0 24 24" height="1em"
+                    width="1em" xmlns="http://www.w3.org/2000/svg">
+                    <path
+                      d="M12 3c-4.625 0-8.442 3.507-8.941 8.001H10v-3l5 4-5 4v-3H3.06C3.56 17.494 7.376 21 12 21c4.963 0 9-4.037 9-9s-4.037-9-9-9z">
+                    </path>
+                  </svg>
+                </button>
+              </div>
+              <div class="position-absolute bottom-0 start-0 end-0"></div>
+            </div>
+          </div>
+        </div>
+        <!-- <div  *ngIf="data.country=='Others'"  class="col-3 col-sm-3 col-md-3 col-lg-2 myCard m-2">
+          <div class="card h-100 p-2 hover-effect">
+            <div class="card-body text-start d-flex flex-column justify-content-between">
+              <h4>{{ data.plan_name | titlecase }}</h4>
+              <p class="m-0 gst-sizing">
+                <i> {{ data.type }} pack </i>
+              </p>
+              <p class="m-0">Country: {{ data.country | titlecase }}</p>
+              <p class="m-0">Status: {{ data.status | titlecase }}</p>
+              <p>{{ data.currency | titlecase }}</p>
+              <div class="d-flex justify-content-center align-items-start flex-column mt-3">
+                <p class="price m-0 fw-bolder fs-2">${{ data.amount }}</p>
+              </div>
+              <div class="text-center mt-3 w-100" *ngIf="data._id !== subsId">
+                <button class="pd-1 fw-bold btn btn-primary w-100" (click)="
+                    getSubscription(
+                      data._id,
+                      data.type,
+                      data.amount,
+                      data.plan_name,
+                      data.paypalID
+                    )
+                  ">
+                  Subscribe
+                </button>
+              </div>
+              <div class="text-center mt-3 w-100" *ngIf="data._id === subsId">
+                <button class="pd-1 fw-bold btn btn-primary w-100 cancel-selected" (click)="
+                    getSubscription(0, data.type, data.amount, data.plan_name, data.paypalID)
+                  ">
+                  Selected
+                </button>
+              </div>
+              <div class="position-absolute bottom-0 start-0 end-0"></div>
+            </div>
+          </div>
+        </div> -->
+      </div>
+    </div>
+
+    <div *ngIf="yearlyAllData?.length != 0 && !noPlans; else donoplans"
+      class="d-flex align-items-center justify-content-center flex-wrap inside-sub-container">
+      <div  *ngFor="let data of yearlyAllData; let i = index">
+        <div class="col-3 col-sm-3 col-md-3 col-lg-2 myCard m-2" >
+          <!-- <div class="col-md-3 mb-3"></div> -->
+          <div class="card h-100 p-2 hover-effect" [class.notActive]="data.plan_name !== 'basic'">
+            <div class="card-body text-center d-flex flex-column justify-content-between"  >
+              <!-- <img src="" alt="" /> -->
+              <div *ngIf="data.plan_name != 'basic'" class="text-center">
+                <span class="tag">Coming soon</span>
+              </div>
+              <h4>{{ data.plan_name | titlecase }}</h4>
+              <p class="mb-0 text-highlight">
+                New subscribers 30 days free,
+                Cancel anytime
+              </p>
+              <div class="d-flex justify-content-center align-items-center flex-column my-3">
+                <p class="price m-0 fw-bolder fs-2">
+                  {{ data.amount | currency:data.currency?.toUpperCase() }}<sub>/yearly</sub>
+                </p>
+                <!-- <p class="m-0">Max: ${{ data.maximum }}</p> -->
+                <!-- <p class="m-0">Min: ${{ data.minimum }}</p> -->
+              </div>
+
+              <div class="col-12 col-md-12 included-sec">
+                <h6 class="text-muted text-start">
+                  What's included on {{ data.plan_name | titlecase }}
+                </h6>
+                <!-- <div class="dynamic-div" [innerHTML]="data.description"></div> -->
+                <ul class="list-group text-start">
+                  <li *ngFor="let points of data.description.split(',')" class="list-group-item">
+                    <i>✔</i>{{points.trim()}}
+                  </li>
+                </ul>
+                <!-- <ul class="list-group text-start">
+                  <li class="list-group-item"><i>✔</i>X-Ray Evaluation</li>
+                  <li class="list-group-item">
+                    <i>✔</i>AI Cavity Detection
+                  </li>
+                  <li class="list-group-item">
+                    <i>✔</i>AI Perio Detection
+                  </li>
+                </ul> -->
+              </div>
+
+              <!-- <p>{{ data.currency | titlecase }}</p> -->
+
+              <div class="text-center mt-3 w-100" *ngIf="data._id !== subsId">
+                <button class="pd-1 fw-bold btn btn-primary Subscription-btn" [disabled]="data.plan_name !== 'basic'" (click)="
+                    getSubscription(
+                      data._id,
+                      data.type,
+                      data.amount,
+                      data.plan_name,
+                      data.country,
+                      data.stripeProductID,
+                      data.stripePriceID,
+                      data.currency
+                    )
+                  ">
+                  Subscribe
+                  <svg stroke="currentColor" fill="currentColor" stroke-width="0" viewBox="0 0 24 24" height="1em"
+                    width="1em" xmlns="http://www.w3.org/2000/svg">
+                    <path
+                      d="M12 3c-4.625 0-8.442 3.507-8.941 8.001H10v-3l5 4-5 4v-3H3.06C3.56 17.494 7.376 21 12 21c4.963 0 9-4.037 9-9s-4.037-9-9-9z">
+                    </path>
+                  </svg>
+                </button>
+              </div>
+              <div class="text-center mt-3 w-100" *ngIf="data._id === subsId">
+                <button class="pd-1 fw-bold btn btn-primary cancel-selected" [disabled]="data.plan_name !== 'basic'" (click)="
+                    getSubscription(
+                      0,
+                      data.type,
+                      data.amount,
+                      data.plan_name,
+                      data.country,
+                      data.stripeProductID,
+                      data.stripePriceID,
+                      data.currency
+                    )
+                  ">
+                  Selected
+                  <svg stroke="currentColor" fill="currentColor" stroke-width="0" viewBox="0 0 24 24" height="1em"
+                    width="1em" xmlns="http://www.w3.org/2000/svg">
+                    <path
+                      d="M12 3c-4.625 0-8.442 3.507-8.941 8.001H10v-3l5 4-5 4v-3H3.06C3.56 17.494 7.376 21 12 21c4.963 0 9-4.037 9-9s-4.037-9-9-9z">
+                    </path>
+                  </svg>
+                </button>
+              </div>
+              <div class="position-absolute bottom-0 start-0 end-0"></div>
+            </div>
+          </div>
+        </div>
+        <!-- <ng-template #dothisyearly>
+        <div  *ngIf="data.country=='Others'"  class="col-3 col-sm-3 col-md-3 col-lg-2 myCard m-2">
+          <div class="card h-100 p-2 hover-effect">
+            <div class="card-body text-start d-flex flex-column justify-content-between">
+              <h4>{{ data.plan_name | titlecase }}</h4>
+              <p class="m-0 gst-sizing">
+                <i> {{ data.type }} pack </i>
+              </p>
+              <p class="m-0">Country: {{ data.country | titlecase }}</p>
+              <p class="m-0">Status: {{ data.status | titlecase }}</p>
+              <p>{{ data.currency | titlecase }}</p>
+              <div class="d-flex justify-content-center align-items-start flex-column mt-3">
+                <p class="price m-0 fw-bolder fs-2">${{ data.amount }}</p>
+              </div>
+              <div class="text-center mt-3 w-100" *ngIf="data._id !== subsId">
+                <button class="pd-1 fw-bold btn btn-primary w-100" (click)="
+                    getSubscription(
+                      data._id,
+                      data.type,
+                      data.amount,
+                      data.plan_name
+                    )
+                  ">
+                  Subscribe
+                </button>
+              </div>
+              <div class="text-center mt-3 w-100" *ngIf="data._id === subsId">
+                <button class="pd-1 fw-bold btn btn-primary w-100 cancel-selected" (click)="
+                    getSubscription(0, data.type, data.amount, data.plan_name)
+                  ">
+                  Selected
+                </button>
+              </div>
+              <div class="position-absolute bottom-0 start-0 end-0"></div>
+            </div>
+          </div>
+        </div>
+      </ng-template> -->
+      </div>
+    </div>
+    <ng-template #donoplans>
+      <div class="d-flex align-items-center justify-content-center flex-wrap inside-sub-container" *ngIf="noPlans">
+        <div>No plans available at moment!</div>
+      </div>
+    </ng-template>
+  </div>
+
+  <!-- <section class="onlyHeight">
+    <div class="owlContainer">
+    <owl-carousel-o [options]="customOptions" *ngIf="monthlyAllData.length !== 0" class="owlContainer">
+      <ng-container *ngFor="let data of monthlyAllData; let i = index" class="col-3 col-sm-3 col-md-3 col-lg-2 m-2">
+        <ng-template carouselSlide [id]="data._id">
+          <div class="card h-100 p-3 hover-effect myCard">
+            <h4>{{ data.plan_name | titlecase }}</h4>
+            <p class="m-0 gst-sizing">
+              <i> {{ data.type }} pack </i>
+            </p>
+            <div
+                class="d-flex justify-content-center align-items-start flex-column mt-3"
+            >
+              <p class="price m-0 fw-bolder fs-2">${{ data.amount }}</p>
+              <p class="m-0 mt-1 ms-2">
+                <s>${{ data.maximum }}</s>
+              </p>
+            </div>
+            <div class="text-center mt-3 w-100">
+              <button
+                class="pd-1 fw-bold btn btn-primary w-100"
+                type="button"
+                data-bs-toggle="modal"
+                data-bs-target="#exampleModalCenter"
+              >
+                Subscribe
+              </button>
+            </div>
+          </div>
+        </ng-template>
+      </ng-container>
+    </owl-carousel-o>
+    <owl-carousel-o [options]="customOptions" *ngIf="yearlyAllData.length !== 0" class="owlContainer">
+      <ng-container *ngFor="let data of yearlyAllData; let i = index" class="col-3 col-sm-3 col-md-3 col-lg-2 m-2">
+        <ng-template carouselSlide [id]="data._id">
+          <div class="card h-100 p-3 hover-effect myCard">
+            <h4>{{ data.plan_name | titlecase }}</h4>
+            <p class="m-0 gst-sizing">
+              <i> {{ data.type }} pack </i>
+            </p>
+            <div
+                class="d-flex justify-content-center align-items-start flex-column mt-3"
+            >
+              <p class="price m-0 fw-bolder fs-2">${{ data.amount }}</p>
+              <p class="m-0 mt-1 ms-2">
+                <s>${{ data.maximum }}</s>
+              </p>
+            </div>
+            <div class="text-center mt-3 w-100">
+              <button
+                class="pd-1 fw-bold btn btn-primary w-100"
+                type="button"
+                data-bs-toggle="modal"
+                data-bs-target="#exampleModalCenter"
+              >
+                Subscribe
+              </button>
+            </div>
+          </div>
+        </ng-template>
+      </ng-container>
+    </owl-carousel-o>
+  </div>
+  </section> -->
+  <div *ngIf="this.userSubscription?.length == 0 || this.buyNow == true"
+    class="d-flex justify-content-center align-items-center pricingFooter flex-column">
+    <div>
+      <span class="fontsizeTC">
+        <input type="checkbox" name="check" id="" (change)="checking($event)"
+          class="form-check-input m-0 me-2 checkbox lg-check" [(ngModel)]="checked" />
+        <span>Yes, I agree to</span>&nbsp;<u class="hand" data-bs-toggle="modal"
+          data-bs-target="#exampleModalCenter">Terms & Conditions</u>
+      </span>
+    </div>
+    <div class="do-later-checkout-btn-container float-right mt-3">
+      <button class="btn pd-1 cancel-btn fw-bold fs-2 doitlater" (click)="Logout()">
+        Do later
+      </button>
+      <button class="btn pd-1 other-btn fw-bold paynow"
+        [disabled]="subsId == 0 || !checked"
+        (click)="subscribeButtonClick()" >
+        Checkout
+      </button>
+    </div>
+  </div>
+
+  <!-- <div class="container-fluid">
+    <owl-carousel-o [options]="customOptions" class="">
+        <ng-container *ngFor="let data of yearlyAllData; let i = index">
+          <div>this</div>
+        </ng-container>
+    </owl-carousel-o>
+  </div> -->
+  <!-- <div id="carouselExample" class="carousel slide">
+    <div class="carousel-inner">
+      <div class="carousel-item active">
+        <img src="..." class="d-block w-50" alt="...">
+      </div>
+      <div class="carousel-item">
+        <img src="..." class="d-block w-50" alt="...">
+      </div>
+      <div class="carousel-item">
+        <img src="..." class="d-block w-50" alt="...">
+      </div>
+    </div>
+    <button class="carousel-control-prev" type="button" data-bs-target="#carouselExample" data-bs-slide="prev">
+      <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+      <span class="visually-hidden">Previous</span>
+    </button>
+    <button class="carousel-control-next" type="button" data-bs-target="#carouselExample" data-bs-slide="next">
+      <span class="carousel-control-next-icon" aria-hidden="true"></span>
+      <span class="visually-hidden">Next</span>
+    </button>
+  </div>
+  </div> -->
+
+  <!-- </div> -->
+
+  <!-- ! modal -->
+  <div class="modal fade modal-lg" id="exampleModalCenter" tabindex="-1" role="dialog"
+    aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-scrollable" role="document">
+      <div class="modal-content">
+        <div class="modal-header justify-content-between align-items-center">
+          <div></div>
+          <div class="emptyDiv w-logo-header-inner">
+            <img src="../../../../assets/images/arti_new.png" class="w-100" />
+          </div>
+          <!-- <h2
+            class="modal-title fw-bold d-flex justify-content-center fw-semibold"
+            id="exampleModalLongTitle"
+          >
+            Dark
+            <div class="mountain-color">Mountain</div>
+          </h2> -->
+          <i id="launch_ad" class="fa-solid fa-xmark fs-5 fontColor my" data-bs-dismiss="modal"
+            style="cursor: pointer; display: block !important"></i>
+        </div>
+        <div class="modal-body">
+          <h5>Terms & Conditions</h5>
+          <ol>
+            <li>
+              Lorem ipsum dolor sit, amet consectetur adipisicing elit.
+              Perferendis quo aspernatur
+            </li>
+            <br />
+            <li>
+              Lorem ipsum dolor sit amet consectetur adipisicing elit. Officia
+              vel molestiae ratione nam ipsam neque porro ipsum quia accusamus
+              eaque molestias assumenda blanditiis obcaecati, dolore archit
+            </li>
+            <br />
+            <li>
+              Lorem ipsum dolor sit amet consectetur adipisicing elit. Totam,
+              minima vel. Ipsum distinctio,
+            </li>
+            <br />
+            <li>
+              Lorem, ipsum dolor sit amet consectetur adipisicing elit. Repellat
+              accusantium explicabo amet soluta eum, culpa opt
+            </li>
+            <br />
+            <li>Lorem ipsum dolor sit amet consectetur adipisicing elit.</li>
+            <br />
+            <li>
+              Lorem ipsum dolor sit amet consectetur adipisicing elit. Error ea
+              ipsa ipsum, reiciendis rem aspernatur, quisquam temporibus nam
+              odio quaerat, fuga voluptate
+            </li>
+            <br />
+            <li>
+              Lorem ipsum dolor sit amet consectetur adipisicing elit. Autem
+              sapiente nemo, atque, officiis quae, aspernatur acc
+            </li>
+            <br />
+            <li>
+              Lorem ipsum dolor sit amet consectetur adipisicing elit. Odit
+              labore doloremque numquam quibusdam, voluptatum veniam architecto
+              ab autem laboriosam illo quos quam voluptas quasi!
+            </li>
+            <br />
+            <li>
+              Lorem ipsum dolor sit amet consectetur adipisicing elit. Quos
+              veniam, dignissimos expedita, veritatis ne
+            </li>
+            <br />
+            <li>
+              Lorem ipsum dolor sit amet consectetur adipisicing elit. Nisi
+              dolor commodi beatae odio.
+            </li>
+          </ol>
+          <!-- <div class="d-flex justify-content-center align-items-center mb-3">
+          <input type="checkbox" name="check" id="" class="me-2" (change)="checking($event)" class="form-check-input m-0 me-2" [checked]="checked">
+          <span>I agree to terms and conditions</span>
+        </div> -->
+          <!-- <ngx-paypal [config]="payPalConfig" *ngIf="checked"></ngx-paypal> -->
+        </div>
+        <div class="modal-footer justify-content-start">
+          <small>&#169; All rights reserved</small>
+          <!-- <button
+          type="button"
+          class="btn btn-save pd-1 fw-bold other-btn "
+        >
+          Save&nbsp;<i class="fa-sharp fa-regular fa-floppy-disk ms-2"></i>
+        </button> -->
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ! pricing modal -->
+<div class="modal fade modal-xl" id="myModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle"
+  aria-hidden="true">
+  <!-- [hidden]="IsmodelShow" -->
+  <div class="modal-dialog modal-dialog-centered modal-xl billing-modal" role="document">
+    <div class="modal-content modal-tall">
+      <div class="modal-header justify-content-between align-items-center">   
+        <!-- <svg stroke="currentColor" fill="currentColor" stroke-width="0" viewBox="0 0 512 512" height="1em" width="1em"
+          xmlns="http://www.w3.org/2000/svg">
+          <path fill="none" stroke-linecap="round" stroke-linejoin="round" stroke-width="32"
+            d="M368 368L144 144m224 0L144 368"></path>
+        </svg> -->
+      </div>
+      <i class="close fa-solid fa-xmark fs-5" style="margin-right: 10px;
+      text-align: -webkit-right;
+      cursor: pointer;" data-bs-dismiss="modal"></i>
+      <div class="modal-body px-5 py-4">
+        <div *ngIf="checked && subsId != 0" class="d-flex align-items-start body-content">
+          <div class="d-flex align-items-start flex-column sub-body-content billing-div">
+            <h5 class="text-center fw-semibold">Billing Details:</h5>
+            <form #register_form="ngForm" [formGroup]="registerForm" (change)="formChange($event)">
+              <div class="inputContainer">
+                <c-input-group class="mb-3 mt-2">
+                  <label class="form-label">First Name</label>
+                  <div class="w-100 d-flex position-relative">
+                    <span cInputGroupText class="rounded-0 rounded-start icon-position">
+                      <svg cIcon name="cilUser"></svg>
+                    </span>
+                    <input type="text" class="form-control rounded ps-5 w-100" placeholder="First Name"
+                      formControlName="first_name" maxlength="25" [readOnly]="readOnly" />
+                    <!-- <i class="fa-solid fa-user icon-position"></i> -->
+                  </div>
+                </c-input-group>
+                <c-input-group class="mb-3 mt-2 inputMargin">
+                  <label class="form-label">Last Name</label>
+                  <div class="w-100 d-flex position-relative">
+                    <span cInputGroupText class="rounded-0 rounded-start icon-position">
+                      <svg cIcon name="cilUser"></svg>
+                    </span>
+                    <input type="text" class="form-control rounded ps-5 w-100" placeholder="Last Name"
+                      formControlName="last_name" maxlength="25" [readOnly]="readOnly" />
+                    <!-- <i class="fa-solid fa-user icon-position"></i> -->
+                  </div>
+                </c-input-group>
+              </div>
+              <div class="inputContainer">
+                <c-input-group class="mb-3 mt-2">
+                  <label class="form-label">Email</label>
+                  <div class="w-100 d-flex position-relative">
+                    <span cInputGroupText class="rounded-0 rounded-start icon-position">
+                      <svg cIcon name="cilEnvelopeClosed"></svg>
+                    </span>
+                    <input type="email" class="form-control rounded ps-5 w-100" placeholder="Email ID/Username"
+                      formControlName="email" maxlength="70" readonly />
+                    <!-- <i class="fa-solid fa-envelope icon-position"></i> -->
+                  </div>
+                </c-input-group>
+                <c-input-group class="mb-3 mt-2 inputMargin">
+                  <label class="form-label">Contact Number</label>
+                  <div class="w-100 d-flex position-relative">
+                    <span cInputGroupText class="rounded-0 rounded-start icon-position">
+                      <svg cIcon name="cilSpreadsheet"></svg>
+                    </span>
+                    <input type="tel" class="form-control rounded ps-5 w-100" placeholder="Contact Number"
+                      formControlName="contact_number" (keypress)="onlyNumberKey($event)" maxlength="15"
+                      [readOnly]="readOnly" (keyup)="onchangeofthis($event)" [autofocus]="true" autofocus />
+                    <!-- <i class="fa-solid fa-lock icon-position"></i> -->
+                  </div>
+                </c-input-group>
+              </div>
+              <div class="inputContainer">
+                <c-input-group class="mb-3 mt-2">
+                  <label class="form-label">Address</label>
+                  <div class="w-100 d-flex position-relative">
+                    <span cInputGroupText class="rounded-0 rounded-start icon-position">
+                      <svg cIcon name="cilHome"></svg>
+                    </span>
+                    <input type="text" class="form-control rounded ps-5 w-100" placeholder="Address"
+                      formControlName="address1" [readOnly]="readOnly" (keyup)="onchangeofthis($event)"
+                      maxlength="100" />
+                    <!-- <i class="fa-solid fa-lock icon-position"></i> -->
+                  </div>
+                </c-input-group>
+                <c-input-group class="mb-3 mt-2 inputMargin">
+                  <label class="form-label">City</label>
+                  <div class="w-100 d-flex position-relative">
+                    <span cInputGroupText class="rounded-0 rounded-start icon-position">
+                      <svg cIcon name="cilLocationPin"></svg>
+                    </span>
+                    <input type="text" class="form-control rounded ps-5 w-100" placeholder="City" formControlName="city"
+                      [readOnly]="readOnly" (keyup)="onchangeofthis($event)" maxlength="50" />
+                    <!-- <i class="fa-solid fa-lock icon-position"></i> -->
+                  </div>
+                </c-input-group>
+              </div>
+              <div class="inputContainer">
+                <c-input-group class="mb-3 mt-2">
+                  <label class="form-label">Country</label>
+                  <div class="w-100 d-flex position-relative">
+                    <span cInputGroupText class="rounded-0 rounded-start icon-position">
+                      <svg cIcon name="cilMap"></svg>
+                    </span>
+                    <select class="form-select ps-5" aria-label="Default select example" name="country"
+                      placeholder="Country" id="country" formControlName="country" (change)="stateByCountry($event)"
+                      [(ngModel)]="countryList">
+                      <option [defaultSelected]="true" [disabled]="true" [selected]="true" [value]="countryList">
+                        {{ countryList }}
+                      </option>
+                      <!-- <option>India</option>
+                      <option>America</option>
+                      <option>Japan</option>
+                      <option>China</option> -->
+                      <option *ngFor="let country of allcountries; let i = index" value="{{ country.countryName }}">
+                        {{ country.countryName }}
+                      </option>
+                    </select>
+                    <!-- <i class="fa-solid fa-lock icon-position"></i> -->
+                  </div>
+                </c-input-group>
+                <c-input-group class="mb-3 mt-2 inputMargin">
+                  <label class="form-label">State</label>
+                  <div class="w-100 d-flex position-relative">
+                    <!-- <label class="mb-2">Password<sup>*</sup></label> -->
+                    <span cInputGroupText class="rounded-0 rounded-start icon-position">
+                      <svg cIcon name="cilLocationPin"></svg>
+                    </span>
+                    <!-- <input type="text" class="form-control rounded ps-5 w-100" placeholder="State"
+                      formControlName="state" [readOnly]="readOnly"/> -->
+                    <select class="form-select ps-5" aria-label="Default select example" name="state"
+                      placeholder="State" id="state" formControlName="state" [value]="stateList">
+                      <option [defaultSelected]="true" [selected]="true" [disabled]="true">
+                        {{ stateList }}
+                      </option>
+                      <option *ngFor="let state of allstates; let i = index" value="{{ state.name }}">
+                        {{ state.name }}
+                      </option>
+                    </select>
+                    <!-- <i class="fa-solid fa-lock icon-position"></i> -->
+                  </div>
+                </c-input-group>
+              </div>
+              <div class="inputContainer">
+                <c-input-group class="mb-3 mt-2">
+                  <label class="form-label">Zip</label>
+                  <div class="w-100 d-flex position-relative">
+                    <!-- <label class="mb-2">Password<sup>*</sup></label> -->
+                    <span cInputGroupText class="rounded-0 rounded-start icon-position">
+                      <svg cIcon name="cilNotes"></svg>
+                    </span>
+                    <input type="text" class="form-control rounded ps-5 w-100" placeholder="Zip"
+                      formControlName="pincode" (keypress)="onlyNumberKey($event)" [readOnly]="readOnly"
+                      (keyup)="onchangeofthis($event)" maxlength="10" />
+                    <!-- <i class="fa-solid fa-lock icon-position"></i> -->
+                  </div>
+                </c-input-group>
+                <c-input-group class="mb-3 mt-2 inputMargin">
+                  <label class="form-label">Registration/License Number</label>
+                  <div class="w-100 d-flex position-relative">
+                    <!-- <label class="mb-2">Password<sup>*</sup></label> -->
+                    <span cInputGroupText class="rounded-0 rounded-start icon-position">
+                      <svg cIcon name="cilSpreadsheet"></svg>
+                    </span>
+                    <input type="text" class="form-control rounded ps-5 w-100" placeholder="Registration/License Number"
+                      formControlName="license_no" [readOnly]="readOnly" (keyup)="onchangeofthis($event)"
+                      maxlength="25" />
+                    <!-- <i class="fa-solid fa-lock icon-position"></i> -->
+                  </div>
+                </c-input-group>
+              </div>
+            </form>
+          </div>
+          <div class="d-flex align-items-start flex-column sub-body-content">
+            <div class="SubscriptionDetails w-100">
+              <h5 class="w-100 text-center fw-semibold">
+                Subscription Details:
+              </h5>
+              <!-- <p class="text-center px-3">
+                Try ARTI free for 3 days, no credit card required
+              </p> -->
+              <ul class="proceed-details px-3">
+                <!-- <li
+                class="fs-6 fw-semibold d-flex justify-content-between align-items-center"
+              >
+                <span>Name:</span>&nbsp;<span>{{
+                  this.fname | titlecase
+                }} {{
+                  this.lname | titlecase
+                }}</span>
+              </li>
+              <li
+                class="fs-6 fw-semibold d-flex justify-content-between align-items-center text-wrap"
+              >
+                <span>Email:</span>&nbsp;<span>{{ this.mail }}</span>
+              </li> -->
+                <li class="fs-6 mt-3 fw-semibold d-flex justify-content-between align-items-center">
+                  <span>Plan Name:</span>&nbsp;<span>{{
+                    subsTitle | titlecase
+                    }}</span>
+                </li>
+                <li class="fs-6 mt-3 fw-semibold d-flex justify-content-between align-items-center">
+                  <span>Plan Type:</span>&nbsp;<span>{{
+                    subsType | titlecase
+                    }}</span>
+                </li>
+                <li class="fs-6 mt-3 fw-semibold d-flex justify-content-between align-items-center">
+                  <span>Price:</span>&nbsp;<span>{{ subsPrice | currency:subscurrency?.toUpperCase() }}</span>
+                </li>
+                <li class="fs-6 mt-3 pt-3 pb-2 fw-bold d-flex justify-content-between align-items-center border-top">
+                  <span>Total:</span>&nbsp;<span>{{ subsPrice | currency:subscurrency?.toUpperCase() }}</span>
+                </li>
+              </ul>
+            </div>
+            <div *ngIf="checked && subsId != 0" class="w-100">
+              <!-- *ngIf="checked && subsId != 0 && !paypalView" -->
+              <!-- (click)="payView()" -->
+              <!-- <button class="btn btn-primary pd-1 fw-bold fs-6" (click)="handleClick()" *ngIf="!paypalBtn"> -->
+              <!-- <a href="https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=HDZ3G3DH8MY7Q" target="_blank">
+              </a> -->
+              <!-- Confirm & Pay -->
+              <!-- <ngx-paypal [config]="payPalConfig" class="w-100 paypal-btn"></ngx-paypal> -->
+              <!-- <ngx-paypal [config]="payPalConfig"></ngx-paypal> -->
+              <!-- </button> -->
+              <!-- *ngIf="paypalBtn" -->
+              <!-- *ngIf="!paypalBtn; else dofalsething" -->
+              <div class="w-100">
+                <button class="btn w-100 ms-0 mt-4 pd-1 other-btn fw-bold paynow" (click)="handleClick()"
+                  *ngIf="!dots; else dothisdots">
+                  Confirm & Pay
+                  <svg stroke="currentColor" fill="currentColor" stroke-width="0" viewBox="0 0 24 24" height="1em"
+                    width="1em" xmlns="http://www.w3.org/2000/svg">
+                    <path
+                      d="M12 3c-4.625 0-8.442 3.507-8.941 8.001H10v-3l5 4-5 4v-3H3.06C3.56 17.494 7.376 21 12 21c4.963 0 9-4.037 9-9s-4.037-9-9-9z">
+                    </path>
+                  </svg>
+                </button>
+                <ng-template #dothisdots>
+                  <button class="btn w-100 ms-0 mt-4 pd-1 other-btn fw-bold paynow" [disabled]="dots">
+                    <div class="span-container">
+                      <span class="span-dots1"></span>
+                      <span class="span-dots2"></span>
+                      <span class="span-dots3"></span>
+                    </div>
+                  </button>
+                </ng-template>
+              </div>
+              <!-- <ng-template #dofalsething>
+              <div class="pay-container">
+                <ngx-paypal [config]="payPalConfig" class="w-100 paypal-btn ms-0 mt-4">Order Now</ngx-paypal>
+              </div>
+            </ng-template> -->
+            </div>
+          </div>
+        </div>
+        <div *ngIf="!checked && subsId != 0">
+          <div class="swal2-icon swal2-warning swal2-icon-show mt-1">
+            <div class="swal2-icon-content justify-content-center">!</div>
+          </div>
+          <div class="swal2-html-container">
+            Please accept the terms and conditions.
+          </div>
+        </div>
+        <div *ngIf="subsId == 0 && checked">
+          <div class="swal2-icon swal2-warning showCloseButton swal2-icon-show mt-1 ">
+            <div class="swal2-icon-content justify-content-center">!</div>
+          </div>
+          <div class="swal2-html-container">Please choose a plan.</div>
+        </div>
+        <div *ngIf="subsId == 0 && !checked">
+          <div class="swal2-icon swal2-warning swal2-icon-show  mt-1">
+            <div class="swal2-icon-content justify-content-center">!</div>
+          </div>
+          <div class="swal2-html-container">
+            Please choose a plan and accept the terms and conditions.
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

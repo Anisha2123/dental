@@ -1,0 +1,115 @@
+// .form-group input,select{
+//   // width: 90%;
+// }
+
+.form label {
+  position: relative;
+}
+
+.login-card{
+  // width: 50% !important;
+  flex: none !important;
+}
+
+@media (min-width:320px)and (max-width:990px){
+
+  .login-card{
+     width: 90% !important;
+     padding: 13px !important;
+  }
+}
+
+// sup {
+//   position: relative;
+//   top: -2px;
+//   color: red;
+//   font-weight: 800;
+//   font-size: 14px;
+// }
+
+// .register-btn {
+//   // float: right;
+//   background-color: #17a2b8;
+// }
+
+// .register-btn:hover {
+//   background-color: #138091;
+// }
+
+.btn-div {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.card {
+  width: 100%;
+  margin-top: 75px;
+}
+
+h2 {
+  font-weight: 600;
+}
+
+i {
+  position: relative;
+  top: 1px;
+}
+
+input[type="number"]::-webkit-inner-spin-button,
+input[type="number"]::-webkit-outer-spin-button {
+  -webkit-appearance: none;
+}
+
+.my-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  background-color: rgba(69, 69, 69, 0.137);
+}
+
+.icon-position {
+  position: absolute;
+  // right: 24px;
+  top: 0px;
+  bottom: 0px;
+  // color: grey;
+}
+.mountain-color {
+  color: #00d957;
+  font-size: inherit !important;
+}
+.signin {
+color: #009ace !important;
+}
+.width-card {
+  width: 30%;
+}
+
+.inputContainer {
+  display: flex;
+  // flex-wrap: wrap;
+  flex-direction: column;
+  // input {
+  //   width: 50%;
+  // }
+}
+.inputContainer input {
+  // min-width: 200px !important;
+}
+.cnf_password {
+  max-height: 37.6px;
+}
+
+@media (min-width:320px)and (max-width:900px){
+  .inputContainer {
+    flex-direction: column;
+    c-input-group {
+      margin-left: 0% !important;
+    }
+  }
+  .btn-div button {
+    width: 100% !important;
+  }
+}

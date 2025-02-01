@@ -1,0 +1,742 @@
+<!-- <section class="content">
+  <div class="container">
+    <h5 class=" mb-3 fw-bold">Upload X-Ray</h5>
+
+    <div class="row">
+      <div class="col-md-6">
+    <div class="card card-primary">
+      <div class="card-body p-4">
+
+
+        <div class="row">
+
+
+
+          <form [formGroup]="" class="form-inline" role="form">
+            <div class="row mb-2 mt-2">
+              <div class="col-md-12 form-group">
+                <label class="mb-2">Choose File</label>&nbsp;
+
+
+                <input type="file" class="file-upload mb-4 custom-file-input" (change)="uploadFile($event)" accept="image/*" multiple onclick="this.value = null"
+                [ngStyle]="fileStyle"  >
+
+
+              </div>
+              <div class="col-md-12 mt-4 form-group">
+                <button type="button" class="w-50 btn btn-primary save-btn me-2 fw-bold other-btn pd-1" (click)="evaluate()" [disabled]="hidden">Evaluate X-Ray</button>
+
+
+              </div>
+            </div>
+
+          </form>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="col-md-6">
+      <div [innerHtml]='msg' *ngIf="msg" style="color: red;"></div>
+      <div class="img-div ms-2"><img class="img-div w-100 h-100" [src]="url" *ngIf="url" >
+        </div>
+    </div>
+    </div>
+  </div>
+</section> -->
+
+
+<!-- *ngIf="subsCancelled; else doSubsRenew" -->
+<section class="content ps-2v Uploaded-X-Rays" *ngIf="!display"  (paste)="onPaste($event)">
+  <div class="row">
+    <div class="col-12">
+      <div class="row mb-4">
+      <h2 class="col mb-n5 fw-bold position-relative pt-2">
+        Upload X-Ray
+      </h2>
+      <div class="col-7 d-flex justify-content-end align-items-center">
+          <button disabled type="button" class="btn btn-save pd-1 fw-bold other-btn ms-3" (click)="openPopup()">
+            Evaluate
+          </button>
+
+          <button disabled for="inputFiles" class="btn-save pd-1 cancel-btn fw-bold other-btn ms-3">Re-Upload X-Ray</button>
+          
+          <!-- <button [disabled]="!isClipBoardImage" type="button" class="btn btn-save pd-1 fw-bold other-btn ms-3" (click)="pasteImage()">
+            Paste Image
+          </button> -->
+
+          <button disabled type="button" class="btn btn-danger pd-1 fw-bold  ms-3" (click)="backdropModal()">
+            Discard
+          </button>
+      </div>
+
+      </div>
+    </div>
+
+    <div id="file-upload-form" class="uploader">
+      <input type="text" autofocus (paste)="onPaste($event)" style="width: 1px; height: 1px; background-color: #004380; position:absolute; z-index:-1">
+      <input
+          type="file"
+          id="inputFiles"
+          name="inputFiles"
+          class="file-upload custom-file-input fw-semibold inputFile d-none"
+          (change)="uploadFile($event)"
+          accept="image/*"
+          multiple
+          onclick="this.value = null"
+          [ngStyle]="fileStyle"
+        />
+      <label for="inputFiles" id="file-drag" appDragDrop (files)="filesDropped($event)">
+        <img id="file-image" src="#" alt="Preview" class="hidden">
+        <div id="start">
+          <div class="col-12">
+            <div class="row" style="margin-bottom: 0px;">
+              <div class="col-2">              
+              </div>
+              <!-- <div class="col-1">              
+              </div> -->
+              <div class="col-1">              
+              </div>
+              <div class="col-3 " style="padding-right: 0px;">
+                <img class="mb-3 justify-content-start" src="../../../../assets/images/upload_icon.png" />
+                <p style="margin-bottom: 0px; " class=""><strong>Click to upload</strong></p>
+              </div>
+              <div class="col-2 " style="padding-left: 30px;">
+                <br>
+                <br>
+                <button style="height:auto; float: inline-start;" [disabled]="!isClipBoardImage"   type="button" class="btn btn-save pd-1 fw-bold other-btn" (click)="pasteImage()">
+                  Paste Image
+                </button>
+              </div>
+              <div class="col-1" style="padding-left: 0px; margin-left: -10px;"> <br>
+                <br><i class="fa fa-info-circle d-flex mt-3" placement="left" width="400" theme="light" delay="500" tooltip="You can use the Paste button to evaluate any image you have copied on your system's clipboard. The Paste button is activated automatically when there is an image on the clipboard. For the first time, you will be asked to allow the ARTI application to see contents on the clipboard. Please make sure the popup notifications are not disabled in your browser or you will not be able to see this notification and set access to clipboard." style="font-size: 39px; color: burlywood;" aria-hidden="true"></i></div>
+              <div class="col-1" style="padding-left: 0px;" >
+               
+              </div>
+              <div class="col-2 ">
+              </div>
+            </div>
+          </div>
+          <p class="mb-1" style="margin-top: -15px;">or drag and drop your X-Ray file here</p>
+          <p class="mb-1"><small> Maximum file size 50 MB.</small></p>&nbsp;
+          <div class="col-12">
+            <p class="fs-6 mb-1"><strong>Disclaimers:</strong>&nbsp;The final diagnosis remains the responsibility of the dentist. ARTI serves as an additional diagnostic tool, enhancing the accuracy and efficiency of dental professionals Decay is deeper then it appears. Your dentist will assess treatment accordingly.</p>
+          </div>
+        </div>
+      </label>
+    </div>
+
+    <div class="col-12 d-none">
+      <h5 class="mb-n5 fw-bold position-relative">
+        Uploaded X-Rays
+        <label
+          for="inputFiles"
+          class="inputFile btn btn-primary other-btn pd-1 fw-bold"
+          appDragDrop
+          (files)="filesDropped($event)"
+          >Upload X-Ray</label
+        >
+        <input
+          type="file"
+          id="inputFiles"
+          name="inputFiles"
+          class="file-upload custom-file-input fw-semibold inputFile d-none"
+          (change)="uploadFile($event)"
+          accept="image/*"
+          multiple
+          onclick="this.value = null"
+          [ngStyle]="fileStyle"
+        />
+      </h5>
+
+
+
+
+      <div class="table-responsive resposive-table " style="position: relative">
+        <div class="card pt-0 table-card">
+          <div class="card-body pt-0" style="overflow-x: auto">
+            <table
+              datatable
+              *ngIf="showContent"
+              datatable="ng"
+              id="datatable"
+              class="row-border hover"
+              [dtOptions]="dtOptions"
+            >
+              <thead>
+                <tr>
+                  <th class="text-nowrap" style="min-width: 150px;">File Name</th>
+                  <!-- <th class="text-nowrap">Uploaded Date</th> -->
+                  <th class="text-nowrap">Evaluated Date</th>
+                  <!-- <th>Subscription&nbsp;End Date</th> -->
+
+                  <!-- <th>Upload</th> -->
+                  <th class="text-center">Total Cavities Detected</th>
+                  <th class="text-right textCenter">Action</th>
+                </tr>
+              </thead>
+              <tbody *ngIf="allData?.length != 0 &&n==0">
+                <tr *ngFor="let data of allData; let i = index">
+                  <td>{{data?.xray_image?.path.split('/')[1]}}</td>
+                  <td>{{data?.created_at | date : 'MM/dd/yyyy'}}</td>
+                  <!-- <td>{{data?.updated_at | date : 'MM/dd/yyyy hh:mm a'}}</td> -->
+                  <!-- <td>{{data.city | titlecase}}</td> -->
+                  <!-- <td>{{data.contact_number}}</td> -->
+                  <!-- <td>{{data.subscription_details.end_date | date : 'dd/MM/yyyy'}}</td> -->
+
+                  <td class="text-right">{{data.totalCavitiesDetectedByUser}}</td>
+                  <td class="text-center">
+                    <!-- <div *ngIf="data.evaluation_status==true"> -->
+                    <button
+                      type="button"
+                      class="btn btn-primary add-btn pd-1 other-btn fw-bolder"
+                      data-bs-toggle="modal"
+                      data-bs-target="#exampleModalCenter"
+                      (click)="view(data._id)"
+                    >
+                      View
+                    </button>
+                  <!-- </div> -->
+                  <!-- <div *ngIf="data.evaluation_status==false">
+                    <button
+                      type="button"
+                      class="btn btn-primary save-btn fw-bold other-btn pd-1 text-nowrap"
+                      (click)="evaluate()"
+                      [disabled]="false"
+                    >
+                      Resume Evaluation
+                    </button>
+                  </div> -->
+                  </td>
+                  <!-- <td>
+                  <button type="button" class="btn btn-primary save-btn fw-bold other-btn pd-1" (click)="evaluate()" [disabled]="hidden">Evaluate X-Ray</button>
+                </td> -->
+                  <!-- <td>85%</td> -->
+                </tr>
+                <!-- <tr>
+
+              </tr>-->
+              </tbody>
+              <tbody *ngIf="this.allData?.length == 0 && n==0">
+                <tr>
+                  <td colspan="8" class="no-data-available text-center">
+                    No data
+                  </td>
+                  <td colspan="0" class="no-data-available p-0"></td>
+                  <td colspan="0" class="no-data-available p-0"></td>
+                  <td colspan="0" class="no-data-available p-0"></td>
+                  <!-- <td colspan="0" class="no-data-available p-0"></td> -->
+                  <!-- <td colspan="0" class="no-data-available p-0" ></td> -->
+                </tr>
+              </tbody>
+              <tbody *ngIf="user_eval?.length != 0 && n==1">
+                <tr *ngFor="let data of this.user_eval; let i = index">
+                  <td>{{data?.xray_image?.path.split('/')[1]}}</td>
+                  <td>{{data.created_at | date : 'MM/dd/yyyy'}}</td>
+                  <!-- <td>{{data?.updated_at | date : 'MM/dd/yyyy hh:mm a'}}</td> -->
+                  <!-- <td>{{data.city | titlecase}}</td> -->
+                  <!-- <td>{{data.contact_number}}</td> -->
+                  <!-- <td>{{data.subscription_details.end_date | date : 'dd/MM/yyyy'}}</td> -->
+                  <td class="text-right">{{data.totalCavitiesDetectedByUser}}</td>
+
+                  <td class="text-center">
+                    <div *ngIf="data.evaluation_status==true">
+                      <button
+                      type="button"
+                      class="btn btn-primary add-btn pd-1 other-btn fw-bolder"
+                      data-bs-toggle="modal"
+                      data-bs-target="#exampleModalCenter"
+                      (click)="view(data._id)"
+                    >
+                      View
+                    </button>
+                  </div>
+                  <div *ngIf="data.evaluation_status==false">
+                    <button
+                      type="button"
+                      class="btn btn-primary save-btn fw-bold other-btn pd-1 text-nowrap"
+                      (click)="evaluate()"
+                      [disabled]="false"
+                    >
+                      Evaluate X-Ray
+                    </button>
+                  </div>
+                  </td>
+                  <!-- <td>
+                  <button type="button" class="btn btn-primary save-btn fw-bold other-btn pd-1" (click)="evaluate()" [disabled]="hidden">Evaluate X-Ray</button>
+                </td> -->
+                  <!-- <td>85%</td> -->
+                </tr>
+                <!-- <tr>
+
+              </tr>-->
+              </tbody>
+              <tbody *ngIf="this.user_eval?.length == 0 && n==1">
+                <tr>
+                  <td colspan="8" class="no-data-available text-center">
+                    No data
+                  </td>
+                  <td colspan="0" class="no-data-available p-0"></td>
+                  <td colspan="0" class="no-data-available p-0"></td>
+                  <td colspan="0" class="no-data-available p-0"></td>
+                  <!-- <td colspan="0" class="no-data-available p-0"></td> -->
+                  <!-- <td colspan="0" class="no-data-available p-0" ></td> -->
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  
+<div class="table-responsive resposive-table mb-3" style="position: relative">
+  <div class="col-12">
+    <div class="row mx-0 my-4">
+      <h2 class="mb-0 col fw-bold position-relative pt-2">Evaluation X-Rays</h2>
+    </div>
+  </div>
+
+  <div class="card pt-0 mb-2  table-card">
+    <div class="card-body pt-0 px-0" style="overflow-x: auto">
+      <table
+        datatable
+        *ngIf="showContent"
+        datatable="ng"
+        id="datatable"
+        class="row-border hover"
+        [dtOptions]="dtOptions"
+      >
+        <thead>
+          <tr>
+            <th class="text-nowrap" style="min-width: 150px;">Patient Name</th>
+            <th class="text-nowrap">Phone Number</th>
+            <th class="text-nowrap">Email</th>
+            <th class="text-nowrap">Patient Id</th>
+            <th class="text-nowrap">Evaluated Date</th>
+            <!-- <th>Upload</th> -->
+            <!-- <th class="text-center">Total Cavities Detected</th> -->
+            <th class="text-center textCenter">Action</th>
+          </tr>
+        </thead>
+        <tbody *ngIf="allData?.length != 0 &&n==0">
+          <tr *ngFor="let data of allData; let i = index">
+            <td>{{data?.patient_id?.first_name}} {{data?.patient_id?.last_name}}</td>
+            <td>{{data?.patient_id?.contact_number}}</td>
+            <td>{{data?.patient_id?.email}}</td>
+            <td>{{data?.patient_id?.patient_unique_id}}</td>
+            <!-- <td>{{data?.xray_image?.path.split('/')[1]}}</td> -->
+            <td>{{data?.created_at | date : 'MM/dd/yyyy'}}</td>
+            <!-- <td>{{data?.updated_at | date : 'MM/dd/yyyy hh:mm a'}}</td> -->
+            <!-- <td>{{data.city | titlecase}}</td> -->
+            <!-- <td>{{data.contact_number}}</td> -->
+            <!-- <td>{{data.subscription_details.end_date | date : 'dd/MM/yyyy'}}</td> -->
+
+            <!-- <td class="text-center">{{data.totalCavitiesDetectedByUser}}</td> -->
+            <td class="text-center">
+              <!-- <div *ngIf="data.evaluation_status==true"> -->
+              <button
+                type="button"
+                class="btn btn-primary add-btn pd-1 other-btn fw-bolder"
+                data-bs-toggle="modal"
+                data-bs-target="#exampleModalCenter"
+                (click)="view(data._id)"
+              >
+              View Details
+              </button>
+            <!-- </div> -->
+            <!-- <div *ngIf="data.evaluation_status==false">
+              <button
+                type="button"
+                class="btn btn-primary save-btn fw-bold other-btn pd-1 text-nowrap"
+                (click)="evaluate()"
+                [disabled]="false"
+              >
+                Resume Evaluation
+              </button>
+            </div> -->
+            </td>
+            <!-- <td>
+            <button type="button" class="btn btn-primary save-btn fw-bold other-btn pd-1" (click)="evaluate()" [disabled]="hidden">Evaluate X-Ray</button>
+          </td> -->
+            <!-- <td>85%</td> -->
+          </tr>
+          <!-- <tr>
+
+        </tr>-->
+        </tbody>
+        <tbody *ngIf="this.allData?.length == 0 && n==0">
+          <tr>
+            <td colspan="8" class="no-data-available text-center">
+              No data
+            </td>
+            <td colspan="0" class="no-data-available p-0"></td>
+            <td colspan="0" class="no-data-available p-0"></td>
+            <td colspan="0" class="no-data-available p-0"></td>
+            <!-- <td colspan="0" class="no-data-available p-0"></td> -->
+            <!-- <td colspan="0" class="no-data-available p-0" ></td> -->
+          </tr>
+        </tbody>
+        <tbody *ngIf="user_eval?.length != 0 && n==1">
+          <tr *ngFor="let data of this.user_eval; let i = index">
+            <td>{{data?.xray_image?.path.split('/')[1]}}</td>
+            <td>{{data.created_at | date : 'MM/dd/yyyy'}}</td>
+            <!-- <td>{{data?.updated_at | date : 'MM/dd/yyyy hh:mm a'}}</td> -->
+            <!-- <td>{{data.city | titlecase}}</td> -->
+            <!-- <td>{{data.contact_number}}</td> -->
+            <!-- <td>{{data.subscription_details.end_date | date : 'dd/MM/yyyy'}}</td> -->
+            <td class="text-center">{{data.totalCavitiesDetectedByUser}}</td>
+
+            <td class="text-right">
+              <div *ngIf="data.evaluation_status==true">
+                <button
+                type="button"
+                class="btn btn-primary add-btn pd-1 other-btn fw-bolder"
+                data-bs-toggle="modal"
+                data-bs-target="#exampleModalCenter"
+                (click)="view(data._id)"
+              >
+              View Details
+              </button>
+            </div>
+            <div *ngIf="data.evaluation_status==false">
+              <button
+                type="button"
+                class="btn btn-primary save-btn fw-bold other-btn pd-1 text-nowrap"
+                (click)="evaluate()"
+                [disabled]="false"
+              >
+                Evaluate X-Ray
+              </button>
+            </div>
+            </td>
+            <!-- <td>
+            <button type="button" class="btn btn-primary save-btn fw-bold other-btn pd-1" (click)="evaluate()" [disabled]="hidden">Evaluate X-Ray</button>
+          </td> -->
+            <!-- <td>85%</td> -->
+          </tr>
+          <!-- <tr>
+
+        </tr>-->
+        </tbody>
+        <tbody *ngIf="this.user_eval?.length == 0 && n==1">
+          <tr>
+            <td colspan="8" class="no-data-available text-center">
+              No data
+            </td>
+            <td colspan="0" class="no-data-available p-0"></td>
+            <td colspan="0" class="no-data-available p-0"></td>
+            <td colspan="0" class="no-data-available p-0"></td>
+            <!-- <td colspan="0" class="no-data-available p-0"></td> -->
+            <!-- <td colspan="0" class="no-data-available p-0" ></td> -->
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>
+
+  <div class="row sec-II">
+    <div class="col-12 col-md-5">
+      <img src="../../../../assets/images/welcome_to_art.jpg" class="img-fluid rounded" />
+    </div>
+    <div class="col-12 col-md-7">
+      <h2 class="fw-bold mb-2">
+        <small>4eDentalAI</small> <br>
+        Welcome Arti is here to assist the doctor
+      </h2>
+      <p>Artifical Intelligence is here to help identify dental disease. Your dentists is using every tool available to deliver top care to all patients.</p>
+
+      <div class="row">
+        <div class="col-12 col-md-4">
+          <img src="../../../../assets/images/X-Ray-Evaluated.png"/>
+          <h6>Advanced Al X-ray Analysis         </h6>
+          <p>Boost diagnostic accuracy with Al-powered identification of dental issues.</p>
+        </div>
+        <div class="col-12 col-md-4">
+          <img src="../../../../assets/images/X-Ray-Evaluated.png"/>
+          <h6>Objective Second Opinion </h6>
+          <p>Increase patient trust with an unbiased, data-driven diagnosis.</p>
+        </div>
+        <div class="col-12 col-md-4">
+          <img src="../../../../assets/images/X-Ray-Evaluated.png"/>
+          <h6>Cutting-Edge Technology</h6>
+          <p>Elevate your practice's reputation with ARTIS innovative solutions.</p>
+        </div>
+      </div>
+    </div>
+    <!-- <div class="col-12">
+      <h6>Disclaimers </h6>
+      <p>The final diagnosis remains the responsibility of the dentist. ARTI serves as an additional diagnostic tool, enhancing the accuracy and efficiency of dental professionals Decay is deeper then it appears. Your dentist will assess treatment accordingly.</p>
+    </div> -->
+  </div>
+</section>
+
+<section class="content ps-2v Uploaded-X-Rays" *ngIf="display">
+  <div class="row">
+    <div class="col-12">
+      <div class="row mb-4">
+      <h2 class="col mb-n5 fw-bold position-relative pt-2">
+        Uploaded X-Ray
+      </h2>
+      <div class="col-7 d-flex justify-content-end align-items-center">
+        <button type="button" class="btn btn-save pd-1 fw-bold other-btn ms-3" (click)="openPopup()">
+          Evaluate
+        </button>
+        <input
+          type="file"
+          id="inputFiles"
+          name="inputFiles"
+          class="file-upload custom-file-input fw-semibold inputFile d-none"
+          (change)="uploadFile($event)"
+          accept="image/*"
+          multiple
+          onclick="this.value = null"
+          [ngStyle]="fileStyle"
+        />
+        <label for="inputFiles" class="btn-save pd-1 cancel-btn fw-bold other-btn ms-3">Re-Upload X-Ray</label>
+          <!-- <button type="button" class="btn btn-save pd-1 fw-bold other-btn ms-3" (click)="handleSave()">
+            Save&nbsp;<i class="fa-sharp fa-regular fa-floppy-disk ms-2"></i>
+          </button> -->
+
+          <button type="button" class="btn btn-danger pd-1 fw-bold  ms-3" (click)="backdropModal()">
+            Discard
+          </button>
+      </div>
+
+      </div>
+    </div>
+  </div>
+  <!-- center - my-0 mx-auto -->
+  <div class="uploaded-img mb-3 w-50">
+    <img src={{url}} alt="" class="img-fluid img-width">
+  </div>
+  <div class="row sec-II">
+
+    <div class="col-12">
+      <h6>Disclaimers: </h6>
+          <p>The final diagnosis remains the responsibility of the dentist. ARTI serves as an additional diagnostic tool, enhancing the accuracy and efficiency of dental professionals Decay is deeper then it appears. Your dentist will assess treatment accordingly.</p>
+    </div>
+  </div>
+</section>
+
+
+
+
+
+
+
+
+  <!-- <div class="backdrop" *ngIf="display">
+    <div class="modal-dialog modal-dialog-centered modal-lg sub-backdrop-container" role="document">
+      <div class="modal-content rounded-3" appDragDrop
+      (files)="filesDropped($event)">
+        <div class="modal-header backdrop-header">
+          <h5 class="m-0 modal-title fw-bold">
+            View Uploaded Image
+          </h5>
+          <i
+            class="fa-solid fa-xmark fs-5"
+            style="cursor: pointer;"
+            (click)="backdropModal()"
+            title="Close"
+          ></i>
+        </div>
+        <div class="modal-body backdrop-body">
+        -- <img [src]="renderImage(this.uploadedXray)" alt="" class="w-100" >
+          <img src={{url}} alt="" class="img-fluid img-height">
+        </div>
+        <div class="modal-footer backdrop-footer">
+          <label for="inputFiles" class="btn btn-primary other-btn pd-1 fw-bold re-upload-xray"
+            >Re-Upload X-Ray</label
+          >
+          -- <button type="button" class="btn btn-save pd-1 fw-bold other-btn ms-3" (click)="handleSave()">
+            Save&nbsp;<i class="fa-sharp fa-regular fa-floppy-disk ms-2"></i>
+          </button> --
+          <button type="button" class="btn btn-save pd-1 fw-bold other-btn ms-3" (click)="saveNdEval()">
+            Evaluate
+          </button>
+          <button type="button" class="btn btn-save pd-1 cancel-btn fw-bold other-btn ms-3" (click)="backdropModal()">
+            Discard
+          </button>
+        </div>
+      </div>
+    </div>
+  </div> -->
+  <!-- <div class="backdrop" *ngIf="display">
+    <div class="sub-backdrop-container w-100 container-fluid">
+      <div class="backdrop-header w-100 d-flex justify-content-between align-items-center">
+        <h4 class="fw-bold m-0">
+          View Uploaded Image
+        </h4>
+        <i
+          class="fa-solid fa-xmark fs-5"
+          style="cursor: pointer;"
+          (click)="backdropModal()"
+          title="Close"
+        ></i>
+      </div>
+      <div class="backdrop-body col-12">
+        <img src={{url}} alt="" class="img-fluid" >
+      </div>
+      <div class="backdrop-footer w-100 d-flex justify-content-end">
+        <label for="inputFiles" class="btn btn-primary other-btn pd-1 fw-bold re-upload-xray"
+          >Re-Upload X-Ray</label
+        >
+        <button type="button" class="btn btn-save pd-1 fw-bold other-btn ms-3" (click)="handleSave()">
+          Save&nbsp;<i class="fa-sharp fa-regular fa-floppy-disk ms-2"></i>
+        </button>
+      </div>
+    </div>
+  </div> -->
+
+<!-- <ng-template #doSubsRenew>
+  <section class="content ps-2">
+    <div class="row">
+      <div class="col-12">
+        <h3>Your subscription is expired.</h3><span [routerLink]="'/pricing/'+id" class="renew-subs">Click Here to renew your subscription.</span>
+      </div>
+    </div>
+  </section>
+</ng-template> -->
+
+<!-- <div class="backdrop" [ngStyle]="{ 'display': display }"></div>
+  <div
+    class="modal fade modal-lg"
+    id="exampleModalCenter"
+    tabindex="-1"
+    role="dialog"
+    aria-labelledby="exampleModalCenterTitle"
+    aria-hidden="true"
+    [ngStyle]="{'display':display}"
+  >
+    <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title fw-bold" id="exampleModalLongTitle">
+            View Uploaded Image
+          </h5>
+        </div>
+        <div class="modal-body">
+          <div class="modal-dialog">
+            <div class="modal-content">
+            <div class="modal-header">
+              <h1 class="modal-title fs-5" id="exampleModalLabel">Modal title</h1>
+              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body forzIndex">
+              <img
+                src="../../../../assets/images/xray.jpg"
+                alt=""
+                width="100%"
+              />
+              <div class="mt-4">
+                <span class="fw-bold me-4">Re-upload:</span>
+                <label for="inputFiles1" class="btn btn-primary other-btn pd-1 fw-bold" style="z-index: 100;">Re-Upload</label>
+                <input type="file" id="inputFiles1" name="inputFiles1" class="file-upload custom-file-input fw-semibold inputFile" (change)="uploadFile($event)" accept="image/*" multiple onclick="this.value = null" [ngStyle]="fileStyle" style="z-index: 100;">
+                <input type="file">
+              </div>
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+              <button type="button" class="btn btn-primary">Save changes</button>
+            </div>
+            </div>
+          </div>
+        </div>
+        <div class="modal-footer">
+          <label for="inputFiles" class="btn btn-primary other-btn pd-1 fw-bold"
+            >Re-Upload</label
+          >
+          <button  id="launch_ad" type="button" class="btn btn-secondary cancel-btn fw-bold pd-1 " data-bs-dismiss="modal">
+          Close
+        </button>
+          <button type="button" class="btn btn-save pd-1 fw-bold other-btn">
+            Save&nbsp;<i class="fa-sharp fa-regular fa-floppy-disk ms-2"></i>
+          </button>
+        </div>
+      </div>
+    </div>
+  </div> -->
+
+
+  <div *ngIf="isPopupVisible" class="popup" (click)="closePopup()">
+    <div class="popup-content" (click)="$event.stopPropagation()">
+      <i class="fa-solid fa-xmark fs-5 x-mark close " (click)="closePopup()" style="cursor: pointer"></i>
+      <p class="pt">Patient Details</p>
+      <!-- <h5 class="mb-n5 fw-bold position-relative" style="color: black !important;">
+        Patient Details</h5> -->
+      <div class="row">
+        <div class="row mb-3 mt-3">
+          <div class="col-md-4 form-group">
+            <label class="mb-2">First Name <span class="required"></span></label>
+            <div class="w-100 d-flex position-relative">
+              <span cInputGroupText class="rounded-0 rounded-start icon-position">
+                <svg cIcon name="cilUser"></svg>
+              </span>
+              <input type="text" placeholder="Enter First Name"   
+                class="form-control rounded ps-5 w-100" maxlength="25" [(ngModel)]="this.first_name"  />
+            </div>
+
+          </div>
+          <div class="col-md-4 form-group">
+            <label class="mb-2">Last Name <span class="required"></span></label>
+            <div class="w-100 d-flex position-relative">
+              <span cInputGroupText class="rounded-0 rounded-start icon-position">
+                <svg cIcon name="cilUser"></svg>
+              </span>
+              <input type="text" placeholder="Enter Last Name" 
+                class="form-control rounded ps-5 w-100" maxlength="25" [(ngModel)]="this.last_name"  />
+            </div>
+          </div>
+          <div class=" col-md-4 form-group">
+            <label for="email" class="mb-2">Email <span class="required"></span></label>
+            <input type="email" id="email" class="form-control" placeholder="Enter Email" [(ngModel)]="this.email"  />
+            
+          </div>
+        </div>
+        <div class="row mb-2"></div>
+        <div class="row mb-3">
+          <div class="col-md-4 form-group">
+            <label class="mb-2">Contact Number <span class="required"></span></label>
+            <div class="w-100 d-flex position-relative">
+              <span cInputGroupText class="rounded-0 rounded-start icon-position">
+                <!-- <svg cIcon name="cilUser"></svg> -->
+                <i class="cil-phone"></i>
+              </span>
+              <input type="tel" placeholder="Enter Contact Number"
+                class="form-control rounded ps-5 w-100" (keypress)="onlyNumberKey($event)" [(ngModel)]="this.contact_number" />
+            </div>
+          </div>
+         <div class="col-md-4 form-group">
+            <label class="mb-2">Date OF Birth <span class="required"></span></label>
+            <div class="w-100 d-flex position-relative">
+              <span cInputGroupText class="rounded-0 rounded-start icon-position">
+                <svg cIcon name="cilCalendar"></svg>
+              </span>
+              <input type="date"  max
+              ="{{ today
+              |
+              date
+              :'yyyy-MM-dd' }}"  class="form-control rounded ps-5 w-100" [(ngModel)]="this.DOB"  />
+            </div>
+          </div>
+        </div>
+        <div class="col-md-4 btn-div">
+          <button type="submit" class="btn btn-primary save-btn ms-2 mt-2 pd-1 other-btn fw-bolder me-3" (click)="onsumbit()">
+            Save <svg stroke="currentColor" fill="#fff" stroke-width="0" viewBox="0 0 24 24" height="1em" width="1em"
+              xmlns="http://www.w3.org/2000/svg">
+              <path
+                d="M12 3c-4.625 0-8.442 3.507-8.941 8.001H10v-3l5 4-5 4v-3H3.06C3.56 17.494 7.376 21 12 21c4.963 0 9-4.037 9-9s-4.037-9-9-9z">
+              </path>
+            </svg>
+          </button>
+          <button type="button" class="btn btn-primary save-btn mt-2 cancel-btn pd-1 other-btn fw-bolder"
+            (click)="closePopup()">
+            Close
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>

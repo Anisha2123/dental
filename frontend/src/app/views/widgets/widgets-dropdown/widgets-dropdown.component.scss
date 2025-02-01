@@ -1,0 +1,43 @@
+.color {
+  color: #00d957;
+}
+
+.rotate svg {
+  transform: rotate(45deg);
+}
+
+.myclass div {
+  display: flex !important;
+  // background-color: aqua;
+}
+.mtop{
+  margin-top:1.7rem
+}
+.image{
+  height: 60px !important;
+  // position: absolute;
+  // right: 5%;
+  // top: 31%;
+  color: rgba(0,0,0,.1);
+  font-size: 55px !important;
+  opacity: 0.4;
+}
+.my{
+  cursor: pointer;
+}
+.title-pos {
+  position: absolute;
+  bottom: 0%;
+  left: 0%;
+  right: 0%;
+  background-color: rgba(0,0,0,.1);
+}
+
+.min-h {
+  height: 145px;
+  cursor: pointer;
+}
+
+.div-height {
+  height: 75px;
+}

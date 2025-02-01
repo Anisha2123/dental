@@ -1,0 +1,30 @@
+<div class="container-fluid min-vh-100 bg m-0 my-container position-relative">
+  <div class="sub-container">
+    <div class="emptyDiv">
+      <ul class="logo">
+        <li class="w-logo-header">
+          <a class="nav-link p-0">
+            <img src="../../../../assets/images/arti_new.png" class="w-100" />
+          </a>
+        </li>
+      </ul>
+    </div>
+    <div class="text mt-2" *ngIf="payment_status == 'success'; else dothat">
+      <h2>Payment successful.</h2>
+    </div>
+    <ng-template #dothat>
+      <div class="text mt-2">
+        <h2>Payment failed.</h2>
+      </div>
+    </ng-template>
+    <div>
+      <ngx-spinner
+      bdColor="rgba(0, 0, 0, 0.8)"
+        template="<img  src='./assets/images/loader.gif' height='150px'>"
+        color="#fff"
+        [fullScreen]="true"
+        loadingText=""
+      ></ngx-spinner>
+    </div>
+  </div>
+</div>

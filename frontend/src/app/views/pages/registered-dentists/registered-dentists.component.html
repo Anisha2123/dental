@@ -1,0 +1,193 @@
+<section class="content ps-2">
+  <div class="row">
+    <div class="col-12">
+      <div class="col head-div position-relative">
+        <!-- <h5 class="mb-n5 fw-bold">Subscription Plans</h5> -->
+        <!-- <button
+          type="button"
+          class="btn btn-primary add-btn pd-1 other-btn fw-bolder"
+          data-bs-toggle="modal"
+          data-bs-target="#exampleModalCenter"
+          (click)="openModal(null)"
+        >
+          Add New Plan
+        </button> -->
+      </div>
+      <!-- <h5 class="mb-n5 fw-bold">Registered Dentists</h5> -->
+      <div class="table-responsive resposive-table" style="position: relative">
+        <div class="col-12">
+          <div class="row mx-0 my-4">
+            <h2 class="mb-0 col fw-bold position-relative pt-2">
+              Registered Dentists
+            </h2>
+          </div>
+        </div>
+        <div class="card pt-0 table-card">
+          <div class="card-body" style="overflow-x: auto">
+            <table
+              datatable
+              *ngIf="showContent"
+              datatable="ng"
+              id="datatable"
+              class="row-border hover"
+              [dtOptions]="dtOptions"
+            >
+              <thead>
+                <tr>
+                  <th class="text-nowrap">Dentist Name</th>
+                  <th>License Number</th>
+                  <th>Accuracy</th>
+                  <th>City</th>
+
+                  <th class="text-nowrap">Subscription End Date</th>
+                  <!-- <th class="text-right">Upload</th> -->
+                  <th class="text-right">Evaluations</th>
+                  <th class="text-right">Corrected</th>
+                  <th class="text-center textCenter">Action</th>
+                </tr>
+              </thead>
+              <tbody *ngIf="allData?.length != 0 && this.n == undefined">
+                <tr *ngFor="let user of allData; let i = index">
+                  <td>
+                    {{ user.first_name | titlecase }}
+                    {{ user.last_name | titlecase }}
+                  </td>
+                  <td>{{ user.license_no }}</td>
+                  <td>{{ user.accuracy || 0 }}%</td>
+                  <td>{{ user.city | titlecase }}</td>
+
+                  <td class="">
+                    {{
+                      user.subscription_details.end_date | date : "MM/dd/yyyy"
+                    }}
+                  </td>
+                  <!-- <td class="text-right">{{user.noOfXrayUploaded}}</td> -->
+                  <td class="text-right">{{ user.noOfXrayEvaluated }}</td>
+                  <td class="text-right">{{ user.noOfXrayMarkedByAdmin }}</td>
+                  <td class="text-center">
+                    <!-- <div class="d-flex align-items-center"> -->
+                    <!-- <button
+                        type="button"
+                        class="btn btn-danger edit"
+                        title="Edit"
+                        [routerLink]="'/dentist-profile/'+user._id"
+                      ><i class="fa-regular fa-pen-to-square mt-2"></i></button> -->
+                    <button
+                      title="View"
+                      type="button"
+                      class="btn btn-primary pd-1 view-btn fw-bolder"
+                      [routerLink]="'/dentist-profile/' + user._id"
+                    >
+                      Edit
+                    </button>
+                    <!-- </div> -->
+                  </td>
+                </tr>
+                <!-- <tr>
+
+                </tr>-->
+              </tbody>
+              <tbody *ngIf="pendingUser?.length != 0 && this.n == 'pending'">
+                <tr *ngFor="let user of pendingUser; let i = index">
+                  <td>
+                    {{ user.first_name | titlecase }}
+                    {{ user.last_name | titlecase }}
+                  </td>
+                  <td>{{ user.license_no }}</td>
+                  <td>{{ user.accuracy || 0 }}%</td>
+                  <td>{{ user.city | titlecase }}</td>
+
+                  <td class="">
+                    {{
+                      user.subscription_details.end_date | date : "MM/dd/yyyy"
+                    }}
+                  </td>
+                  <!-- <td class="text-right">{{user.noOfXrayUploaded}}</td> -->
+                  <td class="text-right">{{ user.noOfXrayEvaluated }}</td>
+                  <td class="text-right">{{ user.noOfXrayMarkedByAdmin }}</td>
+                  <td class="text-center">
+                    <!-- <div class="d-flex align-items-center"> -->
+                    <!-- <button
+                        type="button"
+                        class="btn btn-danger edit"
+                        title="Edit"
+                        [routerLink]="'/dentist-profile/'+user._id"
+                      ><i class="fa-regular fa-pen-to-square mt-2"></i></button> -->
+                    <button
+                      title="View"
+                      type="button"
+                      class="btn btn-primary pd-1 view-btn fw-bolder"
+                      [routerLink]="'/dentist-profile/' + user._id"
+                    >
+                      Edit
+                    </button>
+                    <!-- </div> -->
+                  </td>
+                </tr>
+                <!-- <tr>
+
+                </tr>-->
+              </tbody>
+              <tbody *ngIf="completeUser?.length != 0 && this.n == 'complete'">
+                <tr *ngFor="let user of completeUser; let i = index">
+                  <td>
+                    {{ user.first_name | titlecase }}
+                    {{ user.last_name | titlecase }}
+                  </td>
+                  <td>{{ user.license_no }}</td>
+                  <td>{{ user.accuracy || 0 }}%</td>
+                  <td>{{ user.city | titlecase }}</td>
+
+                  <td class="">
+                    {{
+                      user.subscription_details.end_date | date : "MM/dd/yyyy"
+                    }}
+                  </td>
+                  <!-- <td class="text-right">{{user.noOfXrayUploaded}}</td> -->
+                  <td class="text-right">{{ user.noOfXrayEvaluated }}</td>
+                  <td class="text-right">{{ user.noOfXrayMarkedByAdmin }}</td>
+                  <td class="text-center">
+                    <!-- <div class="d-flex align-items-center"> -->
+                    <!-- <button
+                        type="button"
+                        class="btn btn-danger edit"
+                        title="Edit"
+                        [routerLink]="'/dentist-profile/'+user._id"
+                      ><i class="fa-regular fa-pen-to-square mt-2"></i></button> -->
+                    <button
+                      title="View"
+                      type="button"
+                      class="btn btn-primary pd-1 view-btn fw-bolder"
+                      [routerLink]="'/dentist-profile/' + user._id"
+                    >
+                      Edit
+                    </button>
+                    <!-- </div> -->
+                  </td>
+                </tr>
+                <!-- <tr>
+
+                </tr>-->
+              </tbody>
+              <tbody *ngIf="this.allData?.length == 0">
+                <tr>
+                  <td colspan="8" class="no-data-available text-center">
+                    No data
+                  </td>
+                  <td colspan="0" class="no-data-available p-0"></td>
+                  <td colspan="0" class="no-data-available p-0"></td>
+                  <td colspan="0" class="no-data-available p-0"></td>
+                  <td colspan="0" class="no-data-available p-0"></td>
+                  <td colspan="0" class="no-data-available p-0"></td>
+                  <td colspan="0" class="no-data-available p-0"></td>
+                  <td colspan="0" class="no-data-available p-0"></td>
+                  <!-- <td colspan="0" class="no-data-available p-0" ></td> -->
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

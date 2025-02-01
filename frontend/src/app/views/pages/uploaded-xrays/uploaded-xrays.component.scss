@@ -1,0 +1,30 @@
+.datatables-wrapper .dt-buttons .dt-button{
+    position:relative!important;
+    float: right !important;
+    }
+    tr .btn{
+        // height: 28px;
+        // width: 28px;
+    }
+    .btn i{
+        font-size: 16px;
+
+         position: relative;
+         top: -3px;
+        text-align: center;
+        line-height: 1
+    }
+
+    * {
+      color: #043049;
+    }
+
+.paddingForCenter {
+  padding-left: 5.25%;
+}
+.checkbox1{
+  pointer-events: none;
+}
+.head-div{
+  margin-bottom: -2rem;
+}

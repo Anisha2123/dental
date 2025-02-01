@@ -1,0 +1,105 @@
+<div class="container-fluid login-register">
+<div class="logo w-logo-header "><img src="../../../../assets/images/arti_new.png" class="w-100"/></div>
+    <div class="row justify-content-center bg my-container min-vh-100 d-flex flex-row align-items-center">
+      <div class="col-md-6 min-vh-100 d-flex flex-row align-items-center">
+        <c-card-group class="col-12 d-flex justify-content-center card-group">
+          <c-card class="w-100 mx-2 wp-card card">
+            <c-card-body>
+              <form cForm [formGroup]="loginForm" (ngSubmit)="login()">
+                <!-- <h2 class="d-flex justify-content-center mb-4 fw-semibold">
+                  Dark<div class="mountain-color">Mountain
+                  </div>
+                </h2> -->
+                <h2 class="d-flex justify-content-center mb-0 fw-semibold">
+                  Welcome
+                </h2>
+                <p class="text-center heading-sub mb-4 pb-2">Please enter your details for login</p>
+
+               <!-- <p class="text-medium-emphasis">Sign In to your account</p>-->
+                <c-input-group class="mb-3 input-group">
+                  <label class="form-label">Email</label>
+                  <div class="d-flex position-relative w-100">
+                    <span cInputGroupText class="rounded-0 rounded-start icon-position">
+                      <svg stroke="currentColor" fill="currentColor" stroke-width="0" viewBox="0 0 1024 1024" height="1em" width="1em" xmlns="http://www.w3.org/2000/svg"><path d="M928 160H96c-17.7 0-32 14.3-32 32v640c0 17.7 14.3 32 32 32h832c17.7 0 32-14.3 32-32V192c0-17.7-14.3-32-32-32zm-40 110.8V792H136V270.8l-27.6-21.5 39.3-50.5 42.8 33.3h643.1l42.8-33.3 39.3 50.5-27.7 21.5zM833.6 232L512 482 190.4 232l-42.8-33.3-39.3 50.5 27.6 21.5 341.6 265.6a55.99 55.99 0 0 0 68.7 0L888 270.8l27.6-21.5-39.3-50.5-42.7 33.2z"></path></svg>
+
+                    </span>
+                    <input autoComplete="username" cFormControl placeholder="Enter Email"
+                    formControlName="email"
+                    type="email"
+                    class="form-control rounded ps-5 w-100"
+                    />
+                  </div>
+                </c-input-group>
+                <c-input-group class="mb-4">
+                  <label class="form-label">Password</label>
+                  <div class="d-flex position-relative w-100">
+                    <span cInputGroupText class="rounded-0 rounded-start icon-position">
+                      <svg font-Size="20px" stroke="currentColor" fill="currentColor" stroke-width="0" viewBox="0 0 16 16" height="1em" width="1em" xmlns="http://www.w3.org/2000/svg"><path d="M0 8a4 4 0 0 1 7.465-2H14a.5.5 0 0 1 .354.146l1.5 1.5a.5.5 0 0 1 0 .708l-1.5 1.5a.5.5 0 0 1-.708 0L13 9.207l-.646.647a.5.5 0 0 1-.708 0L11 9.207l-.646.647a.5.5 0 0 1-.708 0L9 9.207l-.646.647A.5.5 0 0 1 8 10h-.535A4 4 0 0 1 0 8zm4-3a3 3 0 1 0 2.712 4.285A.5.5 0 0 1 7.163 9h.63l.853-.854a.5.5 0 0 1 .708 0l.646.647.646-.647a.5.5 0 0 1 .708 0l.646.647.646-.647a.5.5 0 0 1 .708 0l.646.647.793-.793-1-1h-6.63a.5.5 0 0 1-.451-.285A3 3 0 0 0 4 5z"></path><path d="M4 8a1 1 0 1 1-2 0 1 1 0 0 1 2 0z"></path></svg>
+                    </span>
+                    <input
+                      autoComplete="current-password"
+                      formControlName="password"
+                      class="form-control rounded ps-5 w-100"
+                      placeholder="Enter Password"
+                      type="password"
+                    />
+                  </div>
+                </c-input-group>
+
+                <c-col class="text-right mb-3">
+                  <a routerLink="/forgot-password" class="text-right signup fw-semibold">Forgot Password?</a>
+                 </c-col>
+
+                 <c-row>
+                  <c-col >
+                    <app-button cButton class="btn btn-primary btn-block mb-4 p-2 fw-bold" color="primary" [type]="'submit'" (click)="login()"
+                    loading="isAuthLoading" (window:keypress)="onSomeAction($event)">
+                      Login <svg stroke="currentColor" fill="currentColor" stroke-width="0" viewBox="0 0 24 24" height="1em" width="1em" xmlns="http://www.w3.org/2000/svg"><path d="M12 3c-4.625 0-8.442 3.507-8.941 8.001H10v-3l5 4-5 4v-3H3.06C3.56 17.494 7.376 21 12 21c4.963 0 9-4.037 9-9s-4.037-9-9-9z"></path></svg>
+                    </app-button>
+
+                  </c-col>
+                </c-row>
+                <c-row>
+                  <c-col class="text-center">Don't have an account ?
+                   <a routerLink="/register" class="signup fw-semibold">Sign Up</a>
+
+                  </c-col>
+                </c-row>
+                <c-row>
+
+                </c-row>
+               <!-- <c-row>
+                  <c-col class="justify-content-center mx-5" >
+                    <button cButton class="px-0" color="link">
+                      Forgot password?
+                    </button>
+                  </c-col>
+                </c-row>-->
+              </form>
+            </c-card-body>
+          </c-card>
+
+        </c-card-group>
+      </div>
+      <div class="col-md-6 min-vh-100 d-flex flex-row align-items-center right-sec">
+        <div class="col-12 d-flex justify-content-center card-group">
+          <div class="w-100 mx-2 wp-card card">
+            <p class="sub sub-title">4eDentalAI</p>
+            <h2 class="title">Welcome Arti is here to assist the doctor</h2>
+              <p class="des">Artifical Intelligence is here to help identify dental disease. Your dentists is using every tool available to deliver top care to all patients.</p>
+                <c-row>
+                  <c-col >
+                    <a href="https://qasolutionsbpo.com/demo/4edentalai/" target="_blank" cButton class="btn btn-primary mb-4 p-2 fw-bold" color="primary">
+                      Book a Demo <svg stroke="currentColor" fill="currentColor" stroke-width="0" viewBox="0 0 24 24" height="1em" width="1em" xmlns="http://www.w3.org/2000/svg"><path d="M12 3c-4.625 0-8.442 3.507-8.941 8.001H10v-3l5 4-5 4v-3H3.06C3.56 17.494 7.376 21 12 21c4.963 0 9-4.037 9-9s-4.037-9-9-9z"></path></svg>
+                    </a>
+
+                  </c-col>
+                </c-row>
+
+              </div>
+        </div>
+      </div>
+
+    </div>
+
+</div>

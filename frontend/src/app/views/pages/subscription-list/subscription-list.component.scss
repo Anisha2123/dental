@@ -1,0 +1,93 @@
+* {
+  color: #043049;
+}
+.add-btn{
+   /* float: right;
+    margin-right: 1rem;
+    margin-top: 1rem*/
+    // margin-left: 51rem;
+    // position: relative;
+    position: absolute;
+    top: 78.5px;
+    height: 39px;
+    right: 9.7rem;
+    z-index: 200 !important;
+    line-break: strict;
+}
+
+
+.btn i{
+    font-size: 16px;
+    color: #fff;
+     position: relative;
+     top: -3px;
+    text-align: center;
+    line-height: 1
+}
+select.fade {
+    display: block;
+    opacity: 0;
+    pointer-events: none;
+ }
+
+ .show > select.fade {
+    pointer-events: auto;
+    opacity: 1;
+ }
+ .btn-save i{
+    top: 0px !important;
+ }
+ .status-input{
+    position: relative;
+    top: 3px;
+    left: 13px;
+
+}
+.active-label{
+    margin-top:4rem;
+    position: relative;
+}
+.head-div{
+    margin-bottom: -2rem;
+}
+.paddingForCenter {
+  padding-right: 7rem;
+}
+
+@media (max-width: 645px){
+//   .add-btn{
+//      position: absolute;
+//      top: 28.5px;
+//      height: 39px;
+//      left: 0rem;
+//      right: auto;
+//      z-index: 200 !important;
+//      line-break: strict;
+//  }
+ .resposive-table {
+  margin-top: 85px;
+  }
+  .dataTables_filter {
+    top: -55px !important;
+    left: 0px !important;
+    right: auto !important;
+    position: absolute;
+  }
+}
+.width-th {
+  min-width: 140px;
+}
+.amt-class {
+  text-align: right !important;
+}
+.delete-btn {
+  background-color: red !important;
+  border: 1px solid red !important;
+  // border-color: red !important;
+}
+.delete-btn:hover {
+  background-color: rgba(194, 0, 0, 0.75) !important;
+}
+.status-s {
+  width: 80px;
+}

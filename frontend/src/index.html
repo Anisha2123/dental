@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<!--
+* CoreUI - Angular 15.1 Free Admin Template
+* @version v4.3.9
+* @link https://coreui.io/angular/
+* Copyright (c) 2017-2023 creativeLabs Łukasz Holeczek
+* License: MIT
+-->
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <base href="/">
+  <meta content="width=device-width, initial-scale=1, shrink-to-fit=no" name="viewport" />
+  <meta content="ARTI" name="description" />
+  <meta content="Łukasz Holeczek" name="author" />
+  <meta
+    content="CoreUI,Bootstrap,Admin,Template,Free,Angular,Dashboard,Typescript"
+    name="keyword"
+  />
+  <title>ARTI</title>
+  <link href="/assets/images/arti_new.png" rel="icon" type="image/x-icon">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.3.0/css/all.min.css" integrity="sha512-SzlrxWUlpfuzQ+pcUCosxcglQRNAq/DZjVsC0lE40xsADsfeQoEypE+enwcOiGjk/bSuGGKHEyjSoQ1zVisanQ=="
+  crossorigin="anonymous" referrerpolicy="no-referrer" />
+
+  <script src="https://cdn.jsdelivr.net/npm/sweetalert2@9"></script>
+  <link rel="preconnect" href="https://fonts.gstatic.com">
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+  <link href="https://unpkg.com/label-studio@1.0.1/build/static/css/main.css" rel="stylesheet">
+  <link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.min.css"/>
+
+  <!-- Meta Pixel Code -->
+  <script>
+    !function(f,b,e,v,n,t,s)
+    {if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+    n.callMethod.apply(n,arguments):n.queue.push(arguments)};
+    if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
+    n.queue=[];t=b.createElement(e);t.async=!0;
+    t.src=v;s=b.getElementsByTagName(e)[0];
+    s.parentNode.insertBefore(t,s)}(window, document,'script',
+    'https://connect.facebook.net/en_US/fbevents.js');
+    fbq('init', '913231537383762');
+    fbq('track', 'PageView');
+    </script>
+    <noscript><img height="1" width="1" style="display:none"
+    src="https://www.facebook.com/tr?id=913231537383762&ev=PageView&noscript=1"
+    /></noscript>
+    <!-- End Meta Pixel Code -->
+</head>
+<body>
+  <noscript>You need to enable JavaScript to run this app.</noscript>
+  <app-root>
+   <!-- <div class="fade show" style="text-align: center; padding-top: calc(100vh / 2); height: 100vh">
+      <i class="spinner-grow spinner-grow-sm"></i>
+      <span class="m-1">Loading...</span>
+    </div>-->
+    <ngx-spinner bdColor = "rgba(0, 0, 0, 0.8)" template="<img  src='./assets/images/loader.gif' height='150px'>" size = "default" color = "#fff" [fullScreen] = "true" loadingText = ""></ngx-spinner>
+  </app-root>
+  <!-- <script src="https://www.paypal.com/sdk/js?client-id=Abah--H0KR5c54b_YianWFSKudOeRtX_a-xgswRJGHXIARFe4ZEQqA6mznnzL4Qn4V2BYUC9YK1bMH4M&currency=EUR&components=buttons"></script> -->
+  <script src="https://checkout.razorpay.com/v1/checkout.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.9.2/html2pdf.bundle.min.js"></script>
+  
+
+
+  <!-- <script src="https://www.paypal.com/sdk/js?client-id=YOUR_PAYPAL_CLIENT_ID"></script> -->
+   <!-- Google tag (gtag.js) --> 
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-NZVE59BGG6"></script> 
+    <script> window.dataLayer = window.dataLayer || []; function gtag(){dataLayer.push(arguments);} gtag('js', new Date()); gtag('config', 'G-NZVE59BGG6'); </script>
+</body>
+</html>

@@ -1,0 +1,113 @@
+* {
+  color: #043049;
+}
+.myCard {
+    min-width: 280px !important;
+    max-width: 310px !important;
+    // height: 260px !important;
+    // height: 250px;
+    margin: 10px auto;
+  }
+
+  .sub-container {
+    min-height: calc(100vh - 269px);
+    display: flex;
+    align-items: center;
+    justify-content: space-evenly;
+    width: 100%;
+    flex-direction: column;
+    margin: 0 0 25px 0;
+  }
+
+  .monthly-plans-btn {
+    border-top-right-radius: 0% !important;
+    border-bottom-right-radius: 0% !important;
+    background-color: #fff !important;
+    border: 1px solid #02d959 !important;
+    color: #02d959 !important;
+    min-width: 150px;
+  }
+
+  .yearly-plans-btn {
+    border-bottom-left-radius: 0% !important;
+    border-top-left-radius: 0% !important;
+    background-color: #fff !important;
+    border: 1px solid #02d959 !important;
+    color: #02d959 !important;
+    min-width: 150px;
+  }
+
+  .monthly-plans-btn:hover,
+  .yearly-plans-btn:hover {
+    background-color: #02d959 !important;
+    color: #fff !important;
+    border: 1px solid #02d959;
+    min-width: 150px;
+  }
+
+  .monthly-plans-true {
+    border-top-right-radius: 0% !important;
+    border-bottom-right-radius: 0% !important;
+    background-color: #02d959 !important;
+    color: #fff !important;
+    border: 1px solid #02d959;
+    min-width: 150px;
+  }
+
+  .yearly-plans-true {
+    border-bottom-left-radius: 0% !important;
+    border-top-left-radius: 0% !important;
+    background-color: #02d959 !important;
+    color: #fff !important;
+    border: 1px solid #02d959;
+    min-width: 150px;
+  }
+
+  .monthly-plans-true:hover {
+    background-color: #fff !important;
+    border: 1px solid #02d959 !important;
+    color: #02d959 !important;
+    min-width: 150px;
+  }
+  .cancel-selected {
+    background-color: var(--bs-gray) !important;
+    border: var(--bs-gray) !important;
+    font-size: 16px !important;
+    padding: 10px 14px !important;
+  }
+  .paypal-btn {
+    width: 200px;
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+  }
+ 
+  .included-sec  ul li {
+    border: 0;
+    padding: 4px 0;
+  }
+  .included-sec  ul li i {
+    color: #e53a34;
+    margin-right: 10px;
+    font-weight: 700;
+  }
+  .plantype {
+    border: 2px solid #e53a34;
+    padding: 2px;
+    border-radius: 40px;
+  }
+  .plantype .btn{
+    background: transparent !important;
+    color: #fff !important;
+    border: none !important;
+    border-radius: 40px !important;
+    padding: 6px 19px !important;
+    font-size: 13px;
+    margin: 0px;
+  }
+  .plantype .btn.yearly-plans-true,.plantype .btn.monthly-plans-true{background: #000 !important; color: #fff !important;}
+
+  app-dashboard .wrapper .card-body h4, app-dashboard .wrapper .card-body h6, app-dashboard .wrapper .card-body .price {
+    color: #043049 !important;
+}
+.card-body{max-width: 350px;}
