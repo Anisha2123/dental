@@ -7,8 +7,8 @@ export const environment = {
   production: true,
   PAYPAL_API: 'https://api-m.sandbox.paypal.com/v1/',
   // API_HOST: 'https://4edentalai.com/api/',
-  // API_HOST: 'http://localhost:4000/api/',
-  API_HOST: 'http://23.21.163.171:4000',
+  API_HOST: 'http://localhost:4000/api/',
+  // API_HOST: 'http://23.21.163.171:4000',
   
   FILE_HOST: 'http://localhost:4000/',
   LOCAL_HOST: 'http://localhost:4200/',
